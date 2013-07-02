@@ -1,0 +1,16 @@
+{
+  "name": "soeks-nitrat-tester",
+  "version": "1.0.0",
+  "main": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.2",
+    "requirejs": "~2.1.6",
+    "underscore": "~1.4.4",
+    "backbone": "~1.0.0"
+  }
+}
