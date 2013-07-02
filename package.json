@@ -1,0 +1,20 @@
+{
+  "name": "soeks-nitrat-tester",
+  "version": "1.0.0",
+  "description": "ERROR: No README.md file found!",
+  "main": "server.js",
+  "dependencies": {
+    "connect": "~2.8.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "author": "Lynx",
+  "license": "BSD",
+  "gitHead": "b7047f395c0eecf3062f3c39a47f945bbf4ffd03"
+}
