@@ -1,5 +1,5 @@
 requirejs.config(
-	baseUrl: 'components',
+	baseUrl: 'js',
 	paths: 
 		underscore: 'underscore/underscore'
 		backbone: 'backbone/backbone'

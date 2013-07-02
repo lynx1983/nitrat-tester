@@ -1,7 +1,7 @@
 {
   "name": "soeks-nitrat-tester",
   "version": "1.0.0",
-  "description": "ERROR: No README.md file found!",
+  "description": "Soeks nitrat tester emulator",
   "main": "server.js",
   "dependencies": {
     "connect": "~2.8.1"
@@ -12,7 +12,10 @@
     "grunt-contrib-less": "~0.6.1",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-requirejs": "~0.4.1"
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-copy": "~0.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

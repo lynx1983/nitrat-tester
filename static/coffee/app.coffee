@@ -3,5 +3,5 @@ require([
 		'backbone'
 	], 
 	(_, Backbone) ->
-		alert 'ok'
+		alert 'ok ok'
 );
