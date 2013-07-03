@@ -1,9 +1,9 @@
 requirejs.config(
 	baseUrl: 'js',
 	paths: 
-		underscore: 'underscore/underscore'
-		backbone: 'backbone/backbone'
-		jquery: 'jquery/jquery'
+		underscore: '/lib/underscore/underscore'
+		backbone: '/lib/backbone/backbone'
+		jquery: '/lib/jquery/jquery'
 	shim:
 		jquery: 
 			exports: 'jQuery'

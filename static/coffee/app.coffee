@@ -1,7 +1,2 @@
-require([
-		'underscore',
-		'backbone'
-	], 
-	(_, Backbone) ->
-		alert 'ok ok'
-);
+require ['underscore', 'backbone', 'view/Device-view'], 
+	(_, Backbone, DeviceView) ->

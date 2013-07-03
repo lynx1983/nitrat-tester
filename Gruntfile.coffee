@@ -18,6 +18,7 @@ module.exports = (grunt) ->
 		resource:
 			root: "<%= gruntconfig.root %>"
 			path: "<%= resource.root %>"
+			lib: "<%= resource.path %>/lib"
 			js: "<%= resource.path %>/js"
 			css: "<%= resource.path %>/css"
 			less: "<%= resource.path %>/less"
@@ -63,6 +64,9 @@ module.exports = (grunt) ->
 			less_shell:
 				files: "static/less/*.less"
 				tasks: ["less"]
+			html_shell: 
+				files: "static/html/*.html"
+				tasks: ["copy:html"]
 
 		copy:
 			html:files: [
@@ -84,27 +88,27 @@ module.exports = (grunt) ->
 				expand: true
 				src: "jquery.js"
 				cwd: "<%= components %>/jquery/"
-				dest: "<%= resource.js %>/jquery/"
+				dest: "<%= resource.lib %>/jquery/"
 			]
 			requirejs:files:[
 				flattern: true
 				expand: true
 				src: "require.js"
 				cwd: "<%= components %>/requirejs/"
-				dest: "<%= resource.js %>/requirejs/"
+				dest: "<%= resource.lib %>/requirejs/"
 			]
 			backbone:files:[
 				flattern: true
 				expand: true
 				src: "backbone.js"
 				cwd: "<%= components %>/backbone/"
-				dest: "<%= resource.js %>/backbone/"
+				dest: "<%= resource.lib %>/backbone/"
 			,
 				flattern: true
 				expand: true
 				src: "underscore.js"
 				cwd: "<%= components %>/underscore"
-				dest: "<%= resource.js %>/underscore"
+				dest: "<%= resource.lib %>/underscore"
 			]
 
 		connect:

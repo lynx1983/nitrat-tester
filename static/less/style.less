@@ -1,0 +1,61 @@
+@deviceWidth: 192;
+@buttonSize: 46;
+@screenColor: rgb(145, 145, 145);
+
+#device {
+	width: unit(@deviceWidth, px);
+	height: 577px;
+	background: url('/img/device.png') no-repeat;
+	position: relative;
+	z-index: 0;
+
+	.screen {
+		@screenWidth: 128;
+		position: absolute;
+		width: unit(@screenWidth, px);
+		height: 160px;
+		left: unit((@deviceWidth -  @screenWidth) / 2, px);
+		top: 65px;
+		background: @screenColor;
+	}
+
+	.button {
+		background: transparent;
+		width: unit(@buttonSize, px);
+		height: unit(@buttonSize, px);
+		position: absolute;
+		cursor: pointer;
+		border-radius: unit(@buttonSize / 2, px);
+
+		&.up,
+		&.down,
+		&.center {
+			left: 73px;
+		}
+
+		&.up {
+			top: 256px;
+		}
+
+		&.down {
+			top: 380px;
+		}
+
+		&.center {
+			top: 320px;
+		}
+
+		&.left,
+		&.right {
+			top: 320px;
+		}
+
+		&.left {
+			left: 12px;
+		}
+
+		&.right {
+			right: 12px;
+		}
+	}
+}
