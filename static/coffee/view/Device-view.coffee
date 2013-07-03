@@ -18,17 +18,27 @@ define ["underscore", "view/EventDriven-view"], (_, EventDrivenView)->
 			@
 
 		render: ->
+			@getCurrentScreen().render() if @getCurrentScreen()
 			@
 
 		setPrevScreen: ->
 			@screensStack.shift()
 			@render()
 
-		setCurrentScreen: ->
+		addScreen: (screen)->
+			@screens[screen.name] = screen if screen.name
 			@
+
+		setCurrentScreen: (screenName)->
+			if @screens[screenName] 
+				@screensStack.unshift @screens[screenName]
+				@render()
 
 		getCurrentScreen: ->
 			@screensStack[0] if @screensStack.length > 0
+
+		setCurrentScreen: ->
+
 
 		leftButtonClick: ->
 			@buttonClick "button.left.click" if @getCurrentScreen()
