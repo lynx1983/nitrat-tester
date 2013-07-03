@@ -2,12 +2,14 @@
 @buttonSize: 46;
 @screenColor: rgb(145, 145, 145);
 
-#device {
-	width: unit(@deviceWidth, px);
-	height: 577px;
-	background: url('/img/device.png') no-repeat;
-	position: relative;
-	z-index: 0;
+#device-wrapper {
+	.device {
+		width: unit(@deviceWidth, px);
+		height: 577px;
+		background: url('../img/device.png') no-repeat;
+		position: relative;
+		z-index: 5;
+	}
 
 	.screen {
 		@screenWidth: 128;
@@ -17,6 +19,38 @@
 		left: unit((@deviceWidth -  @screenWidth) / 2, px);
 		top: 65px;
 		background: @screenColor;
+	}
+
+	.cap {
+		width: unit(@deviceWidth, px);
+		height: 177px;
+		position: absolute;
+		left: 0;
+		top: 550px;
+
+		&.opened {
+			top: 590px;
+		}
+
+		&.closed {
+			top: 431px;
+		}
+
+		.top {
+			background: url('../img/cap-top.png') no-repeat;
+			width: 100%;
+			height: 162px;
+			z-index: 10;
+			position: relative;
+		}
+
+		.bottom {
+			width: 100%;
+			height: 15px;
+			background: url('../img/cap-bottom.png') no-repeat;
+			z-index: 0;
+			position: relative;
+		}
 	}
 
 	.button {
