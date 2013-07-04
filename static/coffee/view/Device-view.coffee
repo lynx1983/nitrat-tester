@@ -60,7 +60,7 @@ define ["underscore", "view/EventDriven-view"], (_, EventDrivenView)->
 			@getCurrentScreen().trigger event if @getCurrentScreen()
 
 		capClick: -> 
-			@cap.toggleClass 'closed'
+			@cap.toggleClass 'opened'
 
 		onScreenSet: (options)->
 			if options.screenName?

@@ -31,6 +31,7 @@
 		background: @screenColor;
 
 		.view {
+			height: 130px;
 			background: @viewBgColor;
 
 			.title {
@@ -38,6 +39,7 @@
 				border-top: 2px white solid;
 				background: @viewTitleBgColor;
 				color: @viewTitleColor;
+				padding-left: 10px;
 			}
 
 			.menu {
@@ -52,6 +54,16 @@
 						color: @activeMenuColor;
 						background: @activeMenuBgColor;
 					}
+
+					span {
+						padding-left: 2px;
+					}
+
+					span.text {
+						float: right;
+						color: #FF0000;
+						padding: 0;
+					}
 				}	
 			}
 		}
@@ -62,12 +74,12 @@
 		height: 177px;
 		position: absolute;
 		left: 0;
-		top: 590px;
+		top: 431px;
 		cursor: pointer;
 		transition: top .5s;
 
-		&.closed {
-			top: 431px;
+		&.opened {
+			top: 590px;			
 		}
 
 		.top {
