@@ -13,6 +13,7 @@ require [
 			items: [
 				new ViewMenuItem
 					title: "Измерение"
+					screen: "measurement-menu"
 				new ViewMenuItem
 					title: "Главное меню"
 					screen: "main-menu"
@@ -82,11 +83,80 @@ require [
 					title: "Не выключать"
 					text: if DeviceSettings.get "preventOff" then 'Да' else 'Нет'
 			]
+
+		MeasurementMenuScreen = new MenuScreenView
+			name: "measurement-menu"
+			title: "Измерение"
+			items: [
+				new ViewMenuItem
+					title: "Абрикос"
+				new ViewMenuItem
+					title: "Арбуз"
+				new ViewMenuItem
+					title: "Банан"
+				new ViewMenuItem
+					title: "Баклажан"
+				new ViewMenuItem
+					title: "Виноград"
+				new ViewMenuItem
+					title: "Груша"
+				new ViewMenuItem
+					title: "Зелень"
+				new ViewMenuItem
+					title: "Дыня"
+				new ViewMenuItem
+					title: "Капуста ранняя"
+				new ViewMenuItem
+					title: "Капуста поздняя"
+				new ViewMenuItem
+					title: "Кабачок"
+				new ViewMenuItem
+					title: "Картофель"
+				new ViewMenuItem
+					title: "Клубника"
+				new ViewMenuItem
+					title: "Лук	репчатый"
+				new ViewMenuItem
+					title: "Лук зеленый"
+				new ViewMenuItem
+					title: "Морковь ранняя"
+				new ViewMenuItem
+					title: "Морковь поздняя"
+				new ViewMenuItem
+					title: "Нектарин"
+				new ViewMenuItem
+					title: "Огурец. Грунт"
+				new ViewMenuItem
+					title: "Огурец. Теплич."
+				new ViewMenuItem
+					title: "Перец сладкий"
+				new ViewMenuItem
+					title: "Помидор. Грунт"
+				new ViewMenuItem
+					title: "Помидор. Теплич."
+				new ViewMenuItem
+					title: "Редис"
+				new ViewMenuItem
+					title: "Редька"
+				new ViewMenuItem
+					title: "Салат"
+				new ViewMenuItem
+					title: "Свекла"
+				new ViewMenuItem
+					title: "Хурма"
+				new ViewMenuItem
+					title: "Яблоко"
+				new ViewMenuItem
+					title: "Детская норма"
+				new ViewMenuItem
+					title: "Мясо свежее"
+			]
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
 		Device.addScreen SettingsMenuScreen
 		Device.addScreen ScreenSettingsMenuScreen
 		Device.addScreen PowerSettingsMenuScreen
+		Device.addScreen MeasurementMenuScreen
 
 		Device.setCurrentScreen "start-menu"

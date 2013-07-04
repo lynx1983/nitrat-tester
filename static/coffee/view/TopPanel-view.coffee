@@ -7,12 +7,13 @@ define ["view/Panel-view", "model/DeviceSettings-model"], (PanelView, DeviceSett
 			@listIndicator = @$el.find('.list-indicator')
 			@eventBus.bind "list-indicator.set", _.bind(@setListIndicator, @)
 
-		setListIndicator: (state)->
+		setListIndicator: (options)->
 			@listIndicator
 				.removeClass("up")
 				.removeClass("down")
 				.removeClass("both")
-				.addClass(state)
-
+			
+			if options?.state?
+				@listIndicator.addClass(options.state)
 
 	new TopPanelView;

@@ -11,12 +11,12 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			"click div.cap": "capClick"
 		
 		initialize: ->
-			console.log "Device view init."
 			@screens = {}
 			@screensStack = []
 			@cap = @$el.find('.cap')
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
+			@$el.find('.screen-wrapper').fadeIn()
 			@
 
 		render: ->
