@@ -163,66 +163,97 @@ require [
 			items: [
 				new MenuItem
 					title: "Абрикос"
+					checkbox: true
 				new MenuItem
 					title: "Арбуз"
+					checkbox: true
 				new MenuItem
 					title: "Банан"
+					checkbox: true
 				new MenuItem
 					title: "Баклажан"
+					checkbox: true
 				new MenuItem
 					title: "Виноград"
+					checkbox: true
 				new MenuItem
 					title: "Груша"
+					checkbox: true
 				new MenuItem
 					title: "Зелень"
+					checkbox: true
 				new MenuItem
 					title: "Дыня"
+					checkbox: true
 				new MenuItem
 					title: "Капуста ранняя"
+					checkbox: true
 				new MenuItem
 					title: "Капуста поздняя"
+					checkbox: true
 				new MenuItem
 					title: "Кабачок"
+					checkbox: true
 				new MenuItem
 					title: "Картофель"
+					checkbox: true
 				new MenuItem
 					title: "Клубника"
+					checkbox: true
 				new MenuItem
 					title: "Лук	репчатый"
+					checkbox: true
 				new MenuItem
 					title: "Лук зеленый"
+					checkbox: true
 				new MenuItem
 					title: "Морковь ранняя"
+					checkbox: true
 				new MenuItem
 					title: "Морковь поздняя"
+					checkbox: true
 				new MenuItem
 					title: "Нектарин"
+					checkbox: true
 				new MenuItem
 					title: "Огурец. Грунт"
+					checkbox: true
 				new MenuItem
 					title: "Огурец. Теплич."
+					checkbox: true
 				new MenuItem
 					title: "Перец сладкий"
+					checkbox: true
 				new MenuItem
 					title: "Помидор. Грунт"
+					checkbox: true
 				new MenuItem
 					title: "Помидор. Теплич."
+					checkbox: true
 				new MenuItem
 					title: "Редис"
+					checkbox: true
 				new MenuItem
 					title: "Редька"
+					checkbox: true
 				new MenuItem
 					title: "Салат"
+					checkbox: true
 				new MenuItem
 					title: "Свекла"
+					checkbox: true
 				new MenuItem
 					title: "Хурма"
+					checkbox: true
 				new MenuItem
 					title: "Яблоко"
+					checkbox: true
 				new MenuItem
 					title: "Детская норма"
+					checkbox: true
 				new MenuItem
 					title: "Мясо свежее"
+					checkbox: true
 			]
 		
 		Device.addScreen StartMenuScreen
