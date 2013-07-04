@@ -6,7 +6,7 @@ define ["backbone"], (Backbone)->
 			autoOffTime: 20
 			haveAccumulator: true
 			preventOff: true
-			screenBrightness: ' Высокая'
+			screenBrightness: 'middle'
 			screenTimeout: 3
 			screenAlwaysOn: true
 			screenTheme: 'Зеленая'
@@ -15,8 +15,18 @@ define ["backbone"], (Backbone)->
 		getValueString: (valueName)->
 			switch valueName
 				when 'language'
-					return if @.get('language') == 'ru' then 'Русский' else 'English'
+					if @.get(valueName) == 'ru' then 'Русский' else 'English'
+				when 'screenBrightness'
+					switch @.get(valueName)
+						when 'middle' 
+							'Средняя'
+						when 'high' 
+							'Высокая'
+						when 'low' 
+							'Низкая'
+						else 
+							''
 				else 
-					''
+					@.get(valueName)
 
 	new DeviceSettingsModel

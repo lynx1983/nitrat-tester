@@ -24,7 +24,7 @@ define ["view/EventDriven-view", "model/DeviceSettings-model"], (EventDrivenView
 				@checked = DeviceSettings.get(@options.settingsValue) == @options.checkedValue
 			@render()
 
-		action: -> 
+		action: (event)-> 
 			if @options.screen
 				@eventBus.trigger "device.screen.set",
 					screenName: @options.screen

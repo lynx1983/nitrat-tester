@@ -25,7 +25,7 @@ require [
 				new MenuItem
 					title: "Язык"
 					settingsValue: "language"
-					showValue: true 
+					showValue: true
 					screen: "language-setting-menu"
 				new MenuItem
 					title: "Настройки"
@@ -58,12 +58,16 @@ require [
 			items: [
 				new MenuItem
 					title: "Яркость"
-					text: DeviceSettings.get "screenBrightness"
+					showValue: true
+					settingsValue: "screenBrightness"
+					screen: "screen-brightness-settings-menu"
 				new MenuItem
 					title: "Включен, мин"
-					text: DeviceSettings.get "screenTimeout"
+					settingsValue: "screenTimeout"
+					showValue: true
+					screen: "screen-timeout-settings-menu"
 				new MenuItem
-					title: "Включен Всегда"
+					title: "ВключенВсегда"
 					text: if DeviceSettings.get "screenAlwaysOn" then 'Да' else 'Нет'
 				new MenuItem
 					title: "Тема"
@@ -85,7 +89,7 @@ require [
 					text: if DeviceSettings.get "preventOff" then 'Да' else 'Нет'
 			]
 
-		LanguageSettingsMenuScree = new MenuScreenView
+		LanguageSettingsMenuScreen = new MenuScreenView
 			name: "language-setting-menu"
 			title: "Язык"
 			items: [
@@ -94,12 +98,63 @@ require [
 					checkbox: true
 					settingsValue: "language"
 					checkedValue: 'ru'
-
 				new MenuItem
 					title: "English"
 					checkbox: true
 					settingsValue: "language"
 					checkedValue: 'en'
+			]
+
+		ScreenBrightnessSettingsScreen = new MenuScreenView
+			name: "screen-brightness-settings-menu"
+			title: "Яркость"
+			items: [
+				new MenuItem
+					title: "Низкая"
+					checkbox: true
+					settingsValue: "screenBrightness"
+					checkedValue: 'low'
+				new MenuItem
+					title: "Средня"
+					checkbox: true
+					settingsValue: "screenBrightness"
+					checkedValue: 'middle'
+				new MenuItem
+					title: "Высокая"
+					checkbox: true
+					settingsValue: "screenBrightness"
+					checkedValue: 'high'
+			]
+
+		ScreenTimeoutSettingsScreen = new MenuScreenView
+			name: "screen-timeout-settings-menu"
+			title: "Включен, мин"
+			items: [
+				new MenuItem
+					title: "1"
+					checkbox: true
+					settingsValue: "screenTimeout"
+					checkedValue: 1
+				new MenuItem
+					title: "3"
+					checkbox: true
+					settingsValue: "screenTimeout"
+					checkedValue: 3
+				new MenuItem
+					title: "5"
+					checkbox: true
+					settingsValue: "screenTimeout"
+					checkedValue: 5
+				new MenuItem
+					title: "10"
+					checkbox: true
+					settingsValue: "screenTimeout"
+					checkedValue: 10
+				new MenuItem
+					title: "15"
+					checkbox: true
+					settingsValue: "screenTimeout"
+					checkedValue: 15
 			]
 
 		MeasurementMenuScreen = new MenuScreenView
@@ -176,6 +231,8 @@ require [
 		Device.addScreen ScreenSettingsMenuScreen
 		Device.addScreen PowerSettingsMenuScreen
 		Device.addScreen MeasurementMenuScreen
-		Device.addScreen LanguageSettingsMenuScree
+		Device.addScreen LanguageSettingsMenuScreen
+		Device.addScreen ScreenBrightnessSettingsScreen
+		Device.addScreen ScreenTimeoutSettingsScreen
 
 		Device.setCurrentScreen "start-menu"

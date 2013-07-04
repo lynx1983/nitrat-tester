@@ -51,5 +51,8 @@ define ["view/Screen-view"], (ScreenView)->
 		onLeftButton: ->
 			@eventBus.trigger "device.screen.prev"
 
-		onRightButton: ->
+		onRightButton: (event)->
+			@items[@activeIndex].trigger "menu.item.action"
+
+		onCenterButton: (event)-> 
 			@items[@activeIndex].trigger "menu.item.action"
