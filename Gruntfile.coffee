@@ -114,11 +114,13 @@ module.exports = (grunt) ->
 		connect:
 			dev:
 				options:
-					port: 9090
+					hostname: '*'
+					port: 9090 
 					base: "<%= resource.path %>"
 
 			release:
 				options:
+					hostname: '*'
 					port: 9090
 					base: "<%= connect.dev.base %>"
 					keepalive: true
