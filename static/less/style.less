@@ -1,8 +1,18 @@
 @deviceWidth: 192;
 @buttonSize: 46;
 @screenColor: rgb(145, 145, 145);
+@viewTitleBgColor: #455369;
+@viewTitleColor: #13ff00;
+@viewBgColor: #1e4e02;
+@menuBgColor: transparent;
+@menuColor: #d8d800;
+@activeMenuBgColor: #ededed;
+@activeMenuColor: #000000;
 
 #device-wrapper {
+	font-family: Arial;
+	font-size: 14px;
+
 	.device {
 		width: unit(@deviceWidth, px);
 		height: 577px;
@@ -19,6 +29,32 @@
 		left: unit((@deviceWidth -  @screenWidth) / 2, px);
 		top: 65px;
 		background: @screenColor;
+
+		.view {
+			background: @viewBgColor;
+
+			.title {
+				height: 15px;
+				border-top: 2px white solid;
+				background: @viewTitleBgColor;
+				color: @viewTitleColor;
+			}
+
+			.menu {
+
+				li {
+					height: 17px;
+					line-height: 17px;
+					color: @menuColor;
+					background: @menuBgColor;
+
+					&.active {
+						color: @activeMenuColor;
+						background: @activeMenuBgColor;
+					}
+				}	
+			}
+		}
 	}
 
 	.cap {
@@ -26,11 +62,9 @@
 		height: 177px;
 		position: absolute;
 		left: 0;
-		top: 550px;
-
-		&.opened {
-			top: 590px;
-		}
+		top: 590px;
+		cursor: pointer;
+		transition: top .5s;
 
 		&.closed {
 			top: 431px;
