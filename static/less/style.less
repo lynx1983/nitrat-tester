@@ -104,6 +104,7 @@
 						line-height: 17px;
 						color: @menuColor;
 						background: @menuBgColor;
+						margin-bottom: 1px;
 
 						&.active {
 							color: @activeMenuColor;
@@ -118,6 +119,19 @@
 							float: right;
 							color: #FF0000;
 							padding: 0;
+						}
+
+						span.checkbox {
+							display: block;
+							width: 17px;
+							height: 17px;
+							background: url('../img/checkbox.png') 0 0 no-repeat;
+							float: right;
+							padding: 0;
+
+							&.checked {
+								background-position: -17px 0;
+							}
 						}
 					}	
 				}

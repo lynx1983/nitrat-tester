@@ -12,4 +12,11 @@ define ["backbone"], (Backbone)->
 			screenTheme: 'Зеленая'
 			language: 'ru'
 
+		getValueString: (valueName)->
+			switch valueName
+				when 'language'
+					return if @.get('language') == 'ru' then 'Русский' else 'English'
+				else 
+					''
+
 	new DeviceSettingsModel

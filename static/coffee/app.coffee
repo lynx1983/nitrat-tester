@@ -4,17 +4,16 @@ require [
 	"view/Device-view",
 	"model/DeviceSettings-model"
 	"view/MenuScreen-view",
-	"view/ViewMenuItem-view"
-	"view/TextMenuItem-view"
+	"view/MenuItem-view"
 	], 
-	(_, Backbone, Device, DeviceSettings, MenuScreenView, ViewMenuItem, TextMenuItem) ->
+	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
-				new ViewMenuItem
+				new MenuItem
 					title: "Измерение"
 					screen: "measurement-menu"
-				new ViewMenuItem
+				new MenuItem
 					title: "Главное меню"
 					screen: "main-menu"
 			]
@@ -23,18 +22,20 @@ require [
 			name: "main-menu"
 			title: "Главное меню"
 			items: [
-				new TextMenuItem
+				new MenuItem
 					title: "Язык"
-					text: if DeviceSettings.get("language") == "ru" then "Русский" else "Английский"
-				new ViewMenuItem
+					settingsValue: "language"
+					showValue: true 
+					screen: "language-setting-menu"
+				new MenuItem
 					title: "Настройки"
 					screen: "settings-menu"
-				new ViewMenuItem
+				new MenuItem
 					title: "Информация"
-				new TextMenuItem
+				new MenuItem
 					title: "Версия ПО"
 					text: DeviceSettings.get "version"
-				new TextMenuItem
+				new MenuItem
 					title: "ID"
 					text: DeviceSettings.get "id"
 			]
@@ -43,10 +44,10 @@ require [
 			name: "settings-menu"
 			title: "Настройки"
 			items: [
-				new ViewMenuItem
+				new MenuItem
 					title: "Изображение"
 					screen: "screen-settings-menu"
-				new ViewMenuItem
+				new MenuItem
 					title: "Питание"
 					screen: "power-settings-menu"
 			]
@@ -55,16 +56,16 @@ require [
 			name: "screen-settings-menu"
 			title: "Изображение"
 			items: [
-				new TextMenuItem
+				new MenuItem
 					title: "Яркость"
 					text: DeviceSettings.get "screenBrightness"
-				new TextMenuItem
+				new MenuItem
 					title: "Включен, мин"
 					text: DeviceSettings.get "screenTimeout"
-				new TextMenuItem
+				new MenuItem
 					title: "Включен Всегда"
 					text: if DeviceSettings.get "screenAlwaysOn" then 'Да' else 'Нет'
-				new TextMenuItem
+				new MenuItem
 					title: "Тема"
 					text: DeviceSettings.get "screenTheme"
 			]
@@ -73,82 +74,99 @@ require [
 			name: "power-settings-menu"
 			title: "Питание"
 			items: [
-				new TextMenuItem
+				new MenuItem
 					title: "Аккумуляторы"
 					text: if DeviceSettings.get "haveAccumulator" then 'Да' else 'Нет'
-				new TextMenuItem
+				new MenuItem
 					title: "Автовыкл, мин"
 					text: DeviceSettings.get "autoOffTime"
-				new TextMenuItem
+				new MenuItem
 					title: "Не выключать"
 					text: if DeviceSettings.get "preventOff" then 'Да' else 'Нет'
+			]
+
+		LanguageSettingsMenuScree = new MenuScreenView
+			name: "language-setting-menu"
+			title: "Язык"
+			items: [
+				new MenuItem
+					title: "Русский"
+					checkbox: true
+					settingsValue: "language"
+					checkedValue: 'ru'
+
+				new MenuItem
+					title: "English"
+					checkbox: true
+					settingsValue: "language"
+					checkedValue: 'en'
 			]
 
 		MeasurementMenuScreen = new MenuScreenView
 			name: "measurement-menu"
 			title: "Измерение"
 			items: [
-				new ViewMenuItem
+				new MenuItem
 					title: "Абрикос"
-				new ViewMenuItem
+				new MenuItem
 					title: "Арбуз"
-				new ViewMenuItem
+				new MenuItem
 					title: "Банан"
-				new ViewMenuItem
+				new MenuItem
 					title: "Баклажан"
-				new ViewMenuItem
+				new MenuItem
 					title: "Виноград"
-				new ViewMenuItem
+				new MenuItem
 					title: "Груша"
-				new ViewMenuItem
+				new MenuItem
 					title: "Зелень"
-				new ViewMenuItem
+				new MenuItem
 					title: "Дыня"
-				new ViewMenuItem
+				new MenuItem
 					title: "Капуста ранняя"
-				new ViewMenuItem
+				new MenuItem
 					title: "Капуста поздняя"
-				new ViewMenuItem
+				new MenuItem
 					title: "Кабачок"
-				new ViewMenuItem
+				new MenuItem
 					title: "Картофель"
-				new ViewMenuItem
+				new MenuItem
 					title: "Клубника"
-				new ViewMenuItem
+				new MenuItem
 					title: "Лук	репчатый"
-				new ViewMenuItem
+				new MenuItem
 					title: "Лук зеленый"
-				new ViewMenuItem
+				new MenuItem
 					title: "Морковь ранняя"
-				new ViewMenuItem
+				new MenuItem
 					title: "Морковь поздняя"
-				new ViewMenuItem
+				new MenuItem
 					title: "Нектарин"
-				new ViewMenuItem
+				new MenuItem
 					title: "Огурец. Грунт"
-				new ViewMenuItem
+				new MenuItem
 					title: "Огурец. Теплич."
-				new ViewMenuItem
+				new MenuItem
 					title: "Перец сладкий"
-				new ViewMenuItem
+				new MenuItem
 					title: "Помидор. Грунт"
-				new ViewMenuItem
+				new MenuItem
 					title: "Помидор. Теплич."
-				new ViewMenuItem
+				new MenuItem
 					title: "Редис"
-				new ViewMenuItem
+				new MenuItem
 					title: "Редька"
-				new ViewMenuItem
+				new MenuItem
 					title: "Салат"
-				new ViewMenuItem
+				new MenuItem
 					title: "Свекла"
-				new ViewMenuItem
+				new MenuItem
 					title: "Хурма"
-				new ViewMenuItem
+				new MenuItem
 					title: "Яблоко"
-				new ViewMenuItem
+				new MenuItem
 					title: "Детская норма"
-				new ViewMenuItem
+				new MenuItem
 					title: "Мясо свежее"
 			]
 		
@@ -158,5 +176,6 @@ require [
 		Device.addScreen ScreenSettingsMenuScreen
 		Device.addScreen PowerSettingsMenuScreen
 		Device.addScreen MeasurementMenuScreen
+		Device.addScreen LanguageSettingsMenuScree
 
 		Device.setCurrentScreen "start-menu"

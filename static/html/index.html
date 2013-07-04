@@ -34,12 +34,13 @@
  				<ul class="menu"></ul>
  			</div>
  		</script>
- 		<script type="text/template" id="view-menu-item-template">
+ 		<script type="text/template" id="menu-item-template">
 			<span><%=item.title%></span>
- 		</script>
- 		<script type="text/template" id="text-menu-item-template">
-			<span><%=item.title%></span>
-			<span class="text"><%=item.text%></span>
+			<% if(item.text) { %>
+				<span class="text"><%=item.text%></span>
+			<% } else if(item.options.checkbox) { %>
+				<span class="checkbox<%=(item.checked ? ' checked' : '')%>"></span>
+			<% } %>
  		</script>
  		<script type="text/template" id="top-panel-template">
  			<div class="list-indicator"></div>
