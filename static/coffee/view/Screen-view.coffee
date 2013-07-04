@@ -1,4 +1,4 @@
-define ["underscore", "view/EventDriven-view"], (_, EventDrivenView)->
+define ["view/EventDriven-view"], (EventDrivenView)->
 	class ScreenView extends EventDrivenView
 		el: $('#device-wrapper .screen')
 		constructor: (options)->

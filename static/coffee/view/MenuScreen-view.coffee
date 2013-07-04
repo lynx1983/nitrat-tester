@@ -1,4 +1,4 @@
-define ["underscore", "view/Screen-view"], (_, ScreenView)->
+define ["view/Screen-view"], (ScreenView)->
 	class MenuScreenView extends ScreenView
 		template: _.template $('#menu-template').html()
 		initialize: ()->

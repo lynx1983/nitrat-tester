@@ -1,4 +1,4 @@
-define ["underscore", "view/EventDriven-view"], (_, EventDrivenView)->
+define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"], (EventDrivenView, TopPanel, BottomPanel)->
 	class DeviceView extends EventDrivenView
 		el: $("#device-wrapper")
 
@@ -15,7 +15,6 @@ define ["underscore", "view/EventDriven-view"], (_, EventDrivenView)->
 			@screens = {}
 			@screensStack = []
 			@cap = @$el.find('.cap')
-
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
 			@
