@@ -3,6 +3,7 @@ define ["view/Screen-view"], (ScreenView)->
 		template: _.template $('#menu-template').html()
 		initialize: ()->
 			@activeIndex = 0
+			@firstVisibleIndex = 0
 			@itemsPerScreen = 6
 			@items = @options.items
 			@on "button.left.click", @onLeftButton
@@ -14,7 +15,7 @@ define ["view/Screen-view"], (ScreenView)->
 		render: ()->
 			@$el.html @.template
 				title: @title
-			startIndex = @getItemScreenIndex() * @itemsPerScreen
+			startIndex = @firstVisibleIndex
 			endIndex = startIndex + @itemsPerScreen
 			_.each @items, (item, i)=>
 				if i >= startIndex and i < endIndex
@@ -35,24 +36,28 @@ define ["view/Screen-view"], (ScreenView)->
 				@eventBus.trigger "list-indicator.set"
 			@
 
-		getItemScreenIndex: ->
-			Math.floor @activeIndex / @itemsPerScreen
-
 		onUpButton: ->
 			@activeIndex--
-			@activeIndex = @items.length - 1 if @activeIndex < 0
+			if @activeIndex - @firstVisibleIndex < 0 
+				@firstVisibleIndex--
+			if @activeIndex < 0
+				@activeIndex = @items.length - 1
+				@firstVisibleIndex = if @items.length - @itemsPerScreen < 0 then 0 else @items.length - @itemsPerScreen
 			@render()
 
 		onDownButton: ->
 			@activeIndex++
-			@activeIndex = 0 if @activeIndex > @items.length - 1
+			if @activeIndex - @firstVisibleIndex >= @itemsPerScreen 
+				@firstVisibleIndex++
+			if @activeIndex > @items.length - 1
+				@activeIndex = @firstVisibleIndex = 0
 			@render()
 
 		onLeftButton: ->
 			@eventBus.trigger "device.screen.prev"
 
-		onRightButton: (event)->
-			@items[@activeIndex].trigger "menu.item.action"
+		onRightButton: (button)->
+			@items[@activeIndex].trigger "menu.item.action", button
 
-		onCenterButton: (event)-> 
-			@items[@activeIndex].trigger "menu.item.action"
+		onCenterButton: (button)-> 
+			@items[@activeIndex].trigger "menu.item.action", button
