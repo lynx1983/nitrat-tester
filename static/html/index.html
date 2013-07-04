@@ -12,7 +12,11 @@
 	<body>
 		<div id="device-wrapper">
 			<div class="device">
-				<div class="screen"></div>
+				<div class="screen-wrapper">
+					<div class="top-panel"></div>
+					<div class="screen"></div>
+					<div class="bottom-panel"></div>
+				</div>
 				<div class="button up"></div>
 				<div class="button left"></div>
 				<div class="button right"></div>
@@ -36,6 +40,12 @@
  		<script type="text/template" id="text-menu-item-template">
 			<span><%=item.title%></span>
 			<span class="text"><%=item.text%></span>
+ 		</script>
+ 		<script type="text/template" id="top-panel-template">
+ 			<div class="list-indicator"></div>
+ 			<div class="battery full"></div>
+ 		</script>
+ 		<script type="text/template" id="bottom-panel-template">
  		</script>
 	</body>
 </html>

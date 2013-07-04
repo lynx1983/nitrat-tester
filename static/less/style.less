@@ -8,10 +8,19 @@
 @menuColor: #d8d800;
 @activeMenuBgColor: #ededed;
 @activeMenuColor: #000000;
+@topPanelBgColor: #1e4e02;
+@bottomPanelBgColor: @viewBgColor;
 
 #device-wrapper {
 	font-family: Arial;
 	font-size: 14px;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
 
 	.device {
 		width: unit(@deviceWidth, px);
@@ -21,7 +30,7 @@
 		z-index: 5;
 	}
 
-	.screen {
+	.screen-wrapper {
 		@screenWidth: 128;
 		position: absolute;
 		width: unit(@screenWidth, px);
@@ -29,42 +38,88 @@
 		left: unit((@deviceWidth -  @screenWidth) / 2, px);
 		top: 65px;
 		background: @screenColor;
+		
+		.top-panel {
+			height: 15px;
+			background: @topPanelBgColor;
 
-		.view {
-			height: 130px;
-			background: @viewBgColor;
-
-			.title {
+			.battery {
+				width: 20px;
 				height: 15px;
-				border-top: 2px white solid;
-				background: @viewTitleBgColor;
-				color: @viewTitleColor;
-				padding-left: 10px;
+				position: absolute;
+				top: 0;
+				right: 15px;
+
+				&.full {
+					background: url('../img/battery-full.png') no-repeat;
+				}
 			}
 
-			.menu {
+			.list-indicator {
+				width: 20px;
+				height: 15px;
+				position: absolute;
+				top: 0;
+				left: 3px;
+				background: url('../img/list-indicator.png') no-repeat 0 0;
 
-				li {
-					height: 17px;
-					line-height: 17px;
-					color: @menuColor;
-					background: @menuBgColor;
+				&.up {
+					background-position: -20px 0;
+				}
 
-					&.active {
-						color: @activeMenuColor;
-						background: @activeMenuBgColor;
-					}
+				&.down {
+					background-position: -40px 0;
+				}
 
-					span {
-						padding-left: 2px;
-					}
+				&.both {
+					background-position: -60px 0;
+				}
+			}
+		}
 
-					span.text {
-						float: right;
-						color: #FF0000;
-						padding: 0;
-					}
-				}	
+		.bottom-panel {
+			height: 15px;
+			background: @bottomPanelBgColor;
+		}
+
+		.screen {
+
+			.view {
+				height: 130px;
+				background: @viewBgColor;
+
+				.title {
+					height: 15px;
+					border-top: 2px white solid;
+					background: @viewTitleBgColor;
+					color: @viewTitleColor;
+					padding-left: 10px;
+				}
+
+				.menu {
+
+					li {
+						height: 17px;
+						line-height: 17px;
+						color: @menuColor;
+						background: @menuBgColor;
+
+						&.active {
+							color: @activeMenuColor;
+							background: @activeMenuBgColor;
+						}
+
+						span {
+							padding-left: 2px;
+						}
+
+						span.text {
+							float: right;
+							color: #FF0000;
+							padding: 0;
+						}
+					}	
+				}
 			}
 		}
 	}
@@ -77,6 +132,7 @@
 		top: 431px;
 		cursor: pointer;
 		transition: top .5s;
+		-webkit-transition: top .5s;
 
 		&.opened {
 			top: 590px;			
