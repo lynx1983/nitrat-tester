@@ -105,6 +105,7 @@
 						color: @menuColor;
 						background: @menuBgColor;
 						margin-bottom: 1px;
+						overflow: hidden;
 
 						&.active {
 							color: @activeMenuColor;
@@ -113,6 +114,10 @@
 
 						span {
 							padding-left: 2px;
+							max-width: 105px;
+							display: inline-block;
+							white-space: nowrap;
+							overflow: hidden;
 						}
 
 						span.text {
