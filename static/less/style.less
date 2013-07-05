@@ -10,6 +10,7 @@
 @activeMenuColor: #000000;
 @topPanelBgColor: #1e4e02;
 @bottomPanelBgColor: @viewBgColor;
+@topPanelHeight: 15;
 
 #device-wrapper {
 	font-family: Arial;
@@ -44,12 +45,12 @@
 		display: none;
 		
 		.top-panel {
-			height: 15px;
+			height: unit(@topPanelHeight, px);
 			background: @topPanelBgColor;
 
 			.battery {
 				width: 20px;
-				height: 15px;
+				height: unit(@topPanelHeight, px);
 				position: absolute;
 				top: 0;
 				right: 15px;
@@ -61,7 +62,7 @@
 
 			.list-indicator {
 				width: 20px;
-				height: 15px;
+				height: unit(@topPanelHeight, px);
 				position: absolute;
 				top: 0;
 				left: 3px;
@@ -78,6 +79,30 @@
 				&.both {
 					background-position: -60px 0;
 				}
+			}
+
+			.activity-indicator {
+				width: 15px;
+				height: unit(@topPanelHeight, px);
+				position: absolute;
+				top: 0;
+				right: 0;
+
+				.indicator {
+					position: absolute;
+					width: 9px;
+					height: 2px;
+					background: #FFFFFF;
+					left: 3px;
+					top: 2px;
+					transition: top .1s;
+					-webkit-transition: top .1s;
+				}
+
+				.last-button-icon {
+					display: none;
+				}
+
 			}
 		}
 
