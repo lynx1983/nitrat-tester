@@ -25,7 +25,9 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 
 		setPrevScreen: ->
 			if @screensStack.length > 1
+				@getCurrentScreen().deactivate() if @getCurrentScreen()
 				@screensStack.shift()
+				@getCurrentScreen().activate()
 				@render()
 
 		addScreen: (screen)->
@@ -34,25 +36,32 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 
 		setCurrentScreen: (screenName)->
 			if @screens[screenName] 
+				@getCurrentScreen().deactivate() if @getCurrentScreen()
 				@screensStack.unshift @screens[screenName]
+				@getCurrentScreen().activate()
 				@render()
 
 		getCurrentScreen: ->
 			@screensStack[0] if @screensStack.length > 0
 
 		leftButtonClick: ->
+			@eventBus.trigger "button.click", "left"
 			@buttonClick "button.left.click", "left" if @getCurrentScreen()
 		
 		rightButtonClick: ->
+			@eventBus.trigger "button.click", "right"
 			@buttonClick "button.right.click", "right" if @getCurrentScreen()
 
 		upButtonClick: ->
+			@eventBus.trigger "button.click", "up"
 			@buttonClick "button.up.click", "up" if @getCurrentScreen()
 		
 		downButtonClick: ->
+			@eventBus.trigger "button.click", "down"
 			@buttonClick "button.down.click", "down" if @getCurrentScreen()
 
 		centerButtonClick: ->
+			@eventBus.trigger "button.click", "center"
 			@buttonClick "button.center.click", "center" if @getCurrentScreen()
 		
 		buttonClick: (event, button)->
