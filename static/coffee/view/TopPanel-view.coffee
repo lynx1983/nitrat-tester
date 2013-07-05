@@ -9,10 +9,14 @@ define [
 			@$el.html @template
 			@listIndicator = @$el.find('.list-indicator')
 			@eventBus.bind "list-indicator.set", _.bind(@setListIndicator, @)
+			@eventBus.bind "button.click", _.bind(@showButtonIndicator, @)
 			@indicator =
 				$el: @$el.find ".indicator"
 				position: 1
-				direction: 'down'
+				direction: 'down'			
+			@buttonIndicator = 
+				$el: @$el.find ".last-button-icon"
+				timeout: null
 			@updateTime = setInterval _.bind(@updateActivityIndicator, @), 100
 
 		setListIndicator: (options)->
@@ -32,5 +36,14 @@ define [
 				@indicator.position -= 2
 				@indicator.direction = 'down' unless @indicator.position > 2
 			@indicator.$el.css "top", @indicator.position + 'px'
+
+		showButtonIndicator:->
+			clearTimeout @buttonIndicator.timeout
+			@buttonIndicator.$el.show()
+			@buttonIndicator.timeout = setTimeout _.bind(@hideButtonIndicator, @), 1000
+
+		hideButtonIndicator:->
+			@buttonIndicator.$el.hide()
+
 
 	new TopPanelView;
