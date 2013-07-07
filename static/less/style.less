@@ -137,6 +137,10 @@
 			}
 		}
 
+		&.fullscreen .top-panel {
+			display: none;
+		}
+
 		.bottom-panel {
 			height: 15px;
 			background: @bottomPanelBgColor;
@@ -157,6 +161,10 @@
 					float: right;
 				}
 			}
+		}
+
+		&.fullscreen .bottom-panel {
+			display: none;
 		}
 
 		.screen {
@@ -216,6 +224,12 @@
 						}
 					}	
 				}
+			}
+		}
+
+		&.fullscreen .screen {
+			.view {
+				height: 160px;
 			}
 		}
 	}

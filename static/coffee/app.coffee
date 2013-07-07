@@ -71,7 +71,9 @@ require [
 					text: if DeviceSettings.get "screenAlwaysOn" then 'Да' else 'Нет'
 				new MenuItem
 					title: "Тема"
-					text: DeviceSettings.get "screenTheme"
+					settingsValue: "screenTheme"
+					showValue: true
+					screen: "theme-settings-menu"
 			]
 
 		PowerSettingsMenuScreen = new MenuScreenView
@@ -124,6 +126,32 @@ require [
 					checkbox: true
 					settingsValue: "screenBrightness"
 					checkedValue: 'high'
+			]
+
+		ThemeSettingsScreen = new MenuScreenView
+			name: "theme-settings-menu"
+			title: "Тема"
+			items: [
+				new MenuItem
+					title: "Зеленая"
+					checkbox: true
+					settingsValue: "screenTheme"
+					checkedValue: 'green'
+				new MenuItem
+					title: "Серая"
+					checkbox: true
+					settingsValue: "screenTheme"
+					checkedValue: 'gray'
+				new MenuItem
+					title: "Синяя"
+					checkbox: true
+					settingsValue: "screenTheme"
+					checkedValue: 'blue'
+				new MenuItem
+					title: "Белая"
+					checkbox: true
+					settingsValue: "screenTheme"
+					checkedValue: 'white'
 			]
 
 		ScreenTimeoutSettingsScreen = new MenuScreenView
@@ -265,5 +293,6 @@ require [
 		Device.addScreen LanguageSettingsMenuScreen
 		Device.addScreen ScreenBrightnessSettingsScreen
 		Device.addScreen ScreenTimeoutSettingsScreen
+		Device.addScreen ThemeSettingsScreen
 
 		Device.setCurrentScreen "start-menu"

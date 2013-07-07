@@ -9,7 +9,7 @@ define ["backbone"], (Backbone)->
 			screenBrightness: 'middle'
 			screenTimeout: 3
 			screenAlwaysOn: true
-			screenTheme: 'Зеленая'
+			screenTheme: 'green'
 			language: 'ru'
 
 		getValueString: (valueName)->
@@ -25,6 +25,18 @@ define ["backbone"], (Backbone)->
 						when 'low' 
 							'Низкая'
 						else 
+							''
+				when 'screenTheme'
+					switch @.get(valueName)
+						when 'green'
+							'Зеленая'
+						when 'gray'
+							'Серая'
+						when 'blue'
+							'Синяя'
+						when 'white'
+							'Белая'
+						else
 							''
 				else 
 					@.get(valueName)
