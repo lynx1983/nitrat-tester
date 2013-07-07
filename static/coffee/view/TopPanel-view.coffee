@@ -10,14 +10,11 @@ define [
 			@listIndicator = @$el.find('.list-indicator')
 			@eventBus.bind "list-indicator.set", _.bind(@setListIndicator, @)
 			@eventBus.bind "button.click", _.bind(@showButtonIndicator, @)
-			@indicator =
-				$el: @$el.find ".indicator"
-				position: 1
-				direction: 'down'			
+			@$indicator = @$el.find ".indicator"
 			@buttonIndicator = 
 				$el: @$el.find ".last-button-icon"
 				timeout: null
-			@updateTime = setInterval _.bind(@updateActivityIndicator, @), 100
+			@updateTime = setInterval _.bind(@updateActivityIndicator, @), 300
 
 		setListIndicator: (options)->
 			@listIndicator
@@ -29,13 +26,7 @@ define [
 				@listIndicator.addClass(options.state)
 
 		updateActivityIndicator:->
-			if @indicator.direction == 'down'
-				@indicator.position += 2
-				@indicator.direction = 'up' unless @indicator.position < 10
-			else 
-				@indicator.position -= 2
-				@indicator.direction = 'down' unless @indicator.position > 2
-			@indicator.$el.css "top", @indicator.position + 'px'
+			@$indicator.toggleClass "down"
 
 		showButtonIndicator:->
 			clearTimeout @buttonIndicator.timeout
