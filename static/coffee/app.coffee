@@ -4,9 +4,10 @@ require [
 	"view/Device-view",
 	"model/DeviceSettings-model"
 	"view/MenuScreen-view",
-	"view/MenuItem-view"
+	"view/MenuItem-view",
+	"view/TemplatedScreen-view"
 	], 
-	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem) ->
+	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
@@ -32,6 +33,7 @@ require [
 					screen: "settings-menu"
 				new MenuItem
 					title: "Информация"
+					screen: "information-screen"
 				new MenuItem
 					title: "Версия ПО"
 					text: DeviceSettings.get "version"
@@ -283,6 +285,11 @@ require [
 					title: "Мясо свежее"
 					checkbox: true
 			]
+
+		InformationScreen = new TemplatedScreenView
+			name: "information-screen"
+			title: "Информация"
+			template: '#info-screen-template'
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
@@ -294,5 +301,6 @@ require [
 		Device.addScreen ScreenBrightnessSettingsScreen
 		Device.addScreen ScreenTimeoutSettingsScreen
 		Device.addScreen ThemeSettingsScreen
+		Device.addScreen InformationScreen
 
 		Device.setCurrentScreen "start-menu"

@@ -13,7 +13,7 @@ define ["view/Screen-view"], (ScreenView)->
 			@on "button.down.click", @onDownButton
 
 		render: ()->
-			@$el.html @.template
+			@$el.html @template
 				title: @title
 			startIndex = @firstVisibleIndex
 			endIndex = startIndex + @itemsPerScreen
