@@ -28,13 +28,15 @@ define [
 		updateActivityIndicator:->
 			@$indicator.toggleClass "down"
 
-		showButtonIndicator:->
+		showButtonIndicator:(event)->
 			clearTimeout @buttonIndicator.timeout
-			@buttonIndicator.$el.show()
-			@buttonIndicator.timeout = setTimeout _.bind(@hideButtonIndicator, @), 1000
+			@buttonIndicator.$el.attr('class', 'last-button-icon').addClass(event).show()
+			@$indicator.css "visibility", "hidden"
+			@buttonIndicator.timeout = setTimeout _.bind(@hideButtonIndicator, @), 700
 
 		hideButtonIndicator:->
 			@buttonIndicator.$el.hide()
+			@$indicator.css "visibility", "visible"
 
 
 	new TopPanelView;

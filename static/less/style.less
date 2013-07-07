@@ -82,18 +82,19 @@
 			}
 
 			.activity-indicator {
-				width: 15px;
+				width: 12px;
 				height: unit(@topPanelHeight, px);
 				position: absolute;
 				top: 0;
 				right: 0;
+				border-left: 1px solid #FFFFFF;
 
 				.indicator {
 					position: absolute;
-					width: 9px;
+					width: 8px;
 					height: 2px;
 					background: #FFFFFF;
-					left: 3px;
+					left: 2px;
 					top: 2px;
 					transition: top .3s;
 					-webkit-transition: top .3s;
@@ -105,12 +106,32 @@
 
 				.last-button-icon {
 					display: none;
-					background: red;
-					width: 15px;
+					width: 12px;
 					height: 15px;
 					position: absolute;
 					top: 0;
 					left: 0;
+					background: url('../img/last-button-indicator.png') no-repeat 0 0;
+
+					&.left {
+						background-position: -12px 0;
+					}
+
+					&.up {
+						background-position: -24px 0;
+					}
+
+					&.right {
+						background-position: -36px 0;
+					}
+
+					&.down {
+						background-position: -48px 0;
+					}
+
+					&.center {
+						background-position: -60px 0;
+					}
 				}
 
 			}
@@ -119,6 +140,23 @@
 		.bottom-panel {
 			height: 15px;
 			background: @bottomPanelBgColor;
+
+			.soft-button {
+				background: #FFFFFF;
+				display: inline-block;
+				font-size: 10px;
+				padding: 1px 2px;
+				text-transform: uppercase;
+				margin: 1px 2px;
+
+				&.left {
+					float: left;
+				}
+
+				&.right {
+					float: right;
+				}
+			}
 		}
 
 		.screen {
