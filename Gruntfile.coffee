@@ -6,7 +6,7 @@ module.exports = (grunt) ->
 		gruntconfig: do ->
 			cfg =
 				static_folder: "/resources/"
-				root: "www"
+				root: "build"
 			try
 				cfg = grunt.file.readJSON('gruntconfig.json')
 			catch err
@@ -18,14 +18,11 @@ module.exports = (grunt) ->
 		resource:
 			root: "<%= gruntconfig.root %>"
 			path: "<%= resource.root %>"
-			js: "<%= resource.path %>/js"
+			www: "<%= resource.root %>/www"
+			js: "<%= resource.www %>/js"
 			lib: "<%= resource.js %>/lib"			
-			css: "<%= resource.path %>/css"
-			less: "<%= resource.path %>/less"
-			img: "<%= resource.path %>/img"
-			font: "<%= resource.path %>/font"
-			templates: "<%= resource.path %>/templates"
-			build: "<%= resource.path %>/build"
+			css: "<%= resource.www %>/css"
+			img: "<%= resource.www %>/img"
 
 		less:
 			common:
@@ -74,7 +71,7 @@ module.exports = (grunt) ->
 				expand: true
 				src: "*.html"
 				cwd: "static/html"
-				dest: "<%= resource.path %>"
+				dest: "<%= resource.www %>"
 			]
 			img:files: [
 				flattern: true
@@ -114,16 +111,16 @@ module.exports = (grunt) ->
 		compress: 
 			main:
 				options:
-					archive: 'build.zip'
+					archive: '<%= resource.root %>/build.zip'
 				files:
-					src: ['www/**']
+					src: ['<%= resource.www %>/**']
 
 		connect:
 			dev:
 				options:
 					hostname: '*'
 					port: 9090 
-					base: "<%= resource.path %>"
+					base: "<%= resource.www %>"
 
 			release:
 				options:
