@@ -172,6 +172,7 @@
 			.view {
 				height: 130px;
 				background: @viewBgColor;
+				position: relative;
 
 				.title {
 					height: 15px;
@@ -223,6 +224,29 @@
 							}
 						}
 					}	
+				}
+
+				&.calibration {
+					p {
+						color: #FFFFFF;
+						padding: 3px;
+					}
+
+					.graph {
+						width: 106px;
+						height: 8px;
+						border: 1px solid #FFFFFF;
+						position: absolute;
+						left: 11px;
+
+						&.time {
+							bottom: 25px;
+						}
+
+						&.ticks {
+							bottom: 13px;
+						}
+					}
 				}
 			}
 		}

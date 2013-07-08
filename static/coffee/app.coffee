@@ -6,9 +6,10 @@ require [
 	"view/MenuScreen-view",
 	"view/MenuItem-view",
 	"view/TemplatedScreen-view"
+	"view/CalibrationScreen-view"
 	"data/Presets-data"
 	], 
-	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView, Presets) ->
+	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, Presets) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
@@ -207,17 +208,10 @@ require [
 			title: "Информация"
 			template: '#info-screen-template'
 
-		CalibrationScreen = new TemplatedScreenView
+		CalibrationScreen = new CalibrationScreenView
 			name: "calibration-screen"
 			title: "Нитрат-тестер"
 			template: '#calibration-screen-template'
-			events: [
-				name: 'button.click'
-				callback: (button)->
-					switch button
-						when 'left'
-							@eventBus.trigger "device.screen.prev" 
-			]
 
 		BeforeMeasurementScreen = new TemplatedScreenView
 			name: "before-measurement-screen"
