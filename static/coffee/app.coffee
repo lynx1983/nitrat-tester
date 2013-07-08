@@ -232,6 +232,11 @@ require [
 							@eventBus.trigger "device.screen.set",
 								screenName: 'calibration-screen'
 			]
+
+		PreMeasurementScreen = new TemplatedScreenView
+			name: "pre-measurement-screen"
+			title: "Нитрат-тестер"
+			template: '#pre-measurement-screen-template'
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
@@ -246,5 +251,6 @@ require [
 		Device.addScreen InformationScreen
 		Device.addScreen BeforeMeasurementScreen
 		Device.addScreen CalibrationScreen
+		Device.addScreen PreMeasurementScreen
 
 		Device.setCurrentScreen "start-menu"
