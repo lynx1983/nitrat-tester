@@ -11,8 +11,8 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			screenAlwaysOn: true
 			screenTheme: 'green'
 			language: 'ru'
-			measurementMPC: null
-			MPCdata: Presets
+			MPCdata: Presets			
+			measurementMPC: if Presets.length > 0 then 0 else null
 
 		getValueString: (valueName)->
 			switch valueName
@@ -43,7 +43,9 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 				else 
 					@.get(valueName)
 
-		getCurrentMPCValue:->
+		getCurrentMPC:->
 			return @MPCdata[@measurementMPC] if @measurementMPC?
+
+
 
 	new DeviceSettingsModel
