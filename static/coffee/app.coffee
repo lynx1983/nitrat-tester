@@ -207,6 +207,11 @@ require [
 			name: "information-screen"
 			title: "Информация"
 			template: '#info-screen-template'
+			events: [
+				name: 'button.click'
+				callback: (button)->
+					@eventBus.trigger "device.screen.prev" if button == 'left'
+			]
 
 		CalibrationScreen = new CalibrationScreenView
 			name: "calibration-screen"
