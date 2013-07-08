@@ -18,8 +18,8 @@ module.exports = (grunt) ->
 		resource:
 			root: "<%= gruntconfig.root %>"
 			path: "<%= resource.root %>"
-			lib: "<%= resource.path %>/lib"
 			js: "<%= resource.path %>/js"
+			lib: "<%= resource.js %>/lib"			
 			css: "<%= resource.path %>/css"
 			less: "<%= resource.path %>/less"
 			img: "<%= resource.path %>/img"
@@ -111,6 +111,13 @@ module.exports = (grunt) ->
 				dest: "<%= resource.lib %>/underscore"
 			]
 
+		compress: 
+			main:
+				options:
+					archive: 'build.zip'
+				files:
+					src: ['www/**']
+
 		connect:
 			dev:
 				options:
@@ -141,3 +148,4 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks "grunt-contrib-requirejs"
 	grunt.loadNpmTasks "grunt-contrib-connect"
 	grunt.loadNpmTasks "grunt-contrib-watch"
+	grunt.loadNpmTasks "grunt-contrib-compress"
