@@ -207,10 +207,32 @@ require [
 			title: "Информация"
 			template: '#info-screen-template'
 
+		CalibrationScreen = new TemplatedScreenView
+			name: "calibration-screen"
+			title: "Нитрат-тестер"
+			template: '#calibration-screen-template'
+			events: [
+				name: 'button.click'
+				callback: (button)->
+					switch button
+						when 'left'
+							@eventBus.trigger "device.screen.prev" 
+			]
+
 		BeforeMeasurementScreen = new TemplatedScreenView
 			name: "before-measurement-screen"
 			title: "Нитрат-тестер"
 			template: '#before-measurement-screen-template'
+			events: [
+				name: 'button.click'
+				callback: (button)->
+					switch button
+						when 'left'
+							@eventBus.trigger "device.screen.prev" 
+						when 'center'
+							@eventBus.trigger "device.screen.set",
+								screenName: 'calibration-screen'
+			]
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
@@ -224,5 +246,6 @@ require [
 		Device.addScreen ThemeSettingsScreen
 		Device.addScreen InformationScreen
 		Device.addScreen BeforeMeasurementScreen
+		Device.addScreen CalibrationScreen
 
 		Device.setCurrentScreen "start-menu"
