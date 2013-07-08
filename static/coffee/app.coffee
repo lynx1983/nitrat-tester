@@ -206,6 +206,11 @@ require [
 			name: "information-screen"
 			title: "Информация"
 			template: '#info-screen-template'
+
+		BeforeMeasurementScreen = new TemplatedScreenView
+			name: "before-measurement-screen"
+			title: "Нитрат-тестер"
+			template: '#before-measurement-screen-template'
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
@@ -218,5 +223,6 @@ require [
 		Device.addScreen ScreenTimeoutSettingsScreen
 		Device.addScreen ThemeSettingsScreen
 		Device.addScreen InformationScreen
+		Device.addScreen BeforeMeasurementScreen
 
 		Device.setCurrentScreen "start-menu"
