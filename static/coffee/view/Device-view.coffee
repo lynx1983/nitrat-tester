@@ -46,27 +46,19 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 
 		leftButtonClick: ->
 			@eventBus.trigger "button.click", "left"
-			@buttonClick "button.left.click", "left" if @getCurrentScreen()
 		
 		rightButtonClick: ->
 			@eventBus.trigger "button.click", "right"
-			@buttonClick "button.right.click", "right" if @getCurrentScreen()
 
 		upButtonClick: ->
 			@eventBus.trigger "button.click", "up"
-			@buttonClick "button.up.click", "up" if @getCurrentScreen()
 		
 		downButtonClick: ->
 			@eventBus.trigger "button.click", "down"
-			@buttonClick "button.down.click", "down" if @getCurrentScreen()
 
 		centerButtonClick: ->
 			@eventBus.trigger "button.click", "center"
-			@buttonClick "button.center.click", "center" if @getCurrentScreen()
 		
-		buttonClick: (event, button)->
-			@getCurrentScreen().trigger event, button if @getCurrentScreen()
-
 		capClick: -> 
 			@cap.toggleClass 'opened'
 

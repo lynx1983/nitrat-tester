@@ -6,11 +6,16 @@ define ["view/Screen-view"], (ScreenView)->
 			@firstVisibleIndex = 0
 			@itemsPerScreen = 6
 			@items = @options.items
-			@on "button.left.click", @onLeftButton
-			@on "button.center.click", @onCenterButton
-			@on "button.right.click", @onRightButton
-			@on "button.up.click", @onUpButton
-			@on "button.down.click", @onDownButton
+
+		activate:->
+			super
+			console.log "Screen [" + @name + "] custom activate"
+			@eventBus.on "button.click", @onButtonClick, @
+
+		deactivate:->
+			super			
+			console.log "Screen [" + @name + "] custom deactivate"
+			@eventBus.off "button.click", @onButtonClick, @
 
 		render: ()->
 			@$el.html @template
@@ -36,28 +41,28 @@ define ["view/Screen-view"], (ScreenView)->
 				@eventBus.trigger "list-indicator.set"
 			@
 
-		onUpButton: ->
-			@activeIndex--
-			if @activeIndex - @firstVisibleIndex < 0 
-				@firstVisibleIndex--
-			if @activeIndex < 0
-				@activeIndex = @items.length - 1
-				@firstVisibleIndex = if @items.length - @itemsPerScreen < 0 then 0 else @items.length - @itemsPerScreen
-			@render()
+		onButtonClick:(button)->
+			console.log "Get event by screen [" + @name + "]"
+			switch button
+				when 'up'
+					@activeIndex--
+					if @activeIndex - @firstVisibleIndex < 0 
+						@firstVisibleIndex--
+					if @activeIndex < 0
+						@activeIndex = @items.length - 1
+						@firstVisibleIndex = if @items.length - @itemsPerScreen < 0 then 0 else @items.length - @itemsPerScreen
+					@render()
 
-		onDownButton: ->
-			@activeIndex++
-			if @activeIndex - @firstVisibleIndex >= @itemsPerScreen 
-				@firstVisibleIndex++
-			if @activeIndex > @items.length - 1
-				@activeIndex = @firstVisibleIndex = 0
-			@render()
+				when 'down'
+					@activeIndex++
+					if @activeIndex - @firstVisibleIndex >= @itemsPerScreen 
+						@firstVisibleIndex++
+					if @activeIndex > @items.length - 1
+						@activeIndex = @firstVisibleIndex = 0
+					@render()
 
-		onLeftButton: ->
-			@eventBus.trigger "device.screen.prev"
-
-		onRightButton: (button)->
-			@items[@activeIndex].trigger "menu.item.action", button
-
-		onCenterButton: (button)-> 
-			@items[@activeIndex].trigger "menu.item.action", button
+				when 'left'
+					@eventBus.trigger "device.screen.prev"
+					
+				when 'center', 'right'		
+					@items[@activeIndex].trigger "menu.item.action", button
