@@ -1,4 +1,4 @@
-define ["backbone"], (Backbone)->
+define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 	class DeviceSettingsModel extends Backbone.Model
 		defaults: ->
 			id: "0005"
@@ -11,6 +11,8 @@ define ["backbone"], (Backbone)->
 			screenAlwaysOn: true
 			screenTheme: 'green'
 			language: 'ru'
+			measurementMPC: null
+			MPCdata: Presets
 
 		getValueString: (valueName)->
 			switch valueName
@@ -40,5 +42,8 @@ define ["backbone"], (Backbone)->
 							''
 				else 
 					@.get(valueName)
+
+		getCurrentMPCValue:->
+			return @MPCdata[@measurementMPC] if @measurementMPC?
 
 	new DeviceSettingsModel
