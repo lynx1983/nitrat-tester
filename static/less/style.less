@@ -420,4 +420,257 @@
 			right: 12px;
 		}
 	}
+
+	.product {
+		display: block;
+		position: absolute;
+		background: transparent no-repeat 0 0;
+		width: 400px;
+		height: 400px;
+		left: 200px;
+		top: 600px;
+		opacity: .5;
+		z-index: 20;
+		transition: opacity .5s .5s, top .5s 0s, left .5s .25s;
+		-webkit-transition: opacity .5s .5s, top .5s 0s, left .5s .25s;
+
+		&.in-place {
+			opacity: 1;
+			left: 50px;
+			top: 510px;
+			transition: opacity .5s 0, left .5s 0, top .5s .25s;
+			-webkit-transition: opacity .5s 0, left .5s 0, top .5s .25s;
+		}
+
+		&.apricot {
+			width: 193px;
+			height: 206px;
+			background-image: url('../img/products/apricot.png');
+		}
+
+		&.watermelon {
+			width: 229px;
+			height: 214px;
+			background-image: url('../img/products/watermelon.png');
+		}
+
+		&.eggplant {
+			width: 278px;
+			height: 351px;
+			background-image: url('../img/products/eggplant.png');
+
+			&.in-place {
+				left: -40px;
+				top: 480px;
+			}	
+		}
+
+		&.banana {
+			width: 196px;
+			height: 338px;
+			background-image: url('../img/products/banana.png');
+
+			&.in-place {
+				left: 20px;
+			}
+		}
+
+		&.grape {
+			width: 227px;
+			height: 191px;
+			background-image: url('../img/products/grape.png');
+		}
+
+		&.pear {
+			width: 232px;
+			height: 313px;
+			background-image: url('../img/products/pear.png');
+
+			&.in-place {
+				left: 30px;
+				top: 490px;
+			}
+		}
+
+		&.melon {
+			width: 268px;
+			height: 243px;
+			background-image: url('../img/products/melon.png');
+		}
+
+		&.greens {
+			width: 310px;
+			height: 307px;
+			background-image: url('../img/products/greens.png');
+		}
+
+		&.squash {
+			width: 242px;
+			height: 320px;
+			background-image: url('../img/products/squash.png');	
+
+			&.in-place {
+				left: -30px;
+			}
+		}
+
+		&.late-cabbage {
+			width: 261px;
+			height: 243px;
+			background-image: url('../img/products/late-cabbage.png');
+		}
+
+		&.early-cabbage {
+			width: 250px;
+			height: 247px;
+			background-image: url('../img/products/early-cabbage.png');
+		}
+
+		&.potato {
+			width: 165px;
+			height: 263px;
+			background-image: url('../img/products/potato.png');
+		}
+
+		&.strawberry {
+			width: 155px;
+			height: 124px;
+			background-image: url('../img/products/strawberry.png');
+
+			&.in-place {
+				left: 70px;
+				top: 490px;
+			}
+		}
+
+		&.onion {
+			width: 222px;
+			height: 153px;
+			background-image: url('../img/products/onion.png');
+		}
+
+		&.onion-2 {
+			width: 189px;
+			height: 190px;
+			background-image: url('../img/products/onion-2.png');
+		}
+
+		&.late-carrot {
+			width: 174px;
+			height: 297px;
+			background-image: url('../img/products/late-carrot.png');
+		}
+
+		&.early-carrot {
+			width: 193px;
+			height: 291px;
+			background-image: url('../img/products/early-carrot.png');
+
+			&.in-place {
+				left: 30px;
+				top: 490px;
+			}
+		}
+
+		&.meat {
+			width: 172px;
+			height: 301px;
+			background-image: url('../img/products/meat.png');
+		}
+
+		&.nectarine {
+			width: 202px;
+			height: 207px;
+			background-image: url('../img/products/nectarine.png');
+		}
+
+		&.cucumber-soil {
+			width: 184px;
+			height: 297px;
+			background-image: url('../img/products/cucumber-soil.png');
+
+			&.in-place {
+				left: 30px;
+			}
+		}
+
+		&.cucumber-glasshouse {
+			width: 146px;
+			height: 331px;
+			background-image: url('../img/products/cucumber-glasshouse.png');
+		}
+
+		&.pepper {
+			width: 194px;
+			height: 217px;
+			background-image: url('../img/products/pepper.png');
+		}
+
+		&.peach {
+			width: 238px;
+			height: 232px;
+			background-image: url('../img/products/peach.png');
+		}
+
+		&.tomato-soil {
+			width: 253px;
+			height: 240px;
+			background-image: url('../img/products/tomato-soil.png');
+
+			&.in-place {
+				top: 480px;
+			}
+		}
+
+		&.tomato-glasshouse {
+			width: 258px;
+			height: 268px;
+			background-image: url('../img/products/tomato-glasshouse.png');
+
+			&.in-place {
+				top: 470px;
+			}
+		}
+
+		&.radish {
+			width: 163px;
+			height: 122px;
+			background-image: url('../img/products/radish.png');
+
+			&.in-place {
+				top: 500px;
+				left: 70px;
+			}
+		}
+
+		&.radish-2 {
+			width: 213px;
+			height: 235px;
+			background-image: url('../img/products/radish-2.png');
+		}
+
+		&.salad {
+			width: 237px;
+			height: 160px;
+			background-image: url('../img/products/salad.png');
+		}
+
+		&.beet {
+			width: 193px;
+			height: 321px;
+			background-image: url('../img/products/beet.png');
+		}
+
+		&.persimmon {
+			width: 246px;
+			height: 181px;
+			background-image: url('../img/products/persimmon.png');
+		}
+
+		&.apple {
+			width: 209px;
+			height: 234px;
+			background-image: url('../img/products/apple.png');
+		}
+	}
 }

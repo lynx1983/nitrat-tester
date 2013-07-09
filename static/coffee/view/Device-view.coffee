@@ -9,11 +9,13 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			"click div.button.up": "upButtonClick"
 			"click div.button.down": "downButtonClick"
 			"click div.cap": "capClick"
+			"click div.product": "productClick"
 		
 		initialize:->
 			@screens = {}
 			@screensStack = []
-			@cap = @$el.find('.cap')
+			@$cap = @$el.find('.cap')
+			@$product = @$el.find('.product')
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
 			@$el.find('.screen-wrapper').fadeIn()
@@ -72,7 +74,20 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@eventBus.trigger "button.click", "center"
 		
 		capClick:-> 
-			@cap.toggleClass 'opened'
+			if not @$cap.is ".opened"
+				@$cap.addClass "opened"
+			else
+				if @$product.is ".in-place"
+					@$product.removeClass "in-place"
+				@$cap.removeClass "opened"
+
+		productClick:->
+			if @$product.is ".in-place"				
+				@$product.removeClass "in-place"
+			else
+				if not @$cap.is ".opened"
+					@$cap.addClass "opened"
+				@$product.addClass "in-place"
 
 		setFullScreen:(flag)->
 			if flag 
