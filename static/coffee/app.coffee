@@ -234,6 +234,7 @@ require [
 						when 'left'
 							@eventBus.trigger "device.screen.prev" 
 						when 'center'
+							@eventBus.trigger "device.cap.open"
 							@eventBus.trigger "device.screen.set",
 								screenName: 'calibration-screen'
 			]
@@ -250,6 +251,7 @@ require [
 						when 'left'
 							@eventBus.trigger "device.screen.prev" 
 						when 'center'
+							@eventBus.trigger "device.product.place" 
 							@eventBus.trigger "device.screen.set",
 								screenName: 'measurement-screen'
 			]
@@ -271,6 +273,7 @@ require [
 				name: 'button.click'
 				callback: (button)->
 					if button == 'left'
+						@eventBus.trigger "device.cap.close"
 						@eventBus.trigger "device.screen.prev" 
 			]
 

@@ -11,8 +11,8 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			screenAlwaysOn: true
 			screenTheme: 'green'
 			language: 'ru'
-			MPCdata: Presets			
-			measurementMPC: if Presets.length > 0 then 0 else null
+			MPCdata: Presets
+			measurementMPC: null
 
 		getValueString: (valueName)->
 			switch valueName
