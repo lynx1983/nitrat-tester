@@ -27,7 +27,7 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			if @screensStack.length > 1
 				@getCurrentScreen().deactivate() if @getCurrentScreen()
 				@screensStack.shift()
-				while @getCurrentScreen().options.noTrack? == true
+				while @getCurrentScreen().options.noTrackScreen? == true
 					@screensStack.shift()
 				@getCurrentScreen().activate()
 				@render()

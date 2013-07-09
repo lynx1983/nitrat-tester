@@ -260,6 +260,7 @@ require [
 			direction: 'down'
 			template: '#measurement-screen-template'
 			nextScreen: 'measurement-result-screen'
+			noTrackScreen: true
 
 		MeasurementResultScreen = new MeasurementResultScreenView
 			name: "measurement-result-screen";
