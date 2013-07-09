@@ -26,11 +26,9 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 
 		setPrevScreen:->
 			if @screensStack.length > 1
-				@getCurrentScreen().deactivate() if @getCurrentScreen()
+				@getCurrentScreen()?.deactivate()
 				@screensStack.shift()
-				while @getCurrentScreen().options.noTrackScreen? == true
-					@screensStack.shift()
-				@getCurrentScreen().activate()
+				@getCurrentScreen()?.activate()
 				@render()
 
 		addScreen:(screen)->
@@ -39,7 +37,9 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 
 		setCurrentScreen: (screenName)->
 			if @screens[screenName] 
-				@getCurrentScreen().deactivate() if @getCurrentScreen()
+				@getCurrentScreen()?.deactivate()
+				if @getCurrentScreen()?.options.noTrackScreen 
+					@screensStack.shift()
 				@screensStack.unshift @screens[screenName]
 				@setFullScreen @getCurrentScreen().isFullScreen
 				@getCurrentScreen().activate()

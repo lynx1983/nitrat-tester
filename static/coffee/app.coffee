@@ -276,7 +276,8 @@ require [
 
 		SplashScreen = new SplashScreenView
 			name: "splash-screen"
-			nextScreen: 'main-menu'
+			nextScreen: 'start-menu'
+			noTrackScreen: true
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
