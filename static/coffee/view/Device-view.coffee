@@ -17,6 +17,7 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
 			@$el.find('.screen-wrapper').fadeIn()
+			@beepSound =@$el.find('audio').get 0
 			@
 
 		render:->
@@ -43,22 +44,30 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 				@getCurrentScreen().activate()
 				@render()
 
+		beep:->
+			@beepSound.play()
+
 		getCurrentScreen:->
 			@screensStack[0] if @screensStack.length > 0
 
 		leftButtonClick:->
+			@beep()
 			@eventBus.trigger "button.click", "left"
 		
 		rightButtonClick:->
+			@beep()
 			@eventBus.trigger "button.click", "right"
 
 		upButtonClick:->
+			@beep()
 			@eventBus.trigger "button.click", "up"
 		
 		downButtonClick:->
+			@beep()
 			@eventBus.trigger "button.click", "down"
 
 		centerButtonClick:->
+			@beep()
 			@eventBus.trigger "button.click", "center"
 		
 		capClick:-> 

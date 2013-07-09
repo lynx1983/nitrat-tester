@@ -23,6 +23,7 @@ module.exports = (grunt) ->
 			lib: "<%= resource.js %>/lib"			
 			css: "<%= resource.www %>/css"
 			img: "<%= resource.www %>/img"
+			sounds: "<%= resource.www %>/sounds"
 
 		less:
 			common:
@@ -79,6 +80,13 @@ module.exports = (grunt) ->
 				src: ["*.png", "*.jpg"]
 				cwd: "static/img"
 				dest: "<%= resource.img %>"
+			]
+			sounds:files: [
+				flattern: true
+				expand: true
+				src: ["*.ogg", "*.wav"]
+				cwd: "static/sounds"
+				dest: "<%= resource.sounds %>"
 			]
 			jquery:files:[
 				flattern: true
