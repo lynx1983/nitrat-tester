@@ -182,6 +182,28 @@
 					padding-left: 10px;
 				}
 
+				.content {
+					padding: 3px;
+
+					p {
+						padding: 2px 0;
+					}
+				}
+
+				.brace {
+					color: #FFFFFF;
+
+					&.left {
+						float: left;
+						margin-right: 3px;
+					}
+
+					&.right {
+						float: right;
+						margin-left: 3px;
+					}
+				}
+
 				.menu {
 
 					li {
@@ -246,11 +268,72 @@
 								width: 0;
 								height: 100%;
 								background: #2044fb;
+								transition: width .5s;
+								-webkit-transition: width .5s;
 							}
 						}
 
 						&.ticks {
 							bottom: 13px;
+						}
+					}
+				}
+
+				&.measurement-result {
+					
+					span.indicator {
+						display: inline-block;
+						width: 30px;
+						height: 14px;
+						float: right;
+					}
+
+					p.msg {
+						color: #FFFFFF;
+						text-align: center;
+						height: 68px;
+						vertical-align: middle;
+						display: table-cell;
+						text-align: center;
+					}
+
+					&.normal {
+						span.indicator {
+							background: #47ff03;
+						}
+
+					}
+
+					&.low {
+						span.indicator {
+							background: #fff206;
+						}
+
+						p.msg {
+							background: #d2e104;
+							color: #ff0000;
+						}
+					}
+
+					&.medium {
+						span.indicator {
+							background: #ff0000;
+						}
+
+						p.msg {
+							background: #9f070b;
+							color: #ffe600;
+						}
+					}
+
+					&.danger {
+						span.indicator {
+							background: #ff0000;
+						}
+
+						p.msg {
+							background: #9f070b;
+							color: #ffe600;
 						}
 					}
 				}

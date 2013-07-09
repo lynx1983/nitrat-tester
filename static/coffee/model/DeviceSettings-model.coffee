@@ -44,7 +44,7 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 					@.get(valueName)
 
 		getCurrentMPC:->
-			return @MPCdata[@measurementMPC] if @measurementMPC?
+			return @get('MPCdata')[@get('measurementMPC')] if @get('measurementMPC')?
 
 
 

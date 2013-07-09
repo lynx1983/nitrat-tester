@@ -7,9 +7,11 @@ require [
 	"view/MenuItem-view",
 	"view/TemplatedScreen-view"
 	"view/CalibrationScreen-view"
+	"view/PreMeasurementScreen-view"
+	"view/MeasurementResultScreen-view"
 	"data/Presets-data"
 	], 
-	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, Presets) ->
+	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, Presets) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
@@ -217,6 +219,8 @@ require [
 			name: "calibration-screen"
 			title: "Нитрат-тестер"
 			template: '#calibration-screen-template'
+			nextScreen: 'pre-measurement-screen'
+			noTrackScreen: true
 
 		BeforeMeasurementScreen = new TemplatedScreenView
 			name: "before-measurement-screen"
@@ -232,11 +236,41 @@ require [
 							@eventBus.trigger "device.screen.set",
 								screenName: 'calibration-screen'
 			]
+			noTrackScreen: true
 
-		PreMeasurementScreen = new TemplatedScreenView
+		PreMeasurementScreen = new PreMeasurementScreenView
 			name: "pre-measurement-screen"
 			title: "Нитрат-тестер"
 			template: '#pre-measurement-screen-template'
+			events: [
+				name: 'button.click'
+				callback: (button)->
+					switch button
+						when 'left'
+							@eventBus.trigger "device.screen.prev" 
+						when 'center'
+							@eventBus.trigger "device.screen.set",
+								screenName: 'measurement-screen'
+			]
+			noTrackScreen: true
+
+		MeasurementScreen = new CalibrationScreenView
+			name: "measurement-screen"
+			title: "Нитрат-тестер"
+			direction: 'down'
+			template: '#measurement-screen-template'
+			nextScreen: 'measurement-result-screen'
+
+		MeasurementResultScreen = new MeasurementResultScreenView
+			name: "measurement-result-screen";
+			title: "Нитрат-тестер"
+			template: '#measurement-result-screen-template'
+			events: [
+				name: 'button.click'
+				callback: (button)->
+					if button == 'left'
+						@eventBus.trigger "device.screen.prev" 
+			]
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
@@ -252,5 +286,7 @@ require [
 		Device.addScreen BeforeMeasurementScreen
 		Device.addScreen CalibrationScreen
 		Device.addScreen PreMeasurementScreen
+		Device.addScreen MeasurementScreen
+		Device.addScreen MeasurementResultScreen
 
 		Device.setCurrentScreen "start-menu"

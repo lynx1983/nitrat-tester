@@ -2,8 +2,9 @@ define ["view/TemplatedScreen-view"], (TemplatedScreenView)->
 	class CalibrationScreenView extends TemplatedScreenView
 		initialize: ()->
 			@template = _.template $(@options.template).html()
-			@position = 0
-			@timeOut = null;
+			@timeOut = null
+			@direction = if @options.direction == 'down' then 'down' else 'up'
+			@render()
 
 		render: ()->
 			@$el.html @template
@@ -13,8 +14,7 @@ define ["view/TemplatedScreen-view"], (TemplatedScreenView)->
 		activate:->
 			super
 			console.log "Screen [" + @name + "] custom activate"
-			@position = 0		
-			@$el.find('.graph .indicator').css "width", 0	
+			@position = if @direction == 'up' then 0 else 100	
 			@timeOut = setTimeout _.bind(@update, @), 500
 
 		deactivate:->
@@ -23,10 +23,11 @@ define ["view/TemplatedScreen-view"], (TemplatedScreenView)->
 			clearTimeout @timeOut
 
 		update: ->
-			@position += 10
-			if @position <= 100 
+			@position = if @direction == 'up' then @position + 10 else @position - 10
+			if @position <= 100 and @position >= 0
 				@$el.find('.graph .indicator').css "width", @position + '%'
 				@timeOut = setTimeout _.bind(@update, @), 500
 			else
-				@eventBus.trigger "device.screen.set",
-					screenName: 'pre-measurement-screen'
+				if @options.nextScreen
+					@eventBus.trigger "device.screen.set",
+						screenName: @options.nextScreen

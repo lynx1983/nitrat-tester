@@ -10,7 +10,7 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			"click div.button.down": "downButtonClick"
 			"click div.cap": "capClick"
 		
-		initialize: ->
+		initialize:->
 			@screens = {}
 			@screensStack = []
 			@cap = @$el.find('.cap')
@@ -19,18 +19,20 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@$el.find('.screen-wrapper').fadeIn()
 			@
 
-		render: ->
+		render:->
 			@getCurrentScreen().render() if @getCurrentScreen()
 			@
 
-		setPrevScreen: ->
+		setPrevScreen:->
 			if @screensStack.length > 1
 				@getCurrentScreen().deactivate() if @getCurrentScreen()
 				@screensStack.shift()
+				while @getCurrentScreen().options.noTrack? == true
+					@screensStack.shift()
 				@getCurrentScreen().activate()
 				@render()
 
-		addScreen: (screen)->
+		addScreen:(screen)->
 			@screens[screen.name] = screen if screen.name
 			@
 
@@ -41,25 +43,25 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 				@getCurrentScreen().activate()
 				@render()
 
-		getCurrentScreen: ->
+		getCurrentScreen:->
 			@screensStack[0] if @screensStack.length > 0
 
-		leftButtonClick: ->
+		leftButtonClick:->
 			@eventBus.trigger "button.click", "left"
 		
-		rightButtonClick: ->
+		rightButtonClick:->
 			@eventBus.trigger "button.click", "right"
 
-		upButtonClick: ->
+		upButtonClick:->
 			@eventBus.trigger "button.click", "up"
 		
-		downButtonClick: ->
+		downButtonClick:->
 			@eventBus.trigger "button.click", "down"
 
-		centerButtonClick: ->
+		centerButtonClick:->
 			@eventBus.trigger "button.click", "center"
 		
-		capClick: -> 
+		capClick:-> 
 			@cap.toggleClass 'opened'
 
 		onScreenSet: (options)->

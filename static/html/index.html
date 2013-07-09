@@ -68,7 +68,7 @@
  		<script type="text/template" id="before-measurement-screen-template">
  			<div class="view">
  				<div class="title"><span><%=title%><span></div>
- 				<p style="color: #d8d800; text-align: center;">Убедитесь, что зонд не воткнут в проверяемый продукт и нажмите (OK)</p>
+ 				<p style="color: #d8d800; padding: 3px;">Убедитесь, что зонд не воткнут в проверяемый продукт и нажмите &lt;OK&gt;</p>
  			</div>
  		</script>
  		<script type="text/template" id="calibration-screen-template">
@@ -76,7 +76,17 @@
  				<div class="title"><span><%=title%><span></div>
  				<p>Подождите, идет подготовка к анализу</p>
  				<div class="graph time">
- 					<div class="indicator"></div>
+ 					<div class="indicator" style="width:0"></div>
+ 				</div>
+ 				<div class="graph ticks"></div>
+ 			</div>
+ 		</script>
+ 		<script type="text/template" id="measurement-screen-template">
+ 			<div class="view calibration">
+ 				<div class="title"><span><%=title%><span></div>
+ 				<p>Подождите идет измерение</p>
+ 				<div class="graph time">
+ 					<div class="indicator" style="width:100%;"></div>
  				</div>
  				<div class="graph ticks"></div>
  			</div>
@@ -84,7 +94,22 @@
  		<script type="text/template" id="pre-measurement-screen-template">
  			<div class="view">
  				<div class="title"><span><%=title%><span></div>
- 				<p style="color: #d8d800; text-align: center;">Воткните зонд в продукт</p>
+ 				<div class="content">
+ 					<p style="color:#FFFFFF;text-align:center;">Воткните зонд в продукт</p>
+ 					<p style="color:#d8d800;"><span class="left brace">[</span><%=product%><span class="brace right">]</span></p>
+ 					<p style="color:#FFFFFF;">ПДК = <span style="color: #d8d800;"><%=mpc%></span> мг/кг</p>
+ 					<p style="color:#FFFFFF;">Нажмите &lt;OK&gt;</p>
+ 				</div>
+ 			</div>
+ 		</script>
+ 		<script type="text/template" id="measurement-result-screen-template">
+ 			<div class="view measurement-result <%=result.tag%>">
+ 				<div class="title"><span><%=title%><span></div>
+ 				<div class="content">
+ 					<p style="color:#FFFFFF;">РЕЗУЛЬТАТ: <span class="indicator"></span></p>
+ 					<p style="color:#FFFFFF;">N = <span><%=result.state%></span> мг/кг</p>
+ 				</div>
+				<p class="msg"><%=result.msg%></p>
  			</div>
  		</script>
 	</body>
