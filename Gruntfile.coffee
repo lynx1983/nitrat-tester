@@ -5,8 +5,9 @@ module.exports = (grunt) ->
 		pkg: grunt.file.readJSON('package.json'),
 		gruntconfig: do ->
 			cfg =
-				static_folder: "/resources/"
-				root: "build"
+				out: "out"
+				release: "release"
+				debug: "debug"
 			try
 				cfg = grunt.file.readJSON('gruntconfig.json')
 			catch err
@@ -14,11 +15,10 @@ module.exports = (grunt) ->
 			cfg
 		
 		components: "components"
-		static_folder: "<%= gruntconfig.static_folder %>"
 		resource:
-			root: "<%= gruntconfig.root %>"
+			root: "<%= gruntconfig.out %>"
 			path: "<%= resource.root %>"
-			www: "<%= resource.root %>/www"
+			www: "www"
 			js: "<%= resource.www %>/js"
 			lib: "<%= resource.js %>/lib"			
 			css: "<%= resource.www %>/css"
@@ -28,12 +28,12 @@ module.exports = (grunt) ->
 		less:
 			common:
 				files:
-					"<%= resource.css %>/reset.css": "static/less/reset.less"
-					"<%= resource.css %>/style.css": "static/less/style.less"
+					"<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.css %>/reset.css": "static/less/reset.less"
+					"<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.css %>/style.css": "static/less/style.less"
 
 		clean:
 			files:
-				src:["<%= resource.path %>"]
+				src:["<%= resource.root %>"]
 			options:
 				force: true
 
@@ -42,7 +42,7 @@ module.exports = (grunt) ->
 				expand: true
 				src: ["*.coffee", "**/*.coffee", "**/**/*.coffee"]
 				cwd: "static/coffee/"
-				dest: "<%= resource.js %>/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.js %>/"
 				ext: '.js'
 				options:
 					bare: true
@@ -51,9 +51,9 @@ module.exports = (grunt) ->
 			common:
 				options:
 					name: "app"
-					baseUrl: "<%= resource.js %>/"
-					mainConfigFile: "<%= resource.js %>/config.js"
-					out: "<%= resource.js %>/main-<%= pkg.name %>-<%= pkg.version %>.js"
+					baseUrl: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.js %>/"
+					mainConfigFile: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.js %>/config.js"
+					out: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.js %>/main.js"
 
 		watch:
 			coffee_shell:
@@ -75,48 +75,48 @@ module.exports = (grunt) ->
 				expand: true
 				src: "*.html"
 				cwd: "static/html"
-				dest: "<%= resource.www %>"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.www %>"
 			]
 			img:files: [
 				flattern: true
 				expand: true
 				src: ["**"]
 				cwd: "static/img"
-				dest: "<%= resource.img %>"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.img %>"
 			]
 			sounds:files: [
 				flattern: true
 				expand: true
 				src: ["*.ogg", "*.wav"]
 				cwd: "static/sounds"
-				dest: "<%= resource.sounds %>"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.sounds %>"
 			]
 			jquery:files:[
 				flattern: true
 				expand: true
 				src: "jquery.js"
 				cwd: "<%= components %>/jquery/"
-				dest: "<%= resource.lib %>/jquery/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/jquery/"
 			]
 			requirejs:files:[
 				flattern: true
 				expand: true
 				src: "require.js"
 				cwd: "<%= components %>/requirejs/"
-				dest: "<%= resource.lib %>/requirejs/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/requirejs/"
 			]
 			backbone:files:[
 				flattern: true
 				expand: true
 				src: "backbone.js"
 				cwd: "<%= components %>/backbone/"
-				dest: "<%= resource.lib %>/backbone/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/backbone/"
 			,
 				flattern: true
 				expand: true
 				src: "underscore.js"
 				cwd: "<%= components %>/underscore"
-				dest: "<%= resource.lib %>/underscore"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/underscore"
 			]
 
 		compress: 
@@ -126,27 +126,38 @@ module.exports = (grunt) ->
 				files:
 					src: ['<%= resource.www %>/**']
 
+		cssmin:
+  			minify: 
+    			expand: true
+    			cwd: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.css %>"
+    			src: ['*.css', '!*.min.css']
+    			dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.css %>"
+    			ext: '.css'
+
 		connect:
 			dev:
 				options:
 					hostname: '*'
 					port: 9090 
-					base: "<%= resource.www %>"
+					base: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.www %>"
 
 			release:
 				options:
 					hostname: '*'
 					port: 9090
-					base: "<%= connect.dev.base %>"
+					base: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>"
 					keepalive: true
 	)
 
-	grunt.registerTask('css-build', ['less'])
+	grunt.registerTask('css-build-dev', ['less'])
+	grunt.registerTask('css-build', ['css-build-dev', 'cssmin:minify'])
+	grunt.registerTask('js-build-dev', ['coffee'])
 	grunt.registerTask('js-build', ['coffee'])
-	grunt.registerTask('build-dev', ['css-build', 'js-build'])
+	grunt.registerTask('build-dev', ['css-build-dev', 'js-build-dev'])
+	grunt.registerTask('build', ['css-build', 'js-build'])
 
-	grunt.registerTask('default', [])
-	grunt.registerTask('dev', ['clean', 'copy', 'build-dev', 'connect:dev', 'watch'])
+	grunt.registerTask('debug', ['clean', 'copy', 'build-dev', 'connect:dev', 'watch'])
+	grunt.registerTask('release', ['clean', 'copy', 'build', 'connect:release'])
 
 	grunt.loadNpmTasks "grunt-contrib-clean"
 	grunt.loadNpmTasks "grunt-contrib-less"
@@ -157,3 +168,4 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks "grunt-contrib-connect"
 	grunt.loadNpmTasks "grunt-contrib-watch"
 	grunt.loadNpmTasks "grunt-contrib-compress"
+	grunt.loadNpmTasks "grunt-contrib-cssmin"
