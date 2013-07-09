@@ -25,9 +25,9 @@ define ["view/EventDriven-view", "model/DeviceSettings-model"], (EventDrivenView
 			@render()
 
 		action: (button)-> 
-			if @options.screen and button == "right"
+			if @options.checkbox and @options.settingsValue 
+				DeviceSettings.set(@options.settingsValue, @options.checkedValue)			
+			
+			if @options.screen
 				@eventBus.trigger "device.screen.set",
 					screenName: @options.screen
-
-			if @options.checkbox and @options.settingsValue and button == "center"
-				DeviceSettings.set(@options.settingsValue, @options.checkedValue)

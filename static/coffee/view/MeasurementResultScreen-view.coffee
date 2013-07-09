@@ -11,6 +11,7 @@ define [
 				'medium',
 				'danger'
 			]
+			@lastTag = null
 
 		render: ()->
 			@$el.html @template
@@ -28,7 +29,9 @@ define [
 			console.log "Screen [" + @name + "] custom deactivate"
 
 		measurement:->
-			tag = @tags[_.random 0, @tags.length - 1]
+			loop
+				tag = @tags[_.random 0, @tags.length - 1]
+				break if tag isnt @lastTag
 			switch tag
 				when 'normal'
 					@result = 
@@ -50,3 +53,5 @@ define [
 						state: _.random(DeviceSettings.getCurrentMPC().mpc * 1.5, DeviceSettings.getCurrentMPC().mpc * 2.5) 
 						msg: 'Значительное превышение нормы'
 						tag: tag
+
+			@lastTag = tag

@@ -268,8 +268,8 @@
 								width: 0;
 								height: 100%;
 								background: #2044fb;
-								transition: width .5s;
-								-webkit-transition: width .5s;
+								transition: width .5s linear 0;
+								-webkit-transition: width .5s linear 0;
 							}
 						}
 
@@ -354,11 +354,14 @@
 		left: 0;
 		top: 431px;
 		cursor: pointer;
-		transition: top .5s;
-		-webkit-transition: top .5s;
+		transition: left .5s 0, top .5s .25s;
+		-webkit-transition: left .5s 0, top .5s .25s;
 
 		&.opened {
-			top: 590px;			
+			top: 590px;
+			left: -100px;
+			transition: top .5s 0, left .5s .25s;
+			-webkit-transition: top .5s 0, left .5s .25s;
 		}
 
 		.top {

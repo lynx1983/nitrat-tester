@@ -64,5 +64,5 @@ define ["view/Screen-view"], (ScreenView)->
 				when 'left'
 					@eventBus.trigger "device.screen.prev"
 					
-				when 'center', 'right'		
+				when 'right'		
 					@items[@activeIndex].trigger "menu.item.action", button
