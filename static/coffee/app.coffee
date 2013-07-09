@@ -9,9 +9,10 @@ require [
 	"view/CalibrationScreen-view"
 	"view/PreMeasurementScreen-view"
 	"view/MeasurementResultScreen-view"
+	"view/SplashScreen-view"
 	"data/Presets-data"
 	], 
-	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, Presets) ->
+	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, SplashScreenView, Presets) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
@@ -272,6 +273,10 @@ require [
 					if button == 'left'
 						@eventBus.trigger "device.screen.prev" 
 			]
+
+		SplashScreen = new SplashScreenView
+			name: "splash-screen"
+			nextScreen: 'main-menu'
 		
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
@@ -289,5 +294,6 @@ require [
 		Device.addScreen PreMeasurementScreen
 		Device.addScreen MeasurementScreen
 		Device.addScreen MeasurementResultScreen
+		Device.addScreen SplashScreen
 
-		Device.setCurrentScreen "start-menu"
+		Device.setCurrentScreen "splash-screen"

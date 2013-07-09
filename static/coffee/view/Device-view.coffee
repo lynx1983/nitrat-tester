@@ -41,6 +41,7 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			if @screens[screenName] 
 				@getCurrentScreen().deactivate() if @getCurrentScreen()
 				@screensStack.unshift @screens[screenName]
+				@setFullScreen @getCurrentScreen().isFullScreen
 				@getCurrentScreen().activate()
 				@render()
 
@@ -73,7 +74,16 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 		capClick:-> 
 			@cap.toggleClass 'opened'
 
-		onScreenSet: (options)->
+		setFullScreen:(flag)->
+			if flag 
+				@$el.find('.screen-wrapper').addClass "fullscreen" 
+			else
+				@$el.find('.screen-wrapper').removeClass "fullscreen"
+
+		isFullScreen:->
+			@$el.find('.screen-wrapper').is(".fullscreen")
+
+		onScreenSet:(options)->
 			if options.screenName?
 				if options.screenName == '__prevScreen__'
 					@setPrevScreen()

@@ -46,6 +46,4 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 		getCurrentMPC:->
 			return @get('MPCdata')[@get('measurementMPC')] if @get('measurementMPC')?
 
-
-
 	new DeviceSettingsModel

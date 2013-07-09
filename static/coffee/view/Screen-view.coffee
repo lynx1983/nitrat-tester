@@ -2,10 +2,11 @@ define ["view/EventDriven-view"], (EventDrivenView)->
 	class ScreenView extends EventDrivenView
 		el: $('#device-wrapper .screen')
 		constructor: (options)->
+			super
 			@name = options.name
 			@active = false
+			@isFullScreen = false
 			@title = if options.title then options.title else ''
-			EventDrivenView.call @, options
 			@
 
 		activate:->
