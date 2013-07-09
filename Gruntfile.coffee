@@ -65,6 +65,9 @@ module.exports = (grunt) ->
 			html_shell: 
 				files: "static/html/*.html"
 				tasks: ["copy:html"]
+			img_shell: 
+				files: "static/img/**"
+				tasks: ["copy:img"]
 
 		copy:
 			html:files: [
@@ -77,7 +80,7 @@ module.exports = (grunt) ->
 			img:files: [
 				flattern: true
 				expand: true
-				src: ["*.png", "*.jpg"]
+				src: ["**"]
 				cwd: "static/img"
 				dest: "<%= resource.img %>"
 			]
