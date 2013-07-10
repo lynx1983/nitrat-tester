@@ -53,7 +53,7 @@ module.exports = (grunt) ->
 					name: "app"
 					baseUrl: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.js %>/"
 					mainConfigFile: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.js %>/config.js"
-					out: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.js %>/main.js"
+					out: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.js %>/app.js"
 
 		watch:
 			coffee_shell:
@@ -76,6 +76,12 @@ module.exports = (grunt) ->
 				src: "*.html"
 				cwd: "static/html"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.www %>"
+			,
+				flattern: true
+				expand: true
+				src: "*.html"
+				cwd: "static/html"
+				dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>"
 			]
 			img:files: [
 				flattern: true
@@ -83,6 +89,12 @@ module.exports = (grunt) ->
 				src: ["**"]
 				cwd: "static/img"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.img %>"
+			,
+				flattern: true
+				expand: true
+				src: ["**"]
+				cwd: "static/img"
+				dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.img %>"
 			]
 			sounds:files: [
 				flattern: true
@@ -90,6 +102,12 @@ module.exports = (grunt) ->
 				src: ["*.ogg", "*.wav"]
 				cwd: "static/sounds"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.sounds %>"
+			,
+				flattern: true
+				expand: true
+				src: ["*.ogg", "*.wav"]
+				cwd: "static/sounds"
+				dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.sounds %>"
 			]
 			jquery:files:[
 				flattern: true
@@ -104,6 +122,12 @@ module.exports = (grunt) ->
 				src: "require.js"
 				cwd: "<%= components %>/requirejs/"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/requirejs/"
+			,
+				flattern: true
+				expand: true
+				src: "require.js"
+				cwd: "<%= components %>/requirejs/"
+				dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.lib %>/requirejs/"
 			]
 			backbone:files:[
 				flattern: true
@@ -122,9 +146,13 @@ module.exports = (grunt) ->
 		compress: 
 			main:
 				options:
-					archive: '<%= resource.root %>/build.zip'
-				files:
-					src: ['<%= resource.www %>/**']
+					archive: '<%= resource.root %>/<%= gruntconfig.release %>/release.zip'
+				files: [
+					expand: true
+					cwd: '<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>/'
+					src: ['**/*']
+					dest: 'www/'
+				]
 
 		cssmin:
   			minify: 
@@ -133,6 +161,13 @@ module.exports = (grunt) ->
     			src: ['*.css', '!*.min.css']
     			dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.css %>"
     			ext: '.css'
+
+		lineremover:
+			indexhtml:
+				files:
+					'<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>/index.html': '<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>/index.html'
+				options:
+					exclusionPattern: /config\.js/g
 
 		connect:
 			dev:
@@ -152,12 +187,16 @@ module.exports = (grunt) ->
 	grunt.registerTask('css-build-dev', ['less'])
 	grunt.registerTask('css-build', ['css-build-dev', 'cssmin:minify'])
 	grunt.registerTask('js-build-dev', ['coffee'])
-	grunt.registerTask('js-build', ['coffee'])
+	grunt.registerTask('js-build', ['coffee', 'requirejs'])
 	grunt.registerTask('build-dev', ['css-build-dev', 'js-build-dev'])
 	grunt.registerTask('build', ['css-build', 'js-build'])
 
-	grunt.registerTask('debug', ['clean', 'copy', 'build-dev', 'connect:dev', 'watch'])
-	grunt.registerTask('release', ['clean', 'copy', 'build', 'connect:release'])
+	grunt.registerTask('debug', ['clean', 'copy', 'build-dev'])
+	grunt.registerTask('debug-run', ['debug', 'connect:dev', 'watch'])
+	
+	grunt.registerTask('release', ['clean', 'copy', 'build', 'lineremover'])
+	grunt.registerTask('release-run', ['release', 'connect:release'])
+	grunt.registerTask('release-package', ['release', 'compress'])
 
 	grunt.loadNpmTasks "grunt-contrib-clean"
 	grunt.loadNpmTasks "grunt-contrib-less"
@@ -169,3 +208,4 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks "grunt-contrib-watch"
 	grunt.loadNpmTasks "grunt-contrib-compress"
 	grunt.loadNpmTasks "grunt-contrib-cssmin"
+	grunt.loadNpmTasks "grunt-line-remover"
