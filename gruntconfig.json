@@ -1,4 +1,5 @@
 {
-  "static_folder":"/resources/",
-  "root":"build"
+  "out":"out",
+  "release":"release",
+  "debug":"debug"
 }
