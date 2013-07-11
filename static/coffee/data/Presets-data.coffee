@@ -22,7 +22,7 @@ define [], ->
 	,
 		name: "Груша"
 		mpc: 60
-		key: "grape"
+		key: "pear"
 	,	
 		name: "Зелень"
 		mpc: 2000
