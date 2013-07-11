@@ -116,10 +116,6 @@ define [], ->
 		mpc: 60
 		key: "apple"
 	,
-		name: "Детская норма"
-		mpc: 50
-		key: ""
-	,
 		name: "Мясо свежее"
 		mpc: 200
 		key: "meat"
