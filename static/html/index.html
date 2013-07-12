@@ -44,9 +44,9 @@
  			</div>
  		</script>
  		<script type="text/template" id="menu-item-template">
-			<span><%=item.title%></span>
+			<span><%=t(item.title)%></span>
 			<% if(item.text) { %>
-				<span class="text"><%=item.text%></span>
+				<span class="text"><%=t(item.text)%></span>
 			<% } else if(item.options.checkbox) { %>
 				<span class="checkbox<%=(item.checked ? ' checked' : '')%>"></span>
 			<% } %>
@@ -60,8 +60,8 @@
  			</div>
  		</script>
  		<script type="text/template" id="bottom-panel-template">
- 			<div class="soft-button left">назад</div>
- 			<div class="soft-button right">выбор</div>
+ 			<div class="soft-button left"><%=t('back')%></div>
+ 			<div class="soft-button right"><%=t('select')%></div>
  		</script>
  		<script type="text/template" id="info-screen-template">
  			<div class="view information">

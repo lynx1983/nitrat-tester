@@ -1,4 +1,4 @@
-define ["view/Screen-view"], (ScreenView)->
+define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 	class MenuScreenView extends ScreenView
 		template: _.template $('#menu-template').html()
 		initialize: ()->
@@ -19,7 +19,7 @@ define ["view/Screen-view"], (ScreenView)->
 
 		render: ()->
 			@$el.html @template
-				title: @title
+				title: i18n.t @title
 			startIndex = @firstVisibleIndex
 			endIndex = startIndex + @itemsPerScreen
 			_.each @items, (item, i)=>

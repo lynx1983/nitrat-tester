@@ -1,8 +1,9 @@
 require [
 	"underscore",
 	"backbone",
+	"i18n/i18n",
+	"model/DeviceSettings-model"	
 	"view/Device-view",
-	"model/DeviceSettings-model"
 	"view/MenuScreen-view",
 	"view/MenuItem-view",
 	"view/TemplatedScreen-view"
@@ -12,35 +13,35 @@ require [
 	"view/SplashScreen-view"
 	"data/Presets-data"
 	], 
-	(_, Backbone, Device, DeviceSettings, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, SplashScreenView, Presets) ->
+	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, SplashScreenView, Presets) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
 				new MenuItem
-					title: "Измерение"
+					title: "Measurement"
 					screen: "measurement-menu"
 				new MenuItem
-					title: "Главное меню"
+					title: "Main menu"
 					screen: "main-menu"
 			]
 
 		MainMenuScreen = new MenuScreenView
 			name: "main-menu"
-			title: "Главное меню"
+			title: "Main menu"
 			items: [
 				new MenuItem
-					title: "Язык"
+					title: "Language"
 					settingsValue: "language"
 					showValue: true
 					screen: "language-setting-menu"
 				new MenuItem
-					title: "Настройки"
+					title: "Settings"
 					screen: "settings-menu"
 				new MenuItem
-					title: "Информация"
+					title: "Information"
 					screen: "information-screen"
 				new MenuItem
-					title: "Версия ПО"
+					title: "FW version"
 					text: DeviceSettings.get "version"
 				new MenuItem
 					title: "ID"
@@ -49,35 +50,35 @@ require [
 
 		SettingsMenuScreen = new MenuScreenView
 			name: "settings-menu"
-			title: "Настройки"
+			title: "Settings"
 			items: [
 				new MenuItem
-					title: "Изображение"
+					title: "Screen"
 					screen: "screen-settings-menu"
 				new MenuItem
-					title: "Питание"
+					title: "Power"
 					screen: "power-settings-menu"
 			]
 
 		ScreenSettingsMenuScreen = new MenuScreenView
 			name: "screen-settings-menu"
-			title: "Изображение"
+			title: "Screen"
 			items: [
 				new MenuItem
-					title: "Яркость"
+					title: "Brightness"
 					showValue: true
 					settingsValue: "screenBrightness"
 					screen: "screen-brightness-settings-menu"
 				new MenuItem
-					title: "Включен, мин"
+					title: "Turned on, min"
 					settingsValue: "screenTimeout"
 					showValue: true
 					screen: "screen-timeout-settings-menu"
 				new MenuItem
-					title: "ВключенВсегда"
+					title: "Always on"
 					text: if DeviceSettings.get "screenAlwaysOn" then 'Да' else 'Нет'
 				new MenuItem
-					title: "Тема"
+					title: "Theme"
 					settingsValue: "screenTheme"
 					showValue: true
 					screen: "theme-settings-menu"
@@ -85,22 +86,22 @@ require [
 
 		PowerSettingsMenuScreen = new MenuScreenView
 			name: "power-settings-menu"
-			title: "Питание"
+			title: "Power"
 			items: [
 				new MenuItem
 					title: "Аккумуляторы"
 					text: if DeviceSettings.get "haveAccumulator" then 'Да' else 'Нет'
 				new MenuItem
-					title: "Автовыкл, мин"
+					title: "Autooff, min"
 					text: DeviceSettings.get "autoOffTime"
 				new MenuItem
-					title: "Не выключать"
+					title: "Dont off"
 					text: if DeviceSettings.get "preventOff" then 'Да' else 'Нет'
 			]
 
 		LanguageSettingsMenuScreen = new MenuScreenView
 			name: "language-setting-menu"
-			title: "Язык"
+			title: "Language"
 			items: [
 				new MenuItem
 					title: "Русский"
@@ -116,20 +117,20 @@ require [
 
 		ScreenBrightnessSettingsScreen = new MenuScreenView
 			name: "screen-brightness-settings-menu"
-			title: "Яркость"
+			title: "Brightness"
 			items: [
 				new MenuItem
-					title: "Низкая"
+					title: "Low"
 					checkbox: true
 					settingsValue: "screenBrightness"
 					checkedValue: 'low'
 				new MenuItem
-					title: "Средня"
+					title: "Middle"
 					checkbox: true
 					settingsValue: "screenBrightness"
 					checkedValue: 'middle'
 				new MenuItem
-					title: "Высокая"
+					title: "High"
 					checkbox: true
 					settingsValue: "screenBrightness"
 					checkedValue: 'high'
@@ -137,25 +138,25 @@ require [
 
 		ThemeSettingsScreen = new MenuScreenView
 			name: "theme-settings-menu"
-			title: "Тема"
+			title: "Theme"
 			items: [
 				new MenuItem
-					title: "Зеленая"
+					title: "Green"
 					checkbox: true
 					settingsValue: "screenTheme"
 					checkedValue: 'green'
 				new MenuItem
-					title: "Серая"
+					title: "Gray"
 					checkbox: true
 					settingsValue: "screenTheme"
 					checkedValue: 'gray'
 				new MenuItem
-					title: "Синяя"
+					title: "Blue"
 					checkbox: true
 					settingsValue: "screenTheme"
 					checkedValue: 'blue'
 				new MenuItem
-					title: "Белая"
+					title: "White"
 					checkbox: true
 					settingsValue: "screenTheme"
 					checkedValue: 'white'
@@ -163,7 +164,7 @@ require [
 
 		ScreenTimeoutSettingsScreen = new MenuScreenView
 			name: "screen-timeout-settings-menu"
-			title: "Включен, мин"
+			title: "Turned on, min"
 			items: [
 				new MenuItem
 					title: "1"
@@ -203,12 +204,12 @@ require [
 
 		MeasurementMenuScreen = new MenuScreenView
 			name: "measurement-menu"
-			title: "Измерение"
+			title: "Measurement"
 			items: items
 
 		InformationScreen = new TemplatedScreenView
 			name: "information-screen"
-			title: "Информация"
+			title: "Information"
 			template: '#info-screen-template'
 			events: [
 				name: 'button.click'
@@ -218,14 +219,14 @@ require [
 
 		CalibrationScreen = new CalibrationScreenView
 			name: "calibration-screen"
-			title: "Нитрат-тестер"
+			title: "Nitrat-tester"
 			template: '#calibration-screen-template'
 			nextScreen: 'pre-measurement-screen'
 			noTrackScreen: true
 
 		BeforeMeasurementScreen = new TemplatedScreenView
 			name: "before-measurement-screen"
-			title: "Нитрат-тестер"
+			title: "Nitrat-tester"
 			template: '#before-measurement-screen-template'
 			events: [
 				name: 'button.click'
@@ -241,7 +242,7 @@ require [
 
 		PreMeasurementScreen = new PreMeasurementScreenView
 			name: "pre-measurement-screen"
-			title: "Нитрат-тестер"
+			title: "Nitrat-tester"
 			template: '#pre-measurement-screen-template'
 			events: [
 				name: 'button.click'
@@ -257,7 +258,7 @@ require [
 
 		MeasurementScreen = new CalibrationScreenView
 			name: "measurement-screen"
-			title: "Нитрат-тестер"
+			title: "Nitrat-tester"
 			direction: 'down'
 			template: '#measurement-screen-template'
 			nextScreen: 'measurement-result-screen'
@@ -265,7 +266,7 @@ require [
 
 		MeasurementResultScreen = new MeasurementResultScreenView
 			name: "measurement-result-screen";
-			title: "Нитрат-тестер"
+			title: "Nitrat-tester"
 			template: '#measurement-result-screen-template'
 			events: [
 				name: 'button.click'
@@ -296,5 +297,8 @@ require [
 		Device.addScreen MeasurementScreen
 		Device.addScreen MeasurementResultScreen
 		Device.addScreen SplashScreen
+
+		DeviceSettings.set
+			language: "ru"
 
 		Device.setCurrentScreen "splash-screen"

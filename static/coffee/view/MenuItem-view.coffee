@@ -1,4 +1,4 @@
-define ["view/EventDriven-view", "model/DeviceSettings-model"], (EventDrivenView, DeviceSettings)->
+define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (EventDrivenView, DeviceSettings, i18n)->
 	class MenuItem extends EventDrivenView
 		tagName: 'li'
 		template: _.template $('#menu-item-template').html()
@@ -14,6 +14,7 @@ define ["view/EventDriven-view", "model/DeviceSettings-model"], (EventDrivenView
 
 		render: ->
 			@$el.html @template
+				t: i18n.t
 				item: @
 			@
 

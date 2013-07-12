@@ -142,6 +142,13 @@ module.exports = (grunt) ->
 				cwd: "<%= components %>/underscore"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/underscore"
 			]
+			underi18n:files:[
+				flattern: true
+				expand: true
+				src: "underi18n.js"
+				cwd: "<%= components %>/underi18n/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/underi18n/"
+			]
 
 		compress: 
 			main:

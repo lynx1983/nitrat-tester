@@ -10,7 +10,7 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			screenTimeout: 3
 			screenAlwaysOn: true
 			screenTheme: 'green'
-			language: 'ru'
+			language: ''
 			MPCdata: Presets			
 			measurementMPC: if Presets.length > 0 then 0 else null
 
@@ -21,11 +21,11 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 				when 'screenBrightness'
 					switch @.get(valueName)
 						when 'middle' 
-							'Средняя'
+							'Middle'
 						when 'high' 
-							'Высокая'
+							'High'
 						when 'low' 
-							'Низкая'
+							'Low'
 						else 
 							''
 				when 'screenTheme'
