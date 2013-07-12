@@ -18,3 +18,5 @@ define
 	'Turned on, min': 'Включен, мин'
 	'Autooff, min': 'Автовыкл, мин'
 	'Dont off': 'Не выключать'
+	'back': 'назад'
+	'select': 'выбор'

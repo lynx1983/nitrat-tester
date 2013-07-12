@@ -2,7 +2,8 @@ define ["view/Panel-view", "model/DeviceSettings-model", "i18n/i18n"], (PanelVie
 	class BottomPanelView extends PanelView
 		el: '#device-wrapper .bottom-panel'
 		template: _.template $('#bottom-panel-template').html()
-		initialize: ->
+
+		render:->
 			@$el.html @template
 				t: i18n.t
 

@@ -11,6 +11,8 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			"click div.cap": "capClick"
 		
 		initialize:->
+			@topPanel = TopPanel
+			@bottomPanel = BottomPanel
 			@screens = {}
 			@screensStack = []
 			@cap = @$el.find('.cap')
@@ -21,7 +23,9 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@
 
 		render:->
+			@topPanel.render()
 			@getCurrentScreen().render() if @getCurrentScreen()
+			@bottomPanel.render()
 			@
 
 		setPrevScreen:->
