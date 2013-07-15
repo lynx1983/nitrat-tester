@@ -31,13 +31,13 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 				when 'screenTheme'
 					switch @.get(valueName)
 						when 'green'
-							'Зеленая'
+							'Green'
 						when 'gray'
-							'Серая'
+							'Gray'
 						when 'blue'
-							'Синяя'
+							'Blue'
 						when 'white'
-							'Белая'
+							'White'
 						else
 							''
 				else 

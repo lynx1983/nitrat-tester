@@ -76,7 +76,7 @@ require [
 					screen: "screen-timeout-settings-menu"
 				new MenuItem
 					title: "Always on"
-					text: if DeviceSettings.get "screenAlwaysOn" then 'Да' else 'Нет'
+					text: if DeviceSettings.get "screenAlwaysOn" then 'Yes' else 'No'
 				new MenuItem
 					title: "Theme"
 					settingsValue: "screenTheme"
@@ -89,14 +89,14 @@ require [
 			title: "Power"
 			items: [
 				new MenuItem
-					title: "Аккумуляторы"
-					text: if DeviceSettings.get "haveAccumulator" then 'Да' else 'Нет'
+					title: "Accumulator"
+					text: if DeviceSettings.get "haveAccumulator" then 'Yes' else 'No'
 				new MenuItem
 					title: "Autooff, min"
 					text: DeviceSettings.get "autoOffTime"
 				new MenuItem
 					title: "Dont off"
-					text: if DeviceSettings.get "preventOff" then 'Да' else 'Нет'
+					text: if DeviceSettings.get "preventOff" then 'Yes' else 'No'
 			]
 
 		LanguageSettingsMenuScreen = new MenuScreenView
