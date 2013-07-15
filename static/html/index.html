@@ -41,14 +41,14 @@
  		</script>
 		<script type="text/template" id="menu-template">
  			<div class="view">
- 				<div class="title"><span><%=title%><span></div>
+ 				<div class="title"><span><%=t(title)%><span></div>
  				<ul class="menu"></ul>
  			</div>
  		</script>
  		<script type="text/template" id="menu-item-template">
-			<span><%=item.title%></span>
+			<span><%=t(item.title)%></span>
 			<% if(item.text) { %>
-				<span class="text"><%=item.text%></span>
+				<span class="text"><%=t(item.text)%></span>
 			<% } else if(item.options.checkbox) { %>
 				<span class="checkbox<%=(item.checked ? ' checked' : '')%>"></span>
 			<% } %>
@@ -62,30 +62,30 @@
  			</div>
  		</script>
  		<script type="text/template" id="bottom-panel-template">
- 			<div class="soft-button left">назад</div>
- 			<div class="soft-button right">выбор</div>
+ 			<div class="soft-button left"><%=t('back')%></div>
+ 			<div class="soft-button right"><%=t('select')%></div>
  		</script>
  		<script type="text/template" id="info-screen-template">
  			<div class="view information">
- 				<div class="title"><span><%=title%><span></div>
- 				<p style="background: #000; color: #13ff00; text-align: center;">Экологические приборы</p>
+ 				<div class="title"><span><%=t(title)%><span></div>
+ 				<p style="background: #000; color: #13ff00; text-align: center;"><%=t('Ecological devices')%></p>
  				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;">S O E K S</p>
- 				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;">Информация</p>
- 				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;">на сайте</p>
+ 				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;"><%=Information%></p>
+ 				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;"><%=t('on the site')%></p>
  				<p style="color: #f00803; text-align: center;">www.soeks.ru</p>
  				<p style="color: #d8d800; text-align: center;">+7(495)223 27 27</p>
  			</div>
  		</script>
  		<script type="text/template" id="before-measurement-screen-template">
  			<div class="view">
- 				<div class="title"><span><%=title%><span></div>
- 				<p style="color: #d8d800; padding: 3px;">Убедитесь, что зонд не воткнут в проверяемый продукт и нажмите &lt;OK&gt;</p>
+ 				<div class="title"><span><%=t(title)%><span></div>
+ 				<p style="color: #d8d800; padding: 3px;"><%=t('Make sure that the probe is not plugged into the product checked and push &lt;OK&gt;')%></p>
  			</div>
  		</script>
  		<script type="text/template" id="calibration-screen-template">
  			<div class="view calibration">
- 				<div class="title"><span><%=title%><span></div>
- 				<p>Подождите, идет подготовка к анализу</p>
+ 				<div class="title"><span><%=t(title)%><span></div>
+ 				<p><%=t('Please wait, preparation for analysis')%></p>
  				<div class="graph time">
  					<div class="indicator" style="width:0"></div>
  				</div>
@@ -94,8 +94,8 @@
  		</script>
  		<script type="text/template" id="measurement-screen-template">
  			<div class="view calibration">
- 				<div class="title"><span><%=title%><span></div>
- 				<p>Подождите идет измерение</p>
+ 				<div class="title"><span><%=t(title)%><span></div>
+ 				<p><%=t('Please wait, measurement')%></p>
  				<div class="graph time">
  					<div class="indicator" style="width:100%;"></div>
  				</div>
@@ -104,23 +104,23 @@
  		</script>
  		<script type="text/template" id="pre-measurement-screen-template">
  			<div class="view">
- 				<div class="title"><span><%=title%><span></div>
+ 				<div class="title"><span><%=t(title)%><span></div>
  				<div class="content">
- 					<p style="color:#FFFFFF;text-align:center;">Воткните зонд в продукт</p>
- 					<p style="color:#d8d800;"><span class="left brace">[</span><%=product%><span class="brace right">]</span></p>
- 					<p style="color:#FFFFFF;">ПДК = <span style="color: #d8d800;"><%=mpc%></span> мг/кг</p>
- 					<p style="color:#FFFFFF;">Нажмите &lt;OK&gt;</p>
+ 					<p style="color:#FFFFFF;text-align:center;"><%=t('Insert the probe into the product')%></p>
+ 					<p style="color:#d8d800;"><span class="left brace">[</span><%=t(product)%><span class="brace right">]</span></p>
+ 					<p style="color:#FFFFFF;"><%=t('MPC')%> = <span style="color: #d8d800;"><%=mpc%></span> <%=t('mg/kg')%></p>
+ 					<p style="color:#FFFFFF;"><%=t('Press &lt;OK&gt;')%></p>
  				</div>
  			</div>
  		</script>
  		<script type="text/template" id="measurement-result-screen-template">
  			<div class="view measurement-result <%=result.tag%>">
- 				<div class="title"><span><%=title%><span></div>
+ 				<div class="title"><span><%=t(title)%><span></div>
  				<div class="content">
- 					<p style="color:#FFFFFF;">РЕЗУЛЬТАТ: <span class="indicator"></span></p>
- 					<p style="color:#FFFFFF;">N = <span><%=result.state%></span> мг/кг</p>
+ 					<p style="color:#FFFFFF;"><%=t('RESULT:')%> <span class="indicator"></span></p>
+ 					<p style="color:#FFFFFF;">N = <span><%=result.state%></span> <%=t('mg/kg')%></p>
  				</div>
-				<p class="msg"><%=result.msg%></p>
+				<p class="msg"><%=t(result.msg)%></p>
  			</div>
  		</script>
 	</body>

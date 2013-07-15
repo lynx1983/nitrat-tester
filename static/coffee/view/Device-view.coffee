@@ -17,6 +17,8 @@ define [
 			"click div.product": "productClick"
 		
 		initialize:->
+			@topPanel = TopPanel
+			@bottomPanel = BottomPanel
 			@screens = {}
 			@screensStack = []
 			@$cap = @$el.find('.cap')
@@ -26,13 +28,16 @@ define [
 			@eventBus.bind "device.cap.open", _.bind(@_openCap, @)
 			@eventBus.bind "device.cap.close", _.bind(@_closeCap, @)
 			@eventBus.bind "device.product.place", _.bind(@_placeProduct, @)
+			@eventBus.bind "device.screen.update", _.bind(@render, @)			
 			DeviceSettings.bind 'change:measurementMPC', _.bind(@onMPCChange, @)
 			@$el.find('.screen-wrapper').fadeIn()
 			@beepSound =@$el.find('audio').get 0
 			@
 
 		render:->
+			@topPanel.render()
 			@getCurrentScreen().render() if @getCurrentScreen()
+			@bottomPanel.render()
 			@
 
 		setPrevScreen:->

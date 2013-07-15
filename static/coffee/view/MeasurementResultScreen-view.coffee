@@ -1,7 +1,8 @@
 define [
 	"view/TemplatedScreen-view"
 	"model/DeviceSettings-model"
-	], (TemplatedScreenView, DeviceSettings)->
+	"i18n/i18n"
+	], (TemplatedScreenView, DeviceSettings, i18n)->
 	class MeasurementResultScreenView extends TemplatedScreenView
 		initialize: ()->
 			@template = _.template $(@options.template).html()
@@ -15,6 +16,7 @@ define [
 
 		render: ()->
 			@$el.html @template
+				t: i18n.t
 				title: @title
 				result: @result
 			@
@@ -36,22 +38,22 @@ define [
 				when 'normal'
 					@result = 
 						state: Math.round _.random(0, DeviceSettings.getCurrentMPC().mpc) 
-						msg: 'Содержание нитратов в норме'
+						msg: 'Nitrate content are normal'
 						tag: tag
 				when 'low'
 					@result = 
-						state: Math.round _.random(DeviceSettings.getCurrentMPC().mpc, DeviceSettings.getCurrentMPC().mpc * 1.25) 
-						msg: 'Незначительное превышение нормы'
+						state: Math.round  _.random(DeviceSettings.getCurrentMPC().mpc, DeviceSettings.getCurrentMPC().mpc * 1.25) 
+						msg: 'Slight excess of normal'
 						tag: tag
 				when 'medium'
 					@result = 
-						state: Math.round _.random(DeviceSettings.getCurrentMPC().mpc * 1.25, DeviceSettings.getCurrentMPC().mpc * 1.5) 
-						msg: 'Опасная концентрация нитратов'
+						state: Math.round  _.random(DeviceSettings.getCurrentMPC().mpc * 1.25, DeviceSettings.getCurrentMPC().mpc * 1.5) 
+						msg: 'Dangerous concentration of nitrates'
 						tag: tag
 				when 'danger'
 					@result = 
-						state: Math.round _.random(DeviceSettings.getCurrentMPC().mpc * 1.5, DeviceSettings.getCurrentMPC().mpc * 2.5) 
-						msg: 'Значительное превышение нормы'
+						state: Math.round  _.random(DeviceSettings.getCurrentMPC().mpc * 1.5, DeviceSettings.getCurrentMPC().mpc * 2.5) 
+						msg: 'Significant excess of normal'
 						tag: tag
 
 			@lastTag = tag

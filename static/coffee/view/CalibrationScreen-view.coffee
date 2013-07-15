@@ -1,4 +1,4 @@
-define ["view/TemplatedScreen-view"], (TemplatedScreenView)->
+define ["view/TemplatedScreen-view", "i18n/i18n"], (TemplatedScreenView, i18n)->
 	class CalibrationScreenView extends TemplatedScreenView
 		initialize: ()->
 			@template = _.template $(@options.template).html()
@@ -8,6 +8,7 @@ define ["view/TemplatedScreen-view"], (TemplatedScreenView)->
 
 		render: ()->
 			@$el.html @template
+				t: i18n.t
 				title: @title
 			@
 

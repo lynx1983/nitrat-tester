@@ -1,122 +1,121 @@
 define [], ->
 	[
-		name: "Абрикос"
+		name: "Apricot"
 		mpc: 60
 		key: "apricot"
 	,
-		name: "Арбуз"
+		name: "Watermelon"
 		mpc: 60
 		key: "watermelon"
 	,
-		name: "Банан"
+		name: "Banana"
 		mpc: 200
 		key: "banana"
 	,
-		name: "Баклажан"
+		name: "Eggplant"
 		mpc: 300
 		key: "eggplant"
 	,
-		name: "Виноград"
+		name: "Grape"
 		mpc: 60
 		key: "grape"
 	,
-		name: "Груша"
+		name: "Pear"
 		mpc: 60
 		key: "pear"
 	,	
-		name: "Зелень"
+		name: "Greens"
 		mpc: 2000
 		key: "greens"
 	,
-		name: "Дыня"
+		name: "Melon"
 		mpc: 90
 		key: "melon"
 	,
-		name: "Капуста ранняя"
+		name: "Early cabbage"
 		mpc: 900
 		key: "early-cabbage"
 	,
-		name: "Капуста поздняя"
+		name: "Late cabbage"
 		mpc: 500
 		key: "late-cabbage"
 	,
-		name: "Кабачок"
+		name: "Squash"
 		mpc: 400
 		key: "squash"
 	,
-		name: "Картофель"
+		name: "Potato"
 		mpc: 250
 		key: "potato"
 	,
-		name: "Клубника"
+		name: "Strawberry"
 		mpc: 100
 		key: "strawberry"
 	,
-		name: "Лук	репчатый"
+		name: "Napiform onion"
 		mpc: 80
 		key: "onion-2"
 	,
-		name: "Лук зеленый"
+		name: "Onion"
 		mpc: 600
 		key: "onion"
 	,
-		name: "Морковь ранняя"
+		name: "Early carrot"
 		mpc: 400
 		key: "early-carrot"
 	,
-		name: "Морковь поздняя"
+		name: "Late carrot"
 		mpc: 250
 		key: "late-carrot"
 	,
-		name: "Нектарин"
+		name: "Nectarine"
 		mpc: 60
 		key: "nectarine"
 	,
-		name: "Огурец. Грунт"
+		name: "Cucumber soil"
 		mpc: 150
 		key: "cucumber-soil"
 	,
-		name: "Огурец. Теплич."
+		name: "Cucumber glasshouse"
 		mpc: 400
 		key: "cucumber-glasshouse"
 	,
-		name: "Перец сладкий"
+		name: "Pepper sweet"
 		mpc: 200
 		key: "pepper"
 	,
-		name: "Помидор. Грунт"
+		name: "Tomato soil"
 		mpc: 150
 		key: "tomato-soil"
 	,
-		name: "Помидор. Теплич."
+		name: "Tomato glasshouse"
 		mpc: 300
 		key: "tomato-glasshouse"
 	,
-		name: "Редис"
+		name: "Radish"
 		mpc: 1500
 		key: "radish"
 	,
-		name: "Редька"
+		name: "Turnip"
 		mpc: 1000
 		key: "radish-2"
 	,
-		name: "Салат"
+		name: "Salad"
 		mpc: 2000
 		key: "salad"
 	,
-		name: "Свекла"
+		name: "Beet"
 		mpc: 1400
 		key: "beet"
 	,
-		name: "Хурма"
+		name: "Persimmon"
 		mpc: 60
 		key: "persimmon"
 	,
-		name: "Яблоко"
+		name: "Apple"
 		mpc: 60
-		key: "apple"
 	,
-		name: "Мясо свежее"
+		name: "Fresh meat"
 		mpc: 200
 		key: "meat"
 	]
