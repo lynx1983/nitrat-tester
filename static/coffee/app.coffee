@@ -299,6 +299,6 @@ require [
 		Device.addScreen SplashScreen
 
 		DeviceSettings.set
-			language: "ru"
+			language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2
 
 		Device.setCurrentScreen "splash-screen"
