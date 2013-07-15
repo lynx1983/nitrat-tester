@@ -18,6 +18,7 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@cap = @$el.find('.cap')
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
+			@eventBus.bind "device.screen.update", _.bind(@render, @)
 			@$el.find('.screen-wrapper').fadeIn()
 			@beepSound =@$el.find('audio').get 0
 			@

@@ -1,95 +1,92 @@
 define [], ->
 	[
-		name: "Абрикос"
+		name: "Apricot"
 		mpc: 60
 	,
-		name: "Арбуз"
+		name: "Watermelon"
 		mpc: 60
 	,
-		name: "Банан"
+		name: "Banana"
 		mpc: 200
 	,
-		name: "Баклажан"
+		name: "Eggplant"
 		mpc: 300
 	,
-		name: "Виноград"
+		name: "Grape"
 		mpc: 60
 	,
-		name: "Груша"
+		name: "Pear"
 		mpc: 60
 	,	
-		name: "Зелень"
+		name: "Greens"
 		mpc: 2000
 	,
-		name: "Дыня"
+		name: "Melon"
 		mpc: 90
 	,
-		name: "Капуста ранняя"
+		name: "Early cabbage"
 		mpc: 900
 	,
-		name: "Капуста поздняя"
+		name: "Late cabbage"
 		mpc: 500
 	,
-		name: "Кабачок"
+		name: "Squash"
 		mpc: 400
 	,
-		name: "Картофель"
+		name: "Potato"
 		mpc: 250
 	,
-		name: "Клубника"
+		name: "Strawberry"
 		mpc: 100
 	,
-		name: "Лук	репчатый"
+		name: "Napiform onion"
 		mpc: 80
 	,
-		name: "Лук зеленый"
+		name: "Onion"
 		mpc: 600
 	,
-		name: "Морковь ранняя"
+		name: "Early carrot"
 		mpc: 400
 	,
-		name: "Морковь поздняя"
+		name: "Late carrot"
 		mpc: 250
 	,
-		name: "Нектарин"
+		name: "Nectarine"
 		mpc: 60
 	,
-		name: "Огурец. Грунт"
+		name: "Cucumber soil"
 		mpc: 150
 	,
-		name: "Огурец. Теплич."
+		name: "Cucumber glasshouse"
 		mpc: 400
 	,
-		name: "Перец сладкий"
+		name: "Pepper sweet"
 		mpc: 200
 	,
-		name: "Помидор. Грунт"
+		name: "Tomato soil"
 		mpc: 150
 	,
-		name: "Помидор. Теплич."
+		name: "Tomato glasshouse"
 		mpc: 300
 	,
-		name: "Редис"
+		name: "Radish"
 		mpc: 1500
 	,
-		name: "Редька"
+		name: "Turnip"
 		mpc: 1000
 	,
-		name: "Салат"
+		name: "Salad"
 		mpc: 2000
 	,
-		name: "Свекла"
+		name: "Beet"
 		mpc: 1400
 	,
-		name: "Хурма"
+		name: "Persimmon"
 		mpc: 60
 	,
-		name: "Яблоко"
+		name: "Apple"
 		mpc: 60
 	,
-		name: "Детская норма"
-		mpc: 50
-	,
-		name: "Мясо свежее"
+		name: "Fresh meat"
 		mpc: 200
 	]

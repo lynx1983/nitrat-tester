@@ -19,7 +19,8 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 
 		render: ()->
 			@$el.html @template
-				title: i18n.t @title
+				t: i18n.t
+				title: @title
 			startIndex = @firstVisibleIndex
 			endIndex = startIndex + @itemsPerScreen
 			_.each @items, (item, i)=>
