@@ -9,7 +9,7 @@ define ["underi18n", "model/DeviceSettings-model", "event/EventBus-event", "./la
 				'ru': ru
 
 		onLangChange:(model, lang)->
-			console.log "Language changed"
+			console.log "Language changed to '#{lang}'"
 			if @languages[lang]
 				@t = underi18n.MessageFactory @languages[lang]
 				@eventBus.trigger "device.screen.update"
