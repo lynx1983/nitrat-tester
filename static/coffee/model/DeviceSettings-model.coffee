@@ -13,12 +13,17 @@ define ["backbone"], (Backbone)->
 			language: ''
 			unit: 'sievert'
 			threshold: 1200
+			soundOn: true
+			buttonsSound: true
+			sensorSound: false
+			thresholdSound: true
+			volume: 'middle'
 
 		getValueString: (valueName)->
 			switch valueName
 				when 'language'
 					if @.get(valueName) == 'ru' then 'Русский' else 'English'
-				when 'screenBrightness'
+				when 'screenBrightness', 'volume'
 					switch @.get(valueName)
 						when 'middle' 
 							'Middle'

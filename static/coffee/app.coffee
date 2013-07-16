@@ -111,7 +111,7 @@ require [
 					screen: "screen-timeout-settings-menu"
 				new MenuItem
 					title: "Always on"
-					text: if DeviceSettings.get "screenAlwaysOn" then 'Да' else 'Нет'
+					text: if DeviceSettings.get "screenAlwaysOn" then 'Yes' else 'No'
 				new MenuItem
 					title: "Theme"
 					settingsValue: "screenTheme"
@@ -125,13 +125,36 @@ require [
 			items: [
 				new MenuItem
 					title: "Аккумуляторы"
-					text: if DeviceSettings.get "haveAccumulator" then 'Да' else 'Нет'
+					text: if DeviceSettings.get "haveAccumulator" then 'Yes' else 'No'
 				new MenuItem
 					title: "Autooff, min"
 					text: DeviceSettings.get "autoOffTime"
 				new MenuItem
 					title: "Dont off"
-					text: if DeviceSettings.get "preventOff" then 'Да' else 'Нет'
+					text: if DeviceSettings.get "preventOff" then 'Yes' else 'No'
+			]
+
+		SoundSettingsMenuScreen = new MenuScreenView
+			name: "sound-settings-menu"
+			title: "Sound"
+			items: [
+				new MenuItem
+					title: "Sound on"
+					text: if DeviceSettings.get "soundOn" then 'Yes' else 'No'
+				new MenuItem
+					title: "Tone"
+				new MenuItem
+					title: "Buttons sound"
+					text: if DeviceSettings.get "buttonsSound" then 'Yes' else 'No'
+				new MenuItem
+					title: "Sensor sound"
+					text: if DeviceSettings.get "sensorSound" then 'Yes' else 'No'
+				new MenuItem
+					title: "Thres sound"
+					text: if DeviceSettings.get "thresholdSound" then 'Yes' else 'No'					
+				new MenuItem
+					title: "Volume"
+					text: DeviceSettings.get "volume"
 			]
 
 		LanguageSettingsMenuScreen = new MenuScreenView
@@ -464,6 +487,7 @@ require [
 		Device.addScreen UnitSettingsMenuScreen
 		Device.addScreen ScreenSettingsMenuScreen
 		Device.addScreen PowerSettingsMenuScreen
+		Device.addScreen SoundSettingsMenuScreen
 		Device.addScreen LanguageSettingsMenuScreen
 		Device.addScreen ScreenBrightnessSettingsScreen
 		Device.addScreen ScreenTimeoutSettingsScreen

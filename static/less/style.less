@@ -1,5 +1,5 @@
-@deviceWidth: 192;
-@buttonSize: 46;
+@deviceWidth: 210;
+@buttonSize: 44;
 @screenColor: #000000;
 @viewTitleBgColor: #455369;
 @viewTitleColor: #13ff00;
@@ -22,7 +22,7 @@ html, body {
 	font-family: Arial;
 	font-size: 14px;
 	position: relative;
-	width: 192px;
+	width: unit(@deviceWidth, px);
 	margin: 0 auto;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -33,7 +33,7 @@ html, body {
 
 	.device {
 		width: unit(@deviceWidth, px);
-		height: 577px;
+		height: 443px;
 		background: url('../img/device.png') no-repeat;
 		position: relative;
 		z-index: 5;
@@ -45,7 +45,7 @@ html, body {
 		width: unit(@screenWidth, px);
 		height: 160px;
 		left: unit((@deviceWidth -  @screenWidth) / 2, px);
-		top: 65px;
+		top: 70px;
 		background: @screenColor;
 		display: none;
 		
@@ -262,37 +262,6 @@ html, body {
 					}	
 				}
 
-				&.calibration {
-					p {
-						color: #FFFFFF;
-						padding: 3px;
-					}
-
-					.graph {
-						width: 106px;
-						height: 8px;
-						border: 1px solid #FFFFFF;
-						position: absolute;
-						left: 11px;
-
-						&.time {
-							bottom: 25px;
-
-							.indicator {
-								width: 0;
-								height: 100%;
-								background: #2044fb;
-								transition: width .5s linear 0s;
-								-webkit-transition: width .5s linear 0s;
-							}
-						}
-
-						&.ticks {
-							bottom: 13px;
-						}
-					}
-				}
-
 				&.measurement-result {
 					
 					span.indicator {
@@ -371,24 +340,24 @@ html, body {
 		border-radius: unit(@buttonSize / 2, px);
 
 		&.center {
-			left: 73px;
-		}
-
-		&.center {
-			top: 320px;
+			width: 52px;
+			height: 52px;
+			left: 80px;
+			top: 300px;
+			border-radius: 26px;
 		}
 
 		&.left,
 		&.right {
-			top: 320px;
+			top: 260px;
 		}
 
 		&.left {
-			left: 12px;
+			left: 31px;
 		}
 
 		&.right {
-			right: 12px;
+			right: 31px;
 		}
 	}
 }
