@@ -1,4 +1,4 @@
-define ["backbone", "data/Presets-data"], (Backbone, Presets)->
+define ["backbone"], (Backbone)->
 	class DeviceSettingsModel extends Backbone.Model
 		defaults: ->
 			id: "0005"
@@ -11,8 +11,8 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			screenAlwaysOn: true
 			screenTheme: 'green'
 			language: ''
-			MPCdata: Presets			
-			measurementMPC: if Presets.length > 0 then 0 else null
+			unit: 'sievert'
+			threshold: 1200
 
 		getValueString: (valueName)->
 			switch valueName
@@ -31,19 +31,28 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 				when 'screenTheme'
 					switch @.get(valueName)
 						when 'green'
-							'Зеленая'
+							'Green'
 						when 'gray'
-							'Серая'
+							'Gray'
 						when 'blue'
-							'Синяя'
+							'Blue'
 						when 'white'
-							'Белая'
+							'White'
 						else
 							''
+				when 'unit'
+					switch @.get(valueName)
+						when 'sievert'
+							'Sievert'
+						when 'roentgen'
+							'Roentgen'
+						else
+							''
+				when 'thresholdSv'
+					@.get("threshold") / 1000
+				when 'thresholdR'
+					@.get("threshold") / 10 
 				else 
 					@.get(valueName)
-
-		getCurrentMPC:->
-			return @get('MPCdata')[@get('measurementMPC')] if @get('measurementMPC')?
 
 	new DeviceSettingsModel

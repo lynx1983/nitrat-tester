@@ -6,16 +6,12 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			"click div.button.left": "leftButtonClick"
 			"click div.button.center": "centerButtonClick"
 			"click div.button.right": "rightButtonClick"
-			"click div.button.up": "upButtonClick"
-			"click div.button.down": "downButtonClick"
-			"click div.cap": "capClick"
 		
 		initialize:->
 			@topPanel = TopPanel
 			@bottomPanel = BottomPanel
 			@screens = {}
 			@screensStack = []
-			@cap = @$el.find('.cap')
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
 			@eventBus.bind "device.screen.update", _.bind(@render, @)
@@ -50,6 +46,14 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 				@getCurrentScreen().activate()
 				@render()
 
+		resetScreens:->
+			if @screensStack.length > 1
+				@getCurrentScreen()?.deactivate()
+				while @screensStack.length > 1
+					@screensStack.shift()
+				@getCurrentScreen()?.activate()
+				@render()
+
 		beep:->
 			@beepSound.play()
 
@@ -64,21 +68,11 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@beep()
 			@eventBus.trigger "button.click", "right"
 
-		upButtonClick:->
-			@beep()
-			@eventBus.trigger "button.click", "up"
-		
-		downButtonClick:->
-			@beep()
-			@eventBus.trigger "button.click", "down"
-
 		centerButtonClick:->
 			@beep()
 			@eventBus.trigger "button.click", "center"
+			@resetScreens()
 		
-		capClick:-> 
-			@cap.toggleClass 'opened'
-
 		setFullScreen:(flag)->
 			if flag 
 				@$el.find('.screen-wrapper').addClass "fullscreen" 

@@ -7,28 +7,32 @@ require [
 	"view/MenuScreen-view",
 	"view/MenuItem-view",
 	"view/TemplatedScreen-view"
-	"view/CalibrationScreen-view"
-	"view/PreMeasurementScreen-view"
 	"view/MeasurementResultScreen-view"
 	"view/SplashScreen-view"
-	"data/Presets-data"
 	], 
-	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, SplashScreenView, Presets) ->
+	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView,  MeasurementResultScreenView, SplashScreenView)->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
 				new MenuItem
 					title: "Measurement"
 					screen: "measurement-menu"
+					align: "center"
 				new MenuItem
 					title: "Main menu"
 					screen: "main-menu"
+					align: "center"
 			]
 
 		MainMenuScreen = new MenuScreenView
 			name: "main-menu"
 			title: "Main menu"
 			items: [
+				new MenuItem
+					title: "Units"
+					settingsValue: "unit"
+					showValue: true
+					screen: "unit-setting-menu"
 				new MenuItem
 					title: "Language"
 					settingsValue: "language"
@@ -48,13 +52,44 @@ require [
 					text: DeviceSettings.get "id"
 			]
 
+		UnitSettingsMenuScreen = new MenuScreenView
+			name: "unit-setting-menu"
+			title: "Units"
+			items: [
+				new MenuItem
+					title: "Sievert"
+					checkbox: true
+					settingsValue: "unit"
+					checkedValue: 'sievert'
+				new MenuItem
+					title: "Roentgen"
+					checkbox: true
+					settingsValue: "unit"
+					checkedValue: 'roentgen'
+			]
+
 		SettingsMenuScreen = new MenuScreenView
 			name: "settings-menu"
 			title: "Settings"
 			items: [
 				new MenuItem
+					title: "Thres, &micro;R/h"
+					settingsValue: "threshold"
+					showSettingsValue: "thresholdR"
+					showValue: true
+					screen: "threshold-roentgen-settings-menu"
+				new MenuItem
+					title: "Thres, &micro;Sv/h"
+					settingsValue: "threshold"
+					showSettingsValue: "thresholdSv"
+					showValue: true
+					screen: "threshold-sievert-settings-menu"
+				new MenuItem
 					title: "Screen"
 					screen: "screen-settings-menu"
+				new MenuItem
+					title: "Sound"
+					screen: "sound-settings-menu"
 				new MenuItem
 					title: "Power"
 					screen: "power-settings-menu"
@@ -162,6 +197,210 @@ require [
 					checkedValue: 'white'
 			]
 
+		ThresholdRSettingsScreen = new MenuScreenView
+			name: "threshold-roentgen-settings-menu"
+			title: "Thres, &micro;R/h"
+			items: [
+				new MenuItem
+					title: "30"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 300
+					align: "center"
+				new MenuItem
+					title: "40"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 400
+					align: "center"
+				new MenuItem
+					title: "50"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 500
+					align: "center"
+				new MenuItem
+					title: "60"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 600
+					align: "center"
+				new MenuItem
+					title: "70"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 700
+					align: "center"
+				new MenuItem
+					title: "80"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 800
+					align: "center"
+				new MenuItem
+					title: "90"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 900
+					align: "center"
+				new MenuItem
+					title: "100"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1000
+					align: "center"
+				new MenuItem
+					title: "120"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1200
+					align: "center"
+				new MenuItem
+					title: "150"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1500
+					align: "center"
+				new MenuItem
+					title: "200"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 2000
+					align: "center"
+				new MenuItem
+					title: "500"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 5000
+					align: "center"
+				new MenuItem
+					title: "1000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 10000
+					align: "center"
+				new MenuItem
+					title: "2000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 20000
+					align: "center"
+				new MenuItem
+					title: "5000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 50000
+					align: "center"
+				new MenuItem
+					title: "10000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 100000
+					align: "center"
+			]
+
+		ThresholdSvSettingsScreen = new MenuScreenView
+			name: "threshold-sievert-settings-menu"
+			title: "Thres, &micro;Sv/h"
+			items: [
+				new MenuItem
+					title: "0,3"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 300
+					align: "center"
+				new MenuItem
+					title: "0,4"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 400
+					align: "center"
+				new MenuItem
+					title: "0,5"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 500
+					align: "center"
+				new MenuItem
+					title: "0,6"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 600
+					align: "center"
+				new MenuItem
+					title: "0,7"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 700
+					align: "center"
+				new MenuItem
+					title: "0,8"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 800
+					align: "center"
+				new MenuItem
+					title: "0,9"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 900
+					align: "center"
+				new MenuItem
+					title: "1"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1000
+					align: "center"
+				new MenuItem
+					title: "1,2"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1200
+					align: "center"
+				new MenuItem
+					title: "1,5"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1500
+					align: "center"
+				new MenuItem
+					title: "2"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 2000
+					align: "center"
+				new MenuItem
+					title: "5"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 5000
+					align: "center"
+				new MenuItem
+					title: "10"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 10000
+					align: "center"
+				new MenuItem
+					title: "20"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 20000
+					align: "center"
+				new MenuItem
+					title: "50"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 50000
+					align: "center"
+				new MenuItem
+					title: "100"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 100000
+					align: "center"
+			]
+
 		ScreenTimeoutSettingsScreen = new MenuScreenView
 			name: "screen-timeout-settings-menu"
 			title: "Turned on, min"
@@ -193,20 +432,6 @@ require [
 					checkedValue: 15
 			]
 
-		items = []
-		_.each Presets, (preset, index)->
-			items.push new MenuItem
-				title: preset.name
-				checkbox: true
-				settingsValue: "measurementMPC"
-				checkedValue: index
-				screen: "before-measurement-screen"
-
-		MeasurementMenuScreen = new MenuScreenView
-			name: "measurement-menu"
-			title: "Measurement"
-			items: items
-
 		InformationScreen = new TemplatedScreenView
 			name: "information-screen"
 			title: "Information"
@@ -216,53 +441,6 @@ require [
 				callback: (button)->
 					@eventBus.trigger "device.screen.prev" if button == 'left'
 			]
-
-		CalibrationScreen = new CalibrationScreenView
-			name: "calibration-screen"
-			title: "Nitrat-tester"
-			template: '#calibration-screen-template'
-			nextScreen: 'pre-measurement-screen'
-			noTrackScreen: true
-
-		BeforeMeasurementScreen = new TemplatedScreenView
-			name: "before-measurement-screen"
-			title: "Nitrat-tester"
-			template: '#before-measurement-screen-template'
-			events: [
-				name: 'button.click'
-				callback: (button)->
-					switch button
-						when 'left'
-							@eventBus.trigger "device.screen.prev" 
-						when 'center'
-							@eventBus.trigger "device.screen.set",
-								screenName: 'calibration-screen'
-			]
-			noTrackScreen: true
-
-		PreMeasurementScreen = new PreMeasurementScreenView
-			name: "pre-measurement-screen"
-			title: "Nitrat-tester"
-			template: '#pre-measurement-screen-template'
-			events: [
-				name: 'button.click'
-				callback: (button)->
-					switch button
-						when 'left'
-							@eventBus.trigger "device.screen.prev" 
-						when 'center'
-							@eventBus.trigger "device.screen.set",
-								screenName: 'measurement-screen'
-			]
-			noTrackScreen: true
-
-		MeasurementScreen = new CalibrationScreenView
-			name: "measurement-screen"
-			title: "Nitrat-tester"
-			direction: 'down'
-			template: '#measurement-screen-template'
-			nextScreen: 'measurement-result-screen'
-			noTrackScreen: true
 
 		MeasurementResultScreen = new MeasurementResultScreenView
 			name: "measurement-result-screen";
@@ -283,18 +461,16 @@ require [
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
 		Device.addScreen SettingsMenuScreen
+		Device.addScreen UnitSettingsMenuScreen
 		Device.addScreen ScreenSettingsMenuScreen
 		Device.addScreen PowerSettingsMenuScreen
-		Device.addScreen MeasurementMenuScreen
 		Device.addScreen LanguageSettingsMenuScreen
 		Device.addScreen ScreenBrightnessSettingsScreen
 		Device.addScreen ScreenTimeoutSettingsScreen
+		Device.addScreen ThresholdSvSettingsScreen
+		Device.addScreen ThresholdRSettingsScreen
 		Device.addScreen ThemeSettingsScreen
 		Device.addScreen InformationScreen
-		Device.addScreen BeforeMeasurementScreen
-		Device.addScreen CalibrationScreen
-		Device.addScreen PreMeasurementScreen
-		Device.addScreen MeasurementScreen
 		Device.addScreen MeasurementResultScreen
 		Device.addScreen SplashScreen
 

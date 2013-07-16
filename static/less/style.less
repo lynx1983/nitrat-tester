@@ -142,18 +142,16 @@ html, body {
 			}
 		}
 
-		&.fullscreen .top-panel {
-			display: none;
-		}
-
 		.bottom-panel {
 			height: 15px;
 			background: @bottomPanelBgColor;
+			position: relative;
+			text-align: center;
 
 			.soft-button {
 				background: #FFFFFF;
 				display: inline-block;
-				font-size: 10px;
+				font-size: 9px;
 				padding: 1px 2px;
 				text-transform: uppercase;
 				margin: 1px 2px;
@@ -162,14 +160,21 @@ html, body {
 					float: left;
 				}
 
+				&.center {
+					vertical-align: top;
+				}
+
 				&.right {
 					float: right;
 				}
 			}
 		}
 
-		&.fullscreen .bottom-panel {
-			display: none;
+		&.fullscreen {
+			.top-panel,
+			.bottom-panel {
+				display: none;
+			}
 		}
 
 		.screen {
@@ -218,6 +223,10 @@ html, body {
 						background: @menuBgColor;
 						margin-bottom: 1px;
 						overflow: hidden;
+
+						&.center {
+							text-align: center;
+						}
 
 						&.active {
 							color: @activeMenuColor;
@@ -353,40 +362,6 @@ html, body {
 		}
 	}
 
-	.cap {
-		width: unit(@deviceWidth, px);
-		height: 177px;
-		position: absolute;
-		left: 0;
-		top: 431px;
-		cursor: pointer;
-		transition: left .5s 0s, top .5s .25s;
-		-webkit-transition: left .5s 0s, top .5s .25s;
-
-		&.opened {
-			top: 590px;
-			left: -100px;
-			transition: top .5s 0s, left .5s .25s;
-			-webkit-transition: top .5s 0s, left .5s .25s;
-		}
-
-		.top {
-			background: url('../img/cap-top.png') no-repeat;
-			width: 100%;
-			height: 162px;
-			z-index: 10;
-			position: relative;
-		}
-
-		.bottom {
-			width: 100%;
-			height: 15px;
-			background: url('../img/cap-bottom.png') no-repeat;
-			z-index: 0;
-			position: relative;
-		}
-	}
-
 	.button {
 		background: transparent;
 		width: unit(@buttonSize, px);
@@ -395,18 +370,8 @@ html, body {
 		cursor: pointer;
 		border-radius: unit(@buttonSize / 2, px);
 
-		&.up,
-		&.down,
 		&.center {
 			left: 73px;
-		}
-
-		&.up {
-			top: 256px;
-		}
-
-		&.down {
-			top: 380px;
 		}
 
 		&.center {

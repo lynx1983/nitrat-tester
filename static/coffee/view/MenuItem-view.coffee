@@ -16,11 +16,15 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 			@$el.html @template
 				t: i18n.t
 				item: @
+			@$el.addClass @options.align if @options.align?
 			@
 
 		onValueChange: ->
 			if @options.showValue
-				@text = DeviceSettings.getValueString @options.settingsValue
+				if @options.showSettingsValue
+					@text = DeviceSettings.getValueString @options.showSettingsValue
+				else
+					@text = DeviceSettings.getValueString @options.settingsValue
 			if @options.checkbox
 				@checked = DeviceSettings.get(@options.settingsValue) == @options.checkedValue
 			@render()

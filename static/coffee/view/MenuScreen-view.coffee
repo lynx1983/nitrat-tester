@@ -45,16 +45,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 		onButtonClick:(button)->
 			console.log "Get event by screen [" + @name + "]"
 			switch button
-				when 'up'
-					@activeIndex--
-					if @activeIndex - @firstVisibleIndex < 0 
-						@firstVisibleIndex--
-					if @activeIndex < 0
-						@activeIndex = @items.length - 1
-						@firstVisibleIndex = if @items.length - @itemsPerScreen < 0 then 0 else @items.length - @itemsPerScreen
-					@render()
-
-				when 'down'
+				when 'left'
 					@activeIndex++
 					if @activeIndex - @firstVisibleIndex >= @itemsPerScreen 
 						@firstVisibleIndex++
@@ -62,8 +53,5 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 						@activeIndex = @firstVisibleIndex = 0
 					@render()
 
-				when 'left'
-					@eventBus.trigger "device.screen.prev"
-					
 				when 'right'		
 					@items[@activeIndex].trigger "menu.item.action", button

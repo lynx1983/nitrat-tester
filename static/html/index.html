@@ -17,11 +17,9 @@
 					<div class="screen"></div>
 					<div class="bottom-panel"></div>
 				</div>
-				<div class="button up"></div>
 				<div class="button left"></div>
 				<div class="button right"></div>
 				<div class="button center"></div>
-				<div class="button down"></div>
 			</div>
 			<div class="cap">
 				<div class="bottom"></div>
@@ -61,7 +59,8 @@
  			</div>
  		</script>
  		<script type="text/template" id="bottom-panel-template">
- 			<div class="soft-button left"><%=t('back')%></div>
+ 			<div class="soft-button left"><%=t('cursor')%></div>
+ 			<div class="soft-button center"><%=t('menu')%></div>
  			<div class="soft-button right"><%=t('select')%></div>
  		</script>
  		<script type="text/template" id="info-screen-template">
@@ -73,43 +72,6 @@
  				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;"><%=t('on the site')%></p>
  				<p style="color: #f00803; text-align: center;">www.soeks.ru</p>
  				<p style="color: #d8d800; text-align: center;">+7(495)223 27 27</p>
- 			</div>
- 		</script>
- 		<script type="text/template" id="before-measurement-screen-template">
- 			<div class="view">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<p style="color: #d8d800; padding: 3px;"><%=t('Make sure that the probe is not plugged into the product checked and push &lt;OK&gt;')%></p>
- 			</div>
- 		</script>
- 		<script type="text/template" id="calibration-screen-template">
- 			<div class="view calibration">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<p><%=t('Please wait, preparation for analysis')%></p>
- 				<div class="graph time">
- 					<div class="indicator" style="width:0"></div>
- 				</div>
- 				<div class="graph ticks"></div>
- 			</div>
- 		</script>
- 		<script type="text/template" id="measurement-screen-template">
- 			<div class="view calibration">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<p><%=t('Please wait, measurement')%></p>
- 				<div class="graph time">
- 					<div class="indicator" style="width:100%;"></div>
- 				</div>
- 				<div class="graph ticks"></div>
- 			</div>
- 		</script>
- 		<script type="text/template" id="pre-measurement-screen-template">
- 			<div class="view">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<div class="content">
- 					<p style="color:#FFFFFF;text-align:center;"><%=t('Insert the probe into the product')%></p>
- 					<p style="color:#d8d800;"><span class="left brace">[</span><%=t(product)%><span class="brace right">]</span></p>
- 					<p style="color:#FFFFFF;"><%=t('MPC')%> = <span style="color: #d8d800;"><%=mpc%></span> <%=t('mg/kg')%></p>
- 					<p style="color:#FFFFFF;"><%=t('Press &lt;OK&gt;')%></p>
- 				</div>
  			</div>
  		</script>
  		<script type="text/template" id="measurement-result-screen-template">
