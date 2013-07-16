@@ -7,19 +7,20 @@ require [
 	"view/MenuScreen-view",
 	"view/MenuItem-view",
 	"view/TemplatedScreen-view"
-	"view/MeasurementResultScreen-view"
+	"view/MeasurementScreen-view"
 	"view/SplashScreen-view"
+	"collection/Measurements-collection"
 	], 
-	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView,  MeasurementResultScreenView, SplashScreenView)->
+	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements)->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
 				new MenuItem
-					title: "Measurement"
-					screen: "measurement-menu"
+					title: "Measure"
+					screen: "measurement-screen"
 					align: "center"
 				new MenuItem
-					title: "Main menu"
+					title: "Main Menu"
 					screen: "main-menu"
 					align: "center"
 			]
@@ -45,7 +46,7 @@ require [
 					title: "Information"
 					screen: "information-screen"
 				new MenuItem
-					title: "FW version"
+					title: "Version"
 					text: DeviceSettings.get "version"
 				new MenuItem
 					title: "ID"
@@ -73,19 +74,19 @@ require [
 			title: "Settings"
 			items: [
 				new MenuItem
-					title: "Thres, &micro;R/h"
+					title: "Level, mcR/h"
 					settingsValue: "threshold"
 					showSettingsValue: "thresholdR"
 					showValue: true
 					screen: "threshold-roentgen-settings-menu"
 				new MenuItem
-					title: "Thres, &micro;Sv/h"
+					title: "Level, mcSv/h"
 					settingsValue: "threshold"
 					showSettingsValue: "thresholdSv"
 					showValue: true
 					screen: "threshold-sievert-settings-menu"
 				new MenuItem
-					title: "Screen"
+					title: "Vision"
 					screen: "screen-settings-menu"
 				new MenuItem
 					title: "Sound"
@@ -97,20 +98,20 @@ require [
 
 		ScreenSettingsMenuScreen = new MenuScreenView
 			name: "screen-settings-menu"
-			title: "Screen"
+			title: "Vision"
 			items: [
 				new MenuItem
-					title: "Brightness"
+					title: "Bright"
 					showValue: true
 					settingsValue: "screenBrightness"
 					screen: "screen-brightness-settings-menu"
 				new MenuItem
-					title: "Turned on, min"
+					title: "On, minute"
 					settingsValue: "screenTimeout"
 					showValue: true
 					screen: "screen-timeout-settings-menu"
 				new MenuItem
-					title: "Always on"
+					title: "Always ON"
 					text: if DeviceSettings.get "screenAlwaysOn" then 'Yes' else 'No'
 				new MenuItem
 					title: "Theme"
@@ -150,7 +151,7 @@ require [
 					title: "Sensor sound"
 					text: if DeviceSettings.get "sensorSound" then 'Yes' else 'No'
 				new MenuItem
-					title: "Thres sound"
+					title: "Level sound"
 					text: if DeviceSettings.get "thresholdSound" then 'Yes' else 'No'					
 				new MenuItem
 					title: "Volume"
@@ -175,7 +176,7 @@ require [
 
 		ScreenBrightnessSettingsScreen = new MenuScreenView
 			name: "screen-brightness-settings-menu"
-			title: "Brightness"
+			title: "Bright"
 			items: [
 				new MenuItem
 					title: "Low"
@@ -222,7 +223,7 @@ require [
 
 		ThresholdRSettingsScreen = new MenuScreenView
 			name: "threshold-roentgen-settings-menu"
-			title: "Thres, &micro;R/h"
+			title: "Level, mcR/h"
 			items: [
 				new MenuItem
 					title: "30"
@@ -324,7 +325,7 @@ require [
 
 		ThresholdSvSettingsScreen = new MenuScreenView
 			name: "threshold-sievert-settings-menu"
-			title: "Thres, &micro;Sv/h"
+			title: "Level, mcSv/h"
 			items: [
 				new MenuItem
 					title: "0,3"
@@ -459,22 +460,11 @@ require [
 			name: "information-screen"
 			title: "Information"
 			template: '#info-screen-template'
-			events: [
-				name: 'button.click'
-				callback: (button)->
-					@eventBus.trigger "device.screen.prev" if button == 'left'
-			]
 
-		MeasurementResultScreen = new MeasurementResultScreenView
-			name: "measurement-result-screen";
-			title: "Nitrat-tester"
-			template: '#measurement-result-screen-template'
-			events: [
-				name: 'button.click'
-				callback: (button)->
-					if button == 'left'
-						@eventBus.trigger "device.screen.prev" 
-			]
+		MeasurementScreen = new MeasurementScreenView
+			name: "measurement-screen";
+			title: "Radioactivity"
+			template: '#measurement-screen-template'
 
 		SplashScreen = new SplashScreenView
 			name: "splash-screen"
@@ -495,10 +485,12 @@ require [
 		Device.addScreen ThresholdRSettingsScreen
 		Device.addScreen ThemeSettingsScreen
 		Device.addScreen InformationScreen
-		Device.addScreen MeasurementResultScreen
+		Device.addScreen MeasurementScreen
 		Device.addScreen SplashScreen
 
-		DeviceSettings.set
-			language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2
+		DeviceSettings.set 
+			language: 'ru'
+		
+		#language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2
 
 		Device.setCurrentScreen "splash-screen"

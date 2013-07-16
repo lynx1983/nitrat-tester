@@ -38,5 +38,4 @@ define [
 			@buttonIndicator.$el.hide()
 			@$indicator.css "visibility", "visible"
 
-
 	new TopPanelView;

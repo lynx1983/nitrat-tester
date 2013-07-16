@@ -10,17 +10,17 @@ define ["view/EventDriven-view"], (EventDrivenView)->
 			@
 
 		activate:->
-			console.log "Screen [" + @name + "] activate"
+			console.log "Screen [#{@name}] activate"
 			_.each @options.events, (event)->
-				console.log "Bind event [" + event.name + "]"
+				console.log "Bind event [#{event.name}]"
 				@eventBus.on event.name, event.callback, @
 			, @
 			@active = true
 
 		deactivate:->
-			console.log "Screen [" + @name + "] deactivate"
+			console.log "Screen [#{@name}] deactivate"
 			_.each @options.events, (event)->
-				console.log "Unbind event [" + event.name + "]"
+				console.log "Unbind event [#{event.name}]"
 				@eventBus.off event.name, event.callback, @
 			, @
 			@active = false

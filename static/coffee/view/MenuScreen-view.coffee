@@ -9,12 +9,12 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 
 		activate:->
 			super
-			console.log "Screen [" + @name + "] custom activate"
+			console.log "Screen [#{@name}] custom activate"
 			@eventBus.on "button.click", @onButtonClick, @
 
 		deactivate:->
 			super			
-			console.log "Screen [" + @name + "] custom deactivate"
+			console.log "Screen [#{@name}] custom deactivate"
 			@eventBus.off "button.click", @onButtonClick, @
 
 		render: ()->
@@ -43,7 +43,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			@
 
 		onButtonClick:(button)->
-			console.log "Get event by screen [" + @name + "]"
+			console.log "Get event by screen [#{@name}]"
 			switch button
 				when 'left'
 					@activeIndex++
