@@ -86,6 +86,34 @@ html, body {
 				}
 			}
 
+			.activity-graph {
+				width: 19px;
+				height: 9px;
+				padding: 2px;
+				position: absolute;
+				top: 1px;
+				right: 41px;
+				background: transparent url('../img/activity-graph-bg.png') no-repeat;
+
+				li {
+					width: 1px;
+					display: block;
+					float: right;
+
+					&.normal {
+						background: #0024ff;
+					}
+
+					&.warning {
+						background: #fffc00;
+					}
+
+					&.danger {
+						background: #ff0000;
+					}
+				}
+			}
+
 			.activity-indicator {
 				width: 12px;
 				height: unit(@topPanelHeight, px);
@@ -366,7 +394,7 @@ html, body {
 						}
 					}
 
-					&.high {
+					&.warning {
 						p.msg {
 							background: #FFFC00;
 							color: #FF0000;

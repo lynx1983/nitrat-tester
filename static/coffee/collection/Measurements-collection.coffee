@@ -58,8 +58,11 @@ define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
 
 			value = _.random level.minimum, level.maximum
 
+			value += (value * _.random(-@difference, @difference) / 100)
+
 			@add
-				value: value + (value * _.random(-@difference, @difference) / 100)
+				value: value
+				tag: @getTag value
 
 			@cumulativeDose += @last().get "value"
 

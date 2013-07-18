@@ -36,15 +36,15 @@ define [
 				level /= 100
 			level = level.toFixed(2).replace ".", ","
 
-			if value < 4000
-				tag = 'normal'
-				msg = 'Normal radiation background'
-			else if value < 120000
-				tag = 'high'
-				msg = 'High radiation background'
-			else 	
-				tag = 'danger'
-				msg = 'Dangerous radiation background'		
+			tag = Measurements.getTag value
+
+			switch tag
+				when 'warning'
+					msg = 'High radiation background'
+				when 'danger'
+					msg = 'Dangerous radiation background'
+				else
+					msg = 'Normal radiation background'
 
 			@$el.html @template
 				t: i18n.t

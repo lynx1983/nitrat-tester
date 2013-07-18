@@ -3,5 +3,6 @@ define ["backbone"], (Backbone)->
 		defaults:->
 			value: 0
 			readiness: 0
+			tag: 'normal'
 
 	MeasurementModel
