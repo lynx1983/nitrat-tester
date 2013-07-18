@@ -97,18 +97,27 @@ html, body {
 
 				li {
 					width: 1px;
+					height: 9px;
 					display: block;
+					position: relative;
 					float: right;
 
-					&.normal {
+					span {
+						display: block;
+						bottom: 0;
+						width: 1px;
+						position: absolute;
+					}
+
+					&.normal span {
 						background: #0024ff;
 					}
 
-					&.warning {
+					&.warning span {
 						background: #fffc00;
 					}
 
-					&.danger {
+					&.danger span {
 						background: #ff0000;
 					}
 				}

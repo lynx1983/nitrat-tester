@@ -78,4 +78,9 @@ define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
 				value <= item.level
 			level?.tag or 'danger'
 
+		getTagMaxValue:(tag)->
+			level = _.find @tags, (item)->
+				tag == item.tag
+			level?.level or 0
+
 	new MeasurementsCollection

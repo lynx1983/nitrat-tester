@@ -48,11 +48,25 @@ define [
 			ticks.reverse()
 			@$activityGraph.empty()
 			_.each ticks, (tick)=>
+				value = tick.get "value"
+				tag = tick.get "tag"
+				max = Measurements.getTagMaxValue tag
+				switch tag 
+					when 'warning'
+						value = 3 + (3 / max * value)
+					when 'danger'
+						value = 6 + (3 / max * value)
+					else
+						value = (3 / max * value)
+
 				@$activityGraph
 					.append(
 						$('<li>')
-							.css("height", "100%")
-							.addClass(tick.tag)
+							.addClass(tick.get "tag")
+							.append(
+								$('<span>')
+									.css("height", "#{value}px")
+							)
 					)
 
 	new TopPanelView;
