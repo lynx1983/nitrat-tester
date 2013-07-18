@@ -353,7 +353,7 @@ html, body {
 					p.msg {
 						color: #FFFFFF;
 						text-align: center;
-						height: 68px;
+						height: 53px;
 						vertical-align: middle;
 						display: table-cell;
 						text-align: center;
@@ -361,42 +361,30 @@ html, body {
 					}
 
 					&.normal {
-						span.indicator {
-							background: #47ff03;
-						}
-
-					}
-
-					&.low {
-						span.indicator {
-							background: #fff206;
-						}
-
 						p.msg {
-							background: #d2e104;
-							color: #ff0000;
+							background: #48FF00;
 						}
 					}
 
-					&.medium {
-						span.indicator {
-							background: #ff0000;
+					&.high {
+						p.msg {
+							background: #FFFC00;
+							color: #FF0000;
 						}
 
-						p.msg {
-							background: #9f070b;
-							color: #ffe600;
+						p.value {
+							color: #FF0000;
 						}
 					}
 
 					&.danger {
-						span.indicator {
-							background: #ff0000;
+						p.msg {
+							background: #FF0000;
+							color: #FFFFFF;
 						}
 
-						p.msg {
-							background: #9f070b;
-							color: #ffe600;
+						p.value {
+							color: #FF0000;
 						}
 					}
 				}

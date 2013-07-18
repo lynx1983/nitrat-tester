@@ -70,23 +70,9 @@ define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
 			else
 				@newMeasure()
 		
-		formatValue:(value)->
-			formatedValue = value / 1000
-
-			if value >= 100000
-				formatedValue = value / 1000000
-
-			if value >= 100000000
-				formatedValue = value / 1000000000
-
-			formatedValue.toFixed(2).replace /\./, ','
-		
 		getTag:(value)->
 			level = _.find @tags, (item)->
 				value <= item.level
 			level?.tag or 'danger'
-
-		getMeasurementTime:->
-			new Date().getTime() - @startTimestamp
 
 	new MeasurementsCollection

@@ -75,20 +75,20 @@
  			</div>
  		</script>
  		<script type="text/template" id="measurement-screen-template">
- 			<div class="view measurement">
+ 			<div class="view measurement <%=tag%>">
  				<div class="title"><span><%=t(title)%></span></div>
  				<div class="data">
  					<p class="unit"><%=t('Backgr.,')%><span><%=t(unit)%></span></p>
  					<div class="graph readiness">
- 						<div class="indicator"></div>
+ 						<div class="indicator" style="height: <%=readiness%>%"></div>
  					</div>
  					<div class="graph accuracy">
- 						<div class="indicator"></div>
+ 						<div class="indicator" style="height: <%=accuracy%>%"></div>
  					</div>
  					<p class="value"><%=value%></p>
  					<p class="level"><%=level%></p>
  				</div>
-				<p class="msg"></p>
+				<p class="msg"><%=msg%></p>
  			</div>
  		</script>
 	</body>

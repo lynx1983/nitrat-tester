@@ -8,16 +8,27 @@ define [
 		initialize:->
 			@template = _.template $(@options.template).html()
 			@tag = ''
+			@lastValue = ''
+			@accuracy = 0
+			@maxAccuracy = 12
 
 		render:->
 			lastValue = Measurements.last()
-			value = lastValue.get "value"
-			if DeviceSettings.get("unit") is "sievert"
-				value /= 1000
+			readiness = lastValue.get "readiness"
+			if readiness isnt 100 
+				value = @lastValue
 			else
-				value /= 100
-			value = value.toFixed(2).replace ".", ","
-
+				value = lastValue.get "value"
+				@accuracy++ unless @accuracy >= @maxAccuracy
+				@lastValue = value
+			
+			if DeviceSettings.get("unit") is "sievert"
+				formattedValue = value / 1000
+			else
+				formattedValue = value / 100
+			
+			formattedValue = formattedValue.toFixed(2).replace ".", ","
+			
 			level = DeviceSettings.get "threshold"
 			if DeviceSettings.get("unit") is "sievert"
 				level /= 1000
@@ -25,17 +36,32 @@ define [
 				level /= 100
 			level = level.toFixed(2).replace ".", ","
 
+			if value < 4000
+				tag = 'normal'
+				msg = 'Normal radiation background'
+			else if value < 120000
+				tag = 'high'
+				msg = 'High radiation background'
+			else 	
+				tag = 'danger'
+				msg = 'Dangerous radiation background'		
+
 			@$el.html @template
 				t: i18n.t
 				title: @title
 				unit: if DeviceSettings.get("unit") is "sievert" then "mcSv/h" else "mcR/h"
-				value: value
+				value: formattedValue
 				level: level
+				readiness: readiness
+				accuracy: 100 / @maxAccuracy * @accuracy
+				tag: tag
+				msg: msg
 			@
 
 		activate:->
 			super
 			console.log "Screen [#{@name}] custom activate"
+			@accuracy = 0
 			Measurements.on "add change", @render, @
 
 		deactivate:->
