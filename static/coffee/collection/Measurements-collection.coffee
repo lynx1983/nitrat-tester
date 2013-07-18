@@ -28,7 +28,7 @@ define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
 				level: 1200
 				tag: 'warning'
 			,
-				level: 100000
+				level: 1500
 				tag: 'danger'
 			];
 			@difference = 10
