@@ -12,12 +12,25 @@ define [
 		render:->
 			lastValue = Measurements.last()
 			value = lastValue.get "value"
+			if DeviceSettings.get("unit") is "sievert"
+				value /= 1000
+			else
+				value /= 100
+			value = value.toFixed(2).replace ".", ","
+
+			level = DeviceSettings.get "threshold"
+			if DeviceSettings.get("unit") is "sievert"
+				level /= 1000
+			else
+				level /= 100
+			level = level.toFixed(2).replace ".", ","
 
 			@$el.html @template
 				t: i18n.t
 				title: @title
 				unit: if DeviceSettings.get("unit") is "sievert" then "mcSv/h" else "mcR/h"
 				value: value
+				level: level
 			@
 
 		activate:->
