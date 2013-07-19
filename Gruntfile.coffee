@@ -161,20 +161,30 @@ module.exports = (grunt) ->
 					dest: 'www/'
 				]
 
+		concat:
+			css:
+				src: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.css %>/*.min.css"
+				dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.css %>/style.css"
+
 		cssmin:
   			minify: 
     			expand: true
     			cwd: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.css %>"
     			src: ['*.css', '!*.min.css']
-    			dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.css %>"
-    			ext: '.css'
+    			dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.css %>"
+    			ext: '.min.css'
 
 		lineremover:
-			indexhtml:
+			removeConfigJs:
 				files:
 					'<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>/index.html': '<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>/index.html'
 				options:
 					exclusionPattern: /config\.js/g
+			removeResetCSS:
+				files:
+					'<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>/index.html': '<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.www %>/index.html'
+				options:
+					exclusionPattern: /reset\.css/g
 
 		connect:
 			dev:
@@ -192,7 +202,7 @@ module.exports = (grunt) ->
 	)
 
 	grunt.registerTask('css-build-dev', ['less'])
-	grunt.registerTask('css-build', ['css-build-dev', 'cssmin:minify'])
+	grunt.registerTask('css-build', ['css-build-dev', 'cssmin:minify', 'concat:css'])
 	grunt.registerTask('js-build-dev', ['coffee'])
 	grunt.registerTask('js-build', ['coffee', 'requirejs'])
 	grunt.registerTask('build-dev', ['css-build-dev', 'js-build-dev'])
