@@ -10,6 +10,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 		activate:->
 			super
 			console.log "Screen [#{@name}] custom activate"
+			@activeIndex = 0 unless @options.notResetIndex
 			@eventBus.on "button.click", @onButtonClick, @
 
 		deactivate:->
@@ -17,7 +18,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			console.log "Screen [#{@name}] custom deactivate"
 			@eventBus.off "button.click", @onButtonClick, @
 
-		render: ()->
+		render:->
 			@$el.html @template
 				t: i18n.t
 				title: @title
