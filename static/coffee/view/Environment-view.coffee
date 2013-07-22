@@ -52,11 +52,11 @@ define [
 						levels: [
 							probability: .90
 							minimum: 1200
-							maximum: 3000
+							maximum: 1400
 						,
-							probability: .07
-							minimum: 3000
-							maximum: 5000
+							probability: .10
+							minimum: 1400
+							maximum: 1500
 						]
 				@render()
 
