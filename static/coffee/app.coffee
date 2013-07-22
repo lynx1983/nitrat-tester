@@ -10,8 +10,9 @@ require [
 	"view/MeasurementScreen-view"
 	"view/SplashScreen-view"
 	"collection/Measurements-collection"
+	"view/Environment-view"
 	], 
-	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements)->
+	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements, Environment)->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
