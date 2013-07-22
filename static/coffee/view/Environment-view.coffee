@@ -51,7 +51,7 @@ define [
 						caption: 'Детские игрушки'
 						levels: [
 							probability: .90
-							minimum: 1200
+							minimum: 1300
 							maximum: 1400
 						,
 							probability: .10
