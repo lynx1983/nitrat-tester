@@ -49,6 +49,6 @@ define
 	'Backgr.,': 'ФОН,'
 	'mcSv/h': 'мкЗв/час'
 	'mcR/h': 'мкР/час'
-	'High radiation background': 'Высокий уровень радиации'
-	'Dangerous radiation background': 'Опасный уровень радиации'
+	'High radiation background': 'Повышенный рациационный фон'
+	'Dangerous radiation background': 'Опасный рациационный фон'
 	'Normal radiation background': 'Радиационный<br/>фон<br/>в норме'
