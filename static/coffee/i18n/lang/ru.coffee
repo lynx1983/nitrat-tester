@@ -51,4 +51,4 @@ define
 	'mcR/h': 'мкР/час'
 	'High radiation background': 'Высокий уровень радиации'
 	'Dangerous radiation background': 'Опасный уровень радиации'
-	'Normal radiation background': 'Нормальный уровень радиации'
+	'Normal radiation background': 'Радиационный<br/>фон<br/>в норме'
