@@ -1,8 +1,9 @@
 define [
-	"backbone",
+	"view/EventDriven-view",
 	"collection/Measurements-collection",
-	], (Backbone, MeasurementsCollection)->
-		class EnvironmentView extends Backbone.View
+	"i18n/i18n"
+	], (EventDrivenView, MeasurementsCollection, i18n)->
+		class EnvironmentView extends EventDrivenView
 			el: $('.environment')
 			events:
 				"click .selector a": "change"
@@ -16,7 +17,7 @@ define [
 				@environments = 
 					'normal':
 						name: 'Normal'
-						caption: 'Фрукты'
+						caption: 'Fruits'
 						levels: [
 							probability: .80
 							minimum: 100
@@ -36,7 +37,7 @@ define [
 						]
 					'increased':
 						name: 'Increased'
-						caption: 'Строительные материалы'
+						caption: 'Building materials'
 						levels: [
 							probability: .97
 							minimum: 400
@@ -48,7 +49,7 @@ define [
 						]
 					'dangerous':
 						name: 'Dangerous'
-						caption: 'Детские игрушки'
+						caption: 'Toys'
 						levels: [
 							probability: .90
 							minimum: 1300
@@ -58,9 +59,13 @@ define [
 							minimum: 1400
 							maximum: 1500
 						]
+				@eventBus.bind "device.screen.update", _.bind(@render, @)
 				@render()
 
 			render:->
+				@$el.find("a.open").text i18n.t 'Select the measured product'
+				@$el.find("h2").text i18n.t 'Select the measured product'
+				@$selector.empty()
 				_.each @environments, (item, key)->
 					@$selector.append(
 						$('<li>')
@@ -69,7 +74,7 @@ define [
 								$('<a>')
 									.attr('href', '#')
 									.attr('data-value', key)
-									.text(item.caption)
+									.text(i18n.t(item.caption))
 							)
 					)
 				, @

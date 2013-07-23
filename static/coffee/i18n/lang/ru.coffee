@@ -52,3 +52,7 @@ define
 	'High radiation background': 'Повышенный рациационный фон'
 	'Dangerous radiation background': 'Опасный рациационный фон'
 	'Normal radiation background': 'Радиационный<br/>фон<br/>в норме'
+	'Fruits': 'Фрукты'
+	'Building materials': 'Строительные материалы'
+	'Toys': 'Детские игрушки'
+	'Select the measured product': 'Выберите измеряемый продукт'
