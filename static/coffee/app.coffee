@@ -28,7 +28,7 @@ require [
 
 		MainMenuScreen = new MenuScreenView
 			name: "main-menu"
-			title: "Main menu"
+			title: "Main Menu"
 			items: [
 				new MenuItem
 					title: "Units"
