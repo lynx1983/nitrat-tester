@@ -11,6 +11,13 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			screenAlwaysOn: true
 			screenTheme: 'green'
 			language: ''
+			unit: 'sievert'
+			threshold: 1200
+			soundOn: true
+			buttonsSound: true
+			sensorSound: false
+			thresholdSound: true
+			volume: 'middle'
 			MPCdata: Presets			
 			measurementMPC: if Presets.length > 0 then 0 else null
 
@@ -40,6 +47,18 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 							'White'
 						else
 							''
+				when 'unit'
+					switch @.get(valueName)
+						when 'sievert'
+							'Sievert'
+						when 'roentgen'
+							'Roentgen'
+						else
+							''
+				when 'thresholdSv'
+					@.get("threshold") / 1000
+				when 'thresholdR'
+					@.get("threshold") / 10 
 				else 
 					@.get(valueName)
 

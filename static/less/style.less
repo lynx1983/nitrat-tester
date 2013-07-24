@@ -86,6 +86,43 @@ html, body {
 				}
 			}
 
+			.activity-graph {
+				width: 19px;
+				height: 9px;
+				padding: 2px;
+				position: absolute;
+				top: 1px;
+				right: 41px;
+				background: transparent url('../img/activity-graph-bg.png') no-repeat;
+
+				li {
+					width: 1px;
+					height: 9px;
+					display: block;
+					position: relative;
+					float: right;
+
+					span {
+						display: block;
+						bottom: 0;
+						width: 1px;
+						position: absolute;
+					}
+
+					&.normal span {
+						background: #0024ff;
+					}
+
+					&.warning span {
+						background: #fffc00;
+					}
+
+					&.danger span {
+						background: #ff0000;
+					}
+				}
+			}
+
 			.activity-indicator {
 				width: 12px;
 				height: unit(@topPanelHeight, px);
@@ -149,6 +186,8 @@ html, body {
 		.bottom-panel {
 			height: 15px;
 			background: @bottomPanelBgColor;
+			position: relative;
+			text-align: center;
 
 			.soft-button {
 				background: #FFFFFF;
@@ -226,7 +265,6 @@ html, body {
 
 						span {
 							padding-left: 2px;
-							max-width: 105px;
 							display: inline-block;
 							white-space: nowrap;
 							overflow: hidden;
@@ -340,6 +378,133 @@ html, body {
 						p.msg {
 							background: #9f070b;
 							color: #ffe600;
+						}
+					}
+				}
+
+				&.radioactivity-measurement {
+
+					.title {
+						color: #caca00;
+						background: #000000;
+						text-transform: uppercase;
+						padding: 0;
+						text-align: center;
+						font-size: 0.85em;
+						border-bottom: 1px solid @viewTitleBgColor;
+					}
+
+					span.indicator {
+						display: inline-block;
+						width: 30px;
+						height: 14px;
+						float: right;
+					}
+
+					.data {
+						background: #0024ff;
+						height: 60px;
+						position: relative;
+
+						p.unit {
+							color: #caca00;
+							font-size: 0.8em;
+							padding: 1px 2px;
+
+							span {
+								padding: 0 25px;
+							}
+						}
+
+						p.value {
+							text-align: center;
+							padding-left: 20px;
+							font-size: 1.5em;
+							color: #FFFFFF;
+							padding: 5px 0 5px 22px;
+						}
+
+						p.level {
+							color: #FFFFFF;
+							text-align: right;
+							font-size: 0.5em;
+							position: absolute;
+							bottom: 2px;
+							right: 20px;
+							background: url('../img/level.png') left center no-repeat;
+							padding-left: 8px;
+						}
+
+						.graph {
+							position: absolute;
+							width: 6px;
+							height: 44px;
+							border: 1px solid #FFFFFF;
+							bottom: 2px;
+
+							.indicator {
+								position: absolute;
+								bottom: 0;
+								left: 0;
+								width: 100%;
+								height: 50%;
+							}
+
+							&.readiness {
+								border-color: #48ff00;
+								left: 2px;
+
+								.indicator {
+									background-color: #48ff00;
+								}
+							}
+
+							&.accuracy {
+								left: 11px;
+								background: #ff0000;
+
+								.indicator {
+									background-color: #fffc00;
+								}
+							}
+						}
+					}
+
+					p.msg {
+						color: #FFFFFF;
+						text-align: center;
+						height: 53px;
+						vertical-align: middle;
+						display: table-cell;
+						text-align: center;
+						width: 128px;
+					}
+
+					&.normal {
+						p.msg {
+							background: #48FF00;
+						}
+					}
+
+					&.warning {
+						p.msg {
+							background: #FFFC00;
+							color: #FF0000;
+						}
+
+						p.value {
+							color: #FF0000;
+						}
+					}
+
+					&.danger {
+						p.msg {
+							background: #FF0000;
+							color: #FFFFFF;
+						}
+
+						p.value {
+							color: #FF0000;
 						}
 					}
 				}
