@@ -19,7 +19,7 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			thresholdSound: true
 			volume: 'middle'
 			MPCdata: Presets			
-			measurementMPC: if Presets.length > 0 then 0 else null
+			measurementMPC: null
 
 		getValueString: (valueName)->
 			switch valueName

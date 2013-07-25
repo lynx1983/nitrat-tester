@@ -132,7 +132,7 @@ define [
 					@setCurrentScreen(options.screenName)
 
 		onMPCChange:->
-			@$product.attr "class", "product " + if @$product.is ".in-place" then "in-place" else ""
+			@$product.attr "class", "product" + if @$product.is ".in-place" then " in-place" else ""
 			@$product.addClass DeviceSettings.getCurrentMPC().key
 
 	new DeviceView
