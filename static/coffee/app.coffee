@@ -10,15 +10,20 @@ require [
 	"view/CalibrationScreen-view"
 	"view/PreMeasurementScreen-view"
 	"view/MeasurementResultScreen-view"
+	"view/RadioactivityMeasurementScreen-view"
 	"view/SplashScreen-view"
+	"collection/Measurements-collection"
 	"data/Presets-data"
 	], 
-	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, SplashScreenView, Presets) ->
+	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, RadioactivityMeasurementScreenView, SplashScreenView, Measurements, Presets) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
 				new MenuItem
-					title: "Measurement"
+					title: "Radioactivity"
+					screen: "radioactivity-measurement-screen"
+				new MenuItem
+					title: "Nitrat-tester"
 					screen: "measurement-menu"
 				new MenuItem
 					title: "Main menu"
@@ -29,6 +34,11 @@ require [
 			name: "main-menu"
 			title: "Main menu"
 			items: [
+				new MenuItem
+					title: "Units"
+					settingsValue: "unit"
+					showValue: true
+					screen: "unit-setting-menu"
 				new MenuItem
 					title: "Language"
 					settingsValue: "language"
@@ -41,11 +51,27 @@ require [
 					title: "Information"
 					screen: "information-screen"
 				new MenuItem
-					title: "FW version"
+					title: "Version"
 					text: DeviceSettings.get "version"
 				new MenuItem
 					title: "ID"
 					text: DeviceSettings.get "id"
+			]
+
+		UnitSettingsMenuScreen = new MenuScreenView
+			name: "unit-setting-menu"
+			title: "Units"
+			items: [
+				new MenuItem
+					title: "Sievert"
+					checkbox: true
+					settingsValue: "unit"
+					checkedValue: 'sievert'
+				new MenuItem
+					title: "Roentgen"
+					checkbox: true
+					settingsValue: "unit"
+					checkedValue: 'roentgen'
 			]
 
 		SettingsMenuScreen = new MenuScreenView
@@ -53,8 +79,23 @@ require [
 			title: "Settings"
 			items: [
 				new MenuItem
-					title: "Screen"
+					title: "Level, mcR/h"
+					settingsValue: "threshold"
+					showSettingsValue: "thresholdR"
+					showValue: true
+					screen: "threshold-roentgen-settings-menu"
+				new MenuItem
+					title: "Level, mcSv/h"
+					settingsValue: "threshold"
+					showSettingsValue: "thresholdSv"
+					showValue: true
+					screen: "threshold-sievert-settings-menu"
+				new MenuItem
+					title: "Vision"
 					screen: "screen-settings-menu"
+				new MenuItem
+					title: "Sound"
+					screen: "sound-settings-menu"
 				new MenuItem
 					title: "Power"
 					screen: "power-settings-menu"
@@ -62,7 +103,7 @@ require [
 
 		ScreenSettingsMenuScreen = new MenuScreenView
 			name: "screen-settings-menu"
-			title: "Screen"
+			title: "Vision"
 			items: [
 				new MenuItem
 					title: "Brightness"
@@ -70,18 +111,41 @@ require [
 					settingsValue: "screenBrightness"
 					screen: "screen-brightness-settings-menu"
 				new MenuItem
-					title: "Turned on, min"
+					title: "On, minute"
 					settingsValue: "screenTimeout"
 					showValue: true
 					screen: "screen-timeout-settings-menu"
 				new MenuItem
-					title: "Always on"
+					title: "Always ON"
 					text: if DeviceSettings.get "screenAlwaysOn" then 'Yes' else 'No'
 				new MenuItem
 					title: "Theme"
 					settingsValue: "screenTheme"
 					showValue: true
 					screen: "theme-settings-menu"
+			]
+
+		SoundSettingsMenuScreen = new MenuScreenView
+			name: "sound-settings-menu"
+			title: "Sound"
+			items: [
+				new MenuItem
+					title: "Sound on"
+					text: if DeviceSettings.get "soundOn" then 'Yes' else 'No'
+				new MenuItem
+					title: "Tone"
+				new MenuItem
+					title: "Buttons sound"
+					text: if DeviceSettings.get "buttonsSound" then 'Yes' else 'No'
+				new MenuItem
+					title: "Sensor sound"
+					text: if DeviceSettings.get "sensorSound" then 'Yes' else 'No'
+				new MenuItem
+					title: "Level sound"
+					text: if DeviceSettings.get "thresholdSound" then 'Yes' else 'No'					
+				new MenuItem
+					title: "Volume"
+					text: DeviceSettings.get "volume"
 			]
 
 		PowerSettingsMenuScreen = new MenuScreenView
@@ -160,6 +224,210 @@ require [
 					checkbox: true
 					settingsValue: "screenTheme"
 					checkedValue: 'white'
+			]
+
+		ThresholdRSettingsScreen = new MenuScreenView
+			name: "threshold-roentgen-settings-menu"
+			title: "Level, mcR/h"
+			items: [
+				new MenuItem
+					title: "30"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 300
+					align: "center"
+				new MenuItem
+					title: "40"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 400
+					align: "center"
+				new MenuItem
+					title: "50"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 500
+					align: "center"
+				new MenuItem
+					title: "60"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 600
+					align: "center"
+				new MenuItem
+					title: "70"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 700
+					align: "center"
+				new MenuItem
+					title: "80"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 800
+					align: "center"
+				new MenuItem
+					title: "90"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 900
+					align: "center"
+				new MenuItem
+					title: "100"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1000
+					align: "center"
+				new MenuItem
+					title: "120"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1200
+					align: "center"
+				new MenuItem
+					title: "150"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1500
+					align: "center"
+				new MenuItem
+					title: "200"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 2000
+					align: "center"
+				new MenuItem
+					title: "500"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 5000
+					align: "center"
+				new MenuItem
+					title: "1000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 10000
+					align: "center"
+				new MenuItem
+					title: "2000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 20000
+					align: "center"
+				new MenuItem
+					title: "5000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 50000
+					align: "center"
+				new MenuItem
+					title: "10000"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 100000
+					align: "center"
+			]
+
+		ThresholdSvSettingsScreen = new MenuScreenView
+			name: "threshold-sievert-settings-menu"
+			title: "Level, mcSv/h"
+			items: [
+				new MenuItem
+					title: "0,3"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 300
+					align: "center"
+				new MenuItem
+					title: "0,4"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 400
+					align: "center"
+				new MenuItem
+					title: "0,5"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 500
+					align: "center"
+				new MenuItem
+					title: "0,6"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 600
+					align: "center"
+				new MenuItem
+					title: "0,7"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 700
+					align: "center"
+				new MenuItem
+					title: "0,8"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 800
+					align: "center"
+				new MenuItem
+					title: "0,9"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 900
+					align: "center"
+				new MenuItem
+					title: "1"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1000
+					align: "center"
+				new MenuItem
+					title: "1,2"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1200
+					align: "center"
+				new MenuItem
+					title: "1,5"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 1500
+					align: "center"
+				new MenuItem
+					title: "2"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 2000
+					align: "center"
+				new MenuItem
+					title: "5"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 5000
+					align: "center"
+				new MenuItem
+					title: "10"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 10000
+					align: "center"
+				new MenuItem
+					title: "20"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 20000
+					align: "center"
+				new MenuItem
+					title: "50"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 50000
+					align: "center"
+				new MenuItem
+					title: "100"
+					checkbox: true
+					settingsValue: "threshold"
+					checkedValue: 100000
+					align: "center"
 			]
 
 		ScreenTimeoutSettingsScreen = new MenuScreenView
@@ -278,6 +546,17 @@ require [
 						@eventBus.trigger "device.screen.prev" 
 			]
 
+		RadioactivityMeasurementScreen = new RadioactivityMeasurementScreenView
+			name: "radioactivity-measurement-screen";
+			title: "Radioactivity"
+			template: '#radioactivity-measurement-screen-template'
+			events: [
+				name: 'button.click'
+				callback: (button)->
+					if button == 'left'
+						@eventBus.trigger "device.screen.prev" 
+			]
+
 		SplashScreen = new SplashScreenView
 			name: "splash-screen"
 			nextScreen: 'start-menu'
@@ -286,6 +565,7 @@ require [
 		Device.addScreen StartMenuScreen
 		Device.addScreen MainMenuScreen
 		Device.addScreen SettingsMenuScreen
+		Device.addScreen UnitSettingsMenuScreen
 		Device.addScreen ScreenSettingsMenuScreen
 		Device.addScreen PowerSettingsMenuScreen
 		Device.addScreen MeasurementMenuScreen
@@ -300,6 +580,10 @@ require [
 		Device.addScreen MeasurementScreen
 		Device.addScreen MeasurementResultScreen
 		Device.addScreen SplashScreen
+		Device.addScreen ThresholdSvSettingsScreen
+		Device.addScreen ThresholdRSettingsScreen
+		Device.addScreen RadioactivityMeasurementScreen
+		Device.addScreen SoundSettingsMenuScreen
 
 		DeviceSettings.set
 			language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2

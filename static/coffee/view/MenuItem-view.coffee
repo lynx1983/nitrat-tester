@@ -20,7 +20,7 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 
 		onValueChange: ->
 			if @options.showValue
-				@text = DeviceSettings.getValueString @options.settingsValue
+				@text = DeviceSettings.getValueString if @options.showSettingsValue then @options.showSettingsValue else @options.settingsValue
 			if @options.checkbox
 				@checked = DeviceSettings.get(@options.settingsValue) == @options.checkedValue
 			@render()
