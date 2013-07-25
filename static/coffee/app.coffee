@@ -41,7 +41,7 @@ require [
 					title: "Information"
 					screen: "information-screen"
 				new MenuItem
-					title: "FW version"
+					title: "Version"
 					text: DeviceSettings.get "version"
 				new MenuItem
 					title: "ID"
@@ -53,7 +53,7 @@ require [
 			title: "Settings"
 			items: [
 				new MenuItem
-					title: "Screen"
+					title: "Vision"
 					screen: "screen-settings-menu"
 				new MenuItem
 					title: "Power"
@@ -62,7 +62,7 @@ require [
 
 		ScreenSettingsMenuScreen = new MenuScreenView
 			name: "screen-settings-menu"
-			title: "Screen"
+			title: "Vision"
 			items: [
 				new MenuItem
 					title: "Brightness"
@@ -70,12 +70,12 @@ require [
 					settingsValue: "screenBrightness"
 					screen: "screen-brightness-settings-menu"
 				new MenuItem
-					title: "Turned on, min"
+					title: "On, min"
 					settingsValue: "screenTimeout"
 					showValue: true
 					screen: "screen-timeout-settings-menu"
 				new MenuItem
-					title: "Always on"
+					title: "Always ON"
 					text: if DeviceSettings.get "screenAlwaysOn" then 'Yes' else 'No'
 				new MenuItem
 					title: "Theme"
@@ -164,7 +164,7 @@ require [
 
 		ScreenTimeoutSettingsScreen = new MenuScreenView
 			name: "screen-timeout-settings-menu"
-			title: "Turned on, min"
+			title: "On, min"
 			items: [
 				new MenuItem
 					title: "1"
