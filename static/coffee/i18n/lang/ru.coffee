@@ -22,7 +22,7 @@ define
 	'Blue': 'Синяя'
 	'Gray': 'Серая'
 	'Accumulator': 'Аккумуляторы'
-	'On, minute': 'Включен, мин'
+	'On, min': 'Включен, мин'
 	'Autooff, min': 'Автовыкл, мин'
 	'Dont off': 'Не выключать'
 	'back': 'назад'

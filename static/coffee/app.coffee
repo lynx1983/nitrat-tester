@@ -111,7 +111,7 @@ require [
 					settingsValue: "screenBrightness"
 					screen: "screen-brightness-settings-menu"
 				new MenuItem
-					title: "On, minute"
+					title: "On, min"
 					settingsValue: "screenTimeout"
 					showValue: true
 					screen: "screen-timeout-settings-menu"
@@ -432,7 +432,7 @@ require [
 
 		ScreenTimeoutSettingsScreen = new MenuScreenView
 			name: "screen-timeout-settings-menu"
-			title: "Turned on, min"
+			title: "On, min"
 			items: [
 				new MenuItem
 					title: "1"
