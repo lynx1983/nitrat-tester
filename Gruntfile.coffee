@@ -149,6 +149,13 @@ module.exports = (grunt) ->
 				cwd: "<%= components %>/underi18n/"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/underi18n/"
 			]
+			domReady:files:[
+				flattern: true
+				expand: true
+				src: "domReady.js"
+				cwd: "<%= components %>/requirejs-domready/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/requirejs-domready/"
+			]
 
 		compress: 
 			main:
