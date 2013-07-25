@@ -25,6 +25,8 @@ define [
 			@$product = @$el.find('.product')
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
+			@eventBus.bind "device.screen.update", _.bind(@render, @)
+			@eventBus.bind "device.beep", _.bind(@beep, @)
 			@eventBus.bind "device.cap.open", _.bind(@_openCap, @)
 			@eventBus.bind "device.cap.close", _.bind(@_closeCap, @)
 			@eventBus.bind "device.product.place", _.bind(@_placeProduct, @)

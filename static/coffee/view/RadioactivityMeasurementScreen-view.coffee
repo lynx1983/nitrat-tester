@@ -61,10 +61,12 @@ define [
 		activate:->
 			super
 			console.log "Screen [#{@name}] custom activate"
+			@eventBus.trigger "environment.selector.show"
 			@accuracy = 0
 			Measurements.on "add change", @render, @
 
 		deactivate:->
 			super			
 			console.log "Screen [#{@name}] custom deactivate"
+			@eventBus.trigger "environment.selector.hide"
 			Measurements.off "add change", @render, @

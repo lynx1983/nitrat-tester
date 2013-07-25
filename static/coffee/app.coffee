@@ -12,10 +12,11 @@ require [
 	"view/MeasurementResultScreen-view"
 	"view/RadioactivityMeasurementScreen-view"
 	"view/SplashScreen-view"
+	"view/Environment-view"	
 	"collection/Measurements-collection"
 	"data/Presets-data"
 	], 
-	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, RadioactivityMeasurementScreenView, SplashScreenView, Measurements, Presets) ->
+	(_, Backbone, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, CalibrationScreenView, PreMeasurementScreenView, MeasurementResultScreenView, RadioactivityMeasurementScreenView, SplashScreenView, Environment, Measurements, Presets) ->
 		StartMenuScreen = new MenuScreenView
 			name: "start-menu"
 			items: [
