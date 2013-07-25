@@ -257,6 +257,7 @@ html, body {
 						background: @menuBgColor;
 						margin-bottom: 1px;
 						overflow: hidden;
+						position: relative;
 
 						&.active {
 							color: @activeMenuColor;
@@ -271,9 +272,10 @@ html, body {
 						}
 
 						span.text {
-							float: right;
+							position: absolute;
 							color: #FF0000;
 							padding: 0;
+							right: 0;
 						}
 
 						span.checkbox {
@@ -281,7 +283,9 @@ html, body {
 							width: 17px;
 							height: 17px;
 							background: url('../img/checkbox.png') 0 0 no-repeat;
-							float: right;
+							position: absolute;
+							top: 0;
+							right: 0;
 							padding: 0;
 
 							&.checked {

@@ -10,6 +10,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 		activate:->
 			super
 			console.log "Screen [" + @name + "] custom activate"
+			@firstVisibleIndex = @activeIndex = 0 unless @options.notResetIndex
 			@eventBus.on "button.click", @onButtonClick, @
 
 		deactivate:->
