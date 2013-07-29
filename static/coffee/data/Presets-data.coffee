@@ -114,6 +114,7 @@ define [], ->
 	,
 		name: "Apple"
 		mpc: 60
+		key: "apple"
 	,
 		name: "Fresh meat"
 		mpc: 200
