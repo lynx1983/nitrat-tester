@@ -477,6 +477,7 @@ require [
 				name: "measurement-menu"
 				title: "Measurement"
 				items: items
+				sort: true
 
 			InformationScreen = new TemplatedScreenView
 				name: "information-screen"
