@@ -79,11 +79,11 @@ define ["backbone", "model/Measurement-model", "event/EventBus-event"], (Backbon
 
 			switch @getTag lastMeasure.get "value"
 				when 'warning'
-					@eventBus.trigger "device.beep" if _.random(0, 100) > 70 
+					@eventBus.trigger "device.beep" if lastReadiness is 0 or lastReadiness is 60 or _.random(0, 100) > 70 
 				when 'danger'
-					@eventBus.trigger "device.beep" if _.random(0, 100) > 20 
+					@eventBus.trigger "device.beep" if lastReadiness is 0 or lastReadiness is 60 or _.random(0, 100) > 20 
 				else
-					@eventBus.trigger "device.beep" if (lastReadiness is 20 or lastReadiness is 60) and _.random(0, 100) > 90
+					@eventBus.trigger "device.beep" if lastReadiness is 0 or lastReadiness is 60
 		
 		getTag:(value)->
 			level = _.find @tags, (item)->
