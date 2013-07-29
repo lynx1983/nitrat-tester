@@ -12,6 +12,14 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			console.log "Screen [" + @name + "] custom activate"
 			@firstVisibleIndex = @activeIndex = 0 unless @options.notResetIndex
 			@eventBus.on "button.click", @onButtonClick, @
+			if @options.sort 
+				@items.sort (a, b)->
+					if i18n.t(a.title) > i18n.t(b.title) 
+						1
+					else if i18n.t(a.title) < i18n.t(b.title) 
+						-1
+					else 
+						0
 
 		deactivate:->
 			super			
