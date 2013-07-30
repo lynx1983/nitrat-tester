@@ -48,3 +48,5 @@ define
 	'EMF indoor': 'ЭМП в ЖИЛОМ ПОМЕЩЕНИИ'
 	'EMF PC': 'ЭМП от ПЭВМ'
 	'EMF living area': 'ЭМП в ЖИЛОЙ ЗОНЕ'
+	'Electric field in normal': 'Электричес<br/>кое поле в норме'
+	'Magnetic field in normal': 'Магнитное поле в норме'

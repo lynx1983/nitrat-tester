@@ -90,9 +90,9 @@
 	 					</div>
 	 					<div class="data">
 	 						<span class="type">E</span>
-	 						<span class="value">0.00</span>
+	 						<span class="value"><%=result.e.value%></span>
 	 						<span class="unit">kV/m</span>
-	 						<span class="level">0.5</span>
+	 						<span class="level"><%=result.e.level%></span>
 	 					</div>
  					</div>
  					<div class="graph">
@@ -118,10 +118,18 @@
 	 					</div>
 	 					<div class="data">
 	 						<span class="type">B</span>
-	 						<span class="value">0.00</span>
+	 						<span class="value"><%=result.m.value%></span>
 	 						<span class="unit">uT</span>
-	 						<span class="level">10</span>
+	 						<span class="level"><%=result.m.level%></span>
 	 					</div>
+ 					</div>
+ 				</div>
+ 				<div class="msg-pane">
+ 					<div class="msg">
+ 						<%=t(result.e.msg)%>
+ 					</div>
+ 					<div class="msg">
+ 						<%=t(result.m.msg)%>
  					</div>
  				</div>
  			</div>

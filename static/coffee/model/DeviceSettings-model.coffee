@@ -1,4 +1,4 @@
-define ["backbone", "data/Presets-data"], (Backbone, Presets)->
+define ["backbone"], (Backbone)->
 	class DeviceSettingsModel extends Backbone.Model
 		defaults: ->
 			version: "2.0"

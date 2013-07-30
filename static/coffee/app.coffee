@@ -1,17 +1,18 @@
 require [
-	"underscore",
-	"backbone",
-	"domReady",
-	"i18n/i18n",
-	"model/DeviceSettings-model"	
-	"view/Device-view",
-	"view/MenuScreen-view",
-	"view/MenuItem-view",
+	"underscore"
+	"backbone"
+	"domReady"
+	"i18n/i18n"
+	"model/DeviceSettings-model"
+	"view/Device-view"
+	"view/MenuScreen-view"
+	"view/MenuItem-view"
 	"view/TemplatedScreen-view"
 	"view/MeasurementScreen-view"
 	"view/SplashScreen-view"
+	"collection/Measurements-collection"
 	], 
-	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView) ->
+	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements) ->
 		domReady ->
 			Device.addScreen new MenuScreenView
 				name: "start-menu"
@@ -190,6 +191,10 @@ require [
 				name: "indoor-measurement-screen";
 				title: "EMF indoor"
 				template: '#measurement-screen-template'
+				electricLevel: 500
+				electricMax: 2000
+				magneticLevel: 10
+				magneticMax: 25
 				events: [
 					name: 'button.click'
 					callback: (button)->
@@ -205,6 +210,10 @@ require [
 				name: "living-area-measurement-screen";
 				title: "EMF living area"
 				template: '#measurement-screen-template'
+				electricLevel: 1000
+				electricMax: 5000
+				magneticLevel: 25
+				magneticMax: 50
 				events: [
 					name: 'button.click'
 					callback: (button)->
@@ -212,7 +221,7 @@ require [
 							@eventBus.trigger "device.screen.prev"
 						if button == 'right'
 							@eventBus.trigger "device.screen.set", 
-								screenName: "pc-measurement-screen"  
+								screenName: "pc-measurement-screen"
 				]
 				noTrackScreen: true
 
@@ -220,6 +229,10 @@ require [
 				name: "pc-measurement-screen";
 				title: "EMF PC"
 				template: '#measurement-screen-template'
+				electricLevel: 25
+				electricMax: 50
+				magneticLevel: .25
+				magneticMax: 500
 				events: [
 					name: 'button.click'
 					callback: (button)->
