@@ -85,9 +85,6 @@ require [
 					new MenuItem
 						title: "Autooff, min"
 						text: DeviceSettings.get "autoOffTime"
-					new MenuItem
-						title: "Dont off"
-						text: if DeviceSettings.get "preventOff" then 'Да' else 'Нет'
 				]
 
 			LanguageSettingsMenuScreen = new MenuScreenView
@@ -104,6 +101,27 @@ require [
 						checkbox: true
 						settingsValue: "language"
 						checkedValue: 'en'
+				]
+
+			SoundSettingsMenuScreen = new MenuScreenView
+				name: "sound-settings-menu"
+				title: "Sound"
+				items: [
+					new MenuItem
+						title: "On"
+						text: if DeviceSettings.get "soundOn" then 'Yes' else 'No'
+					new MenuItem
+						title: "Buttons"
+						text: if DeviceSettings.get "buttonsSound" then 'Yes' else 'No'
+					new MenuItem
+						title: "Norm"
+						text: if DeviceSettings.get "normSound" then 'Yes' else 'No'
+					new MenuItem
+						title: "Tone"
+						text: DeviceSettings.get "tone"
+					new MenuItem
+						title: "Volume"
+						text: DeviceSettings.get "volume"
 				]
 
 			ScreenBrightnessSettingsScreen = new MenuScreenView
@@ -189,6 +207,7 @@ require [
 			Device.addScreen SettingsMenuScreen
 			Device.addScreen ScreenSettingsMenuScreen
 			Device.addScreen PowerSettingsMenuScreen
+			Device.addScreen SoundSettingsMenuScreen
 			Device.addScreen LanguageSettingsMenuScreen
 			Device.addScreen ScreenBrightnessSettingsScreen
 			Device.addScreen ScreenTimeoutSettingsScreen

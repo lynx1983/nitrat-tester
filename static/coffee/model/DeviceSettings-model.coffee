@@ -4,39 +4,20 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			version: "2.0"
 			autoOffTime: 20
 			haveAccumulator: true
-			preventOff: true
 			screenBrightness: 'middle'
 			screenTimeout: 3
 			screenAlwaysOn: true
-			screenTheme: 'green'
+			soundOn: true,
+			buttonsSound: true,
+			normSound: true,
+			tone: 3,
+			volume: 'middle'
 			language: ''
 
 		getValueString: (valueName)->
 			switch valueName
 				when 'language'
 					if @.get(valueName) == 'ru' then 'Русский' else 'English'
-				when 'screenBrightness'
-					switch @.get(valueName)
-						when 'middle' 
-							'Middle'
-						when 'high' 
-							'High'
-						when 'low' 
-							'Low'
-						else 
-							''
-				when 'screenTheme'
-					switch @.get(valueName)
-						when 'green'
-							'Зеленая'
-						when 'gray'
-							'Серая'
-						when 'blue'
-							'Синяя'
-						when 'white'
-							'Белая'
-						else
-							''
 				else 
 					@.get(valueName)
 
