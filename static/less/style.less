@@ -1,5 +1,5 @@
 @deviceWidth: 192;
-@buttonSize: 46;
+@buttonSize: 40;
 @screenColor: #000000;
 @viewTitleBgColor: #455369;
 @viewTitleColor: #13ff00;
@@ -393,37 +393,30 @@ html, body {
 		height: unit(@buttonSize, px);
 		position: absolute;
 		cursor: pointer;
-		border-radius: unit(@buttonSize / 2, px);
-
-		&.up,
-		&.down,
-		&.center {
-			left: 73px;
-		}
-
-		&.up {
-			top: 256px;
-		}
-
-		&.down {
-			top: 380px;
-		}
 
 		&.center {
-			top: 320px;
+			border-radius: unit(@buttonSize / 2, px);
+			left: 79px;
+			top: 247px;
 		}
 
 		&.left,
 		&.right {
-			top: 320px;
+			width: 85px;
+			height: 85px;
+			top: 268px;
 		}
 
 		&.left {
 			left: 12px;
+			border-top-right-radius: 60px;
+			border-bottom-left-radius: 85px;
 		}
 
 		&.right {
-			right: 12px;
+			right: 6px;
+			border-top-left-radius: 60px;
+			border-bottom-right-radius: 85px;
 		}
 	}
 }
