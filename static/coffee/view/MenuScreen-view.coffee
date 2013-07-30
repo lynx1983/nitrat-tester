@@ -6,12 +6,18 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			@firstVisibleIndex = 0
 			@itemsPerScreen = 6
 			@items = @options.items
+			@leftButtonText = @options.leftButtonText || "cursor"
+			@centerButtonText = @options.centerButtonText || "measure"
+			@rightButtonText = @options.centerButtonText || "select"
 
 		activate:->
 			super
 			console.log "Screen [#{@name}] custom activate"
 			@activeIndex = @firstVisibleIndex = 0 unless @options.notResetIndex
 			@eventBus.on "button.click", @onButtonClick, @
+			@eventBus.trigger "soft-button.setText", "left", @leftButtonText
+			@eventBus.trigger "soft-button.setText", "center", @centerButtonText
+			@eventBus.trigger "soft-button.setText", "right", @rightButtonText
 
 		deactivate:->
 			super			

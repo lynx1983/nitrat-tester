@@ -160,6 +160,8 @@ html, body {
 				padding: 1px 2px;
 				text-transform: lowercase;
 				margin: 1px 2px;
+				min-height: 10px;
+				min-width: 30px;
 
 				&.left {
 					float: left;
@@ -260,62 +262,101 @@ html, body {
 					}	
 				}
 
-				&.measurement-result {
-					
-					span.indicator {
-						display: inline-block;
-						width: 30px;
-						height: 14px;
-						float: right;
-					}
+				&.measurement {
+					color: #FFFFFF;
 
-					p.msg {
+					.title {
+						font-size: 9px;
+						background: transparent;
+						height: 9px;
 						color: #FFFFFF;
-						text-align: center;
-						height: 68px;
-						vertical-align: middle;
-						display: table-cell;
-						text-align: center;
-						width: 128px;
-					}
+						padding: 0;
 
-					&.normal {
-						span.indicator {
-							background: #47ff03;
-						}
-
-					}
-
-					&.low {
-						span.indicator {
-							background: #fff206;
-						}
-
-						p.msg {
-							background: #d2e104;
-							color: #ff0000;
+						span {
+							line-height: 10px;
 						}
 					}
 
-					&.medium {
-						span.indicator {
-							background: #ff0000;
-						}
+					.graph-pane {
+						border: 1px solid #FFFFFF;
+						margin: 0 1px;
 
-						p.msg {
-							background: #9f070b;
-							color: #ffe600;
-						}
-					}
+						.graph {
+							width: 61px;
+							height: 69px;
+							float: left;
 
-					&.danger {
-						span.indicator {
-							background: #ff0000;
-						}
+							&:first-child {
+								border-right: 1px solid #FFFFFF;
+							}
 
-						p.msg {
-							background: #9f070b;
-							color: #ffe600;
+							&:last-child {
+								border-left: 1px solid #FFFFFF;
+							}
+
+							span {
+								display: block;
+								text-align: center;
+
+								&.type {
+									margin-top: 2px;
+								}
+
+								&.value {
+									color: #159602;
+									font-size: 10px;
+									margin-top: 18px;
+								}
+
+								&.unit {
+									font-size: 10px;
+									margin-top: 2px;
+								}
+
+								&.level {
+									display: inline-block;
+									color: #FF0000;
+									font-size: 10px;
+									margin-top: 2px;
+									background: url('../img/level.png') no-repeat left top;
+									padding-left: 9px;
+								}
+							}
+
+							.data {
+								text-align: center;
+							}
+
+							.graphs {
+								margin-left: 4px;
+								float: left;
+
+								.graph-wrapper {
+									height: 100%;
+									width: 7px;
+									float: left;
+									margin-right: 1px;
+
+									.graph-level {
+										margin-top: 1px;
+										border: 1px solid #3E75B3;
+										height: 58px;
+										position: relative;
+
+										.indicator {
+											position: absolute;
+											background: #FF0000;
+											width: 100%;
+											bottom: 0;
+										}
+									}
+
+									span.label {
+										font-size: 9px;
+										margin: 0;
+									}
+								}
+							}
 						}
 					}
 				}

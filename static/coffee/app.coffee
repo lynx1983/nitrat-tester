@@ -8,12 +8,12 @@ require [
 	"view/MenuScreen-view",
 	"view/MenuItem-view",
 	"view/TemplatedScreen-view"
-	"view/MeasurementResultScreen-view"
+	"view/MeasurementScreen-view"
 	"view/SplashScreen-view"
 	], 
-	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementResultScreenView, SplashScreenView) ->
+	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView) ->
 		domReady ->
-			StartMenuScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "start-menu"
 				items: [
 					new MenuItem
@@ -21,10 +21,10 @@ require [
 						screen: "main-menu"
 					new MenuItem
 						title: "Measurement"
-						screen: "measurement-menu"
+						screen: "indoor-measurement-screen"
 				]
 
-			MainMenuScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "main-menu"
 				title: "Main menu"
 				items: [
@@ -44,7 +44,7 @@ require [
 						text: DeviceSettings.get "version"
 				]
 
-			SettingsMenuScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "settings-menu"
 				title: "Settings"
 				items: [
@@ -59,7 +59,7 @@ require [
 						screen: "power-settings-menu"
 				]
 
-			ScreenSettingsMenuScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "screen-settings-menu"
 				title: "Screen"
 				items: [
@@ -75,7 +75,7 @@ require [
 						screen: "screen-timeout-settings-menu"
 				]
 
-			PowerSettingsMenuScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "power-settings-menu"
 				title: "Power"
 				items: [
@@ -87,7 +87,7 @@ require [
 						text: DeviceSettings.get "autoOffTime"
 				]
 
-			LanguageSettingsMenuScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "language-setting-menu"
 				title: "Language"
 				items: [
@@ -103,7 +103,7 @@ require [
 						checkedValue: 'en'
 				]
 
-			SoundSettingsMenuScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "sound-settings-menu"
 				title: "Sound"
 				items: [
@@ -124,7 +124,7 @@ require [
 						text: DeviceSettings.get "volume"
 				]
 
-			ScreenBrightnessSettingsScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "screen-brightness-settings-menu"
 				title: "Brightness"
 				items: [
@@ -145,7 +145,7 @@ require [
 						checkedValue: 'high'
 				]
 
-			ScreenTimeoutSettingsScreen = new MenuScreenView
+			Device.addScreen new MenuScreenView
 				name: "screen-timeout-settings-menu"
 				title: "Autooff, min"
 				items: [
@@ -176,7 +176,7 @@ require [
 						checkedValue: 15
 				]
 
-			InformationScreen = new TemplatedScreenView
+			Device.addScreen new TemplatedScreenView
 				name: "information-screen"
 				title: "Information"
 				template: '#info-screen-template'
@@ -186,35 +186,56 @@ require [
 						@eventBus.trigger "device.screen.prev" if button == 'left'
 				]
 
-			MeasurementResultScreen = new MeasurementResultScreenView
-				name: "measurement-result-screen";
-				title: "Nitrat-tester"
-				template: '#measurement-result-screen-template'
+			Device.addScreen new MeasurementScreenView
+				name: "indoor-measurement-screen";
+				title: "EMF indoor"
+				template: '#measurement-screen-template'
 				events: [
 					name: 'button.click'
 					callback: (button)->
-						if button == 'left'
+						if button == 'center'
 							@eventBus.trigger "device.screen.prev" 
+						if button == 'right'
+							@eventBus.trigger "device.screen.set", 
+								screenName: "living-area-measurement-screen" 
 				]
+				noTrackScreen: true
 
-			SplashScreen = new SplashScreenView
+			Device.addScreen new MeasurementScreenView
+				name: "living-area-measurement-screen";
+				title: "EMF living area"
+				template: '#measurement-screen-template'
+				events: [
+					name: 'button.click'
+					callback: (button)->
+						if button == 'center'
+							@eventBus.trigger "device.screen.prev"
+						if button == 'right'
+							@eventBus.trigger "device.screen.set", 
+								screenName: "pc-measurement-screen"  
+				]
+				noTrackScreen: true
+
+			Device.addScreen new MeasurementScreenView
+				name: "pc-measurement-screen";
+				title: "EMF PC"
+				template: '#measurement-screen-template'
+				events: [
+					name: 'button.click'
+					callback: (button)->
+						if button == 'center'
+							@eventBus.trigger "device.screen.prev"
+						if button == 'right'
+							@eventBus.trigger "device.screen.set", 
+								screenName: "indoor-measurement-screen"  
+				]
+				noTrackScreen: true
+
+			Device.addScreen new SplashScreenView
 				name: "splash-screen"
 				nextScreen: 'start-menu'
 				noTrackScreen: true
 			
-			Device.addScreen StartMenuScreen
-			Device.addScreen MainMenuScreen
-			Device.addScreen SettingsMenuScreen
-			Device.addScreen ScreenSettingsMenuScreen
-			Device.addScreen PowerSettingsMenuScreen
-			Device.addScreen SoundSettingsMenuScreen
-			Device.addScreen LanguageSettingsMenuScreen
-			Device.addScreen ScreenBrightnessSettingsScreen
-			Device.addScreen ScreenTimeoutSettingsScreen
-			Device.addScreen InformationScreen
-			Device.addScreen MeasurementResultScreen
-			Device.addScreen SplashScreen
-
 			DeviceSettings.set
 				language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2
 
