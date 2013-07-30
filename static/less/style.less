@@ -1,14 +1,14 @@
 @deviceWidth: 192;
 @buttonSize: 40;
 @screenColor: #000000;
-@viewTitleBgColor: #455369;
-@viewTitleColor: #13ff00;
-@viewBgColor: #1e4e02;
+@viewTitleBgColor: #9FA6B3;
+@viewTitleColor: #000000;
+@viewBgColor: #000000;
 @menuBgColor: transparent;
-@menuColor: #d8d800;
-@activeMenuBgColor: #ededed;
-@activeMenuColor: #000000;
-@topPanelBgColor: #1e4e02;
+@menuColor: #FF0303;
+@activeMenuBgColor: #FF0000;
+@activeMenuColor: #FFFFFF;
+@topPanelBgColor: #000000;
 @bottomPanelBgColor: @viewBgColor;
 @topPanelHeight: 15;
 
@@ -149,17 +149,24 @@ html, body {
 		.bottom-panel {
 			height: 15px;
 			background: @bottomPanelBgColor;
+			position: relative;
+			text-align: center;
 
 			.soft-button {
 				background: #FFFFFF;
+				color: #196600;
 				display: inline-block;
 				font-size: 10px;
 				padding: 1px 2px;
-				text-transform: uppercase;
+				text-transform: lowercase;
 				margin: 1px 2px;
 
 				&.left {
 					float: left;
+				}
+
+				&.center {
+					vertical-align: top;
 				}
 
 				&.right {
@@ -195,20 +202,6 @@ html, body {
 					}
 				}
 
-				.brace {
-					color: #FFFFFF;
-
-					&.left {
-						float: left;
-						margin-right: 3px;
-					}
-
-					&.right {
-						float: right;
-						margin-left: 3px;
-					}
-				}
-
 				.menu {
 
 					li {
@@ -234,8 +227,16 @@ html, body {
 
 						span.text {
 							float: right;
-							color: #FF0000;
+							color: #00FF00;
 							padding: 0;
+							text-transform: lowercase;
+							font-size: 90%;
+						}
+
+						&.active {
+							span.text {
+								color: #FFE600;
+							}
 						}
 
 						span.checkbox {
@@ -251,37 +252,6 @@ html, body {
 							}
 						}
 					}	
-				}
-
-				&.calibration {
-					p {
-						color: #FFFFFF;
-						padding: 3px;
-					}
-
-					.graph {
-						width: 106px;
-						height: 8px;
-						border: 1px solid #FFFFFF;
-						position: absolute;
-						left: 11px;
-
-						&.time {
-							bottom: 25px;
-
-							.indicator {
-								width: 0;
-								height: 100%;
-								background: #2044fb;
-								transition: width .5s linear 0s;
-								-webkit-transition: width .5s linear 0s;
-							}
-						}
-
-						&.ticks {
-							bottom: 13px;
-						}
-					}
 				}
 
 				&.measurement-result {
@@ -350,40 +320,6 @@ html, body {
 			.view {
 				height: 160px;
 			}
-		}
-	}
-
-	.cap {
-		width: unit(@deviceWidth, px);
-		height: 177px;
-		position: absolute;
-		left: 0;
-		top: 431px;
-		cursor: pointer;
-		transition: left .5s 0s, top .5s .25s;
-		-webkit-transition: left .5s 0s, top .5s .25s;
-
-		&.opened {
-			top: 590px;
-			left: -100px;
-			transition: top .5s 0s, left .5s .25s;
-			-webkit-transition: top .5s 0s, left .5s .25s;
-		}
-
-		.top {
-			background: url('../img/cap-top.png') no-repeat;
-			width: 100%;
-			height: 162px;
-			z-index: 10;
-			position: relative;
-		}
-
-		.bottom {
-			width: 100%;
-			height: 15px;
-			background: url('../img/cap-bottom.png') no-repeat;
-			z-index: 0;
-			position: relative;
 		}
 	}
 

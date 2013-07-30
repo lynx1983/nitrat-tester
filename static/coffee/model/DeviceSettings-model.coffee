@@ -1,8 +1,7 @@
 define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 	class DeviceSettingsModel extends Backbone.Model
 		defaults: ->
-			id: "0005"
-			version: "1.C"
+			version: "2.0"
 			autoOffTime: 20
 			haveAccumulator: true
 			preventOff: true
@@ -11,8 +10,6 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 			screenAlwaysOn: true
 			screenTheme: 'green'
 			language: ''
-			MPCdata: Presets			
-			measurementMPC: if Presets.length > 0 then 0 else null
 
 		getValueString: (valueName)->
 			switch valueName
@@ -42,8 +39,5 @@ define ["backbone", "data/Presets-data"], (Backbone, Presets)->
 							''
 				else 
 					@.get(valueName)
-
-		getCurrentMPC:->
-			return @get('MPCdata')[@get('measurementMPC')] if @get('measurementMPC')?
 
 	new DeviceSettingsModel

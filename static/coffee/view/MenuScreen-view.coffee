@@ -9,12 +9,12 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 
 		activate:->
 			super
-			console.log "Screen [" + @name + "] custom activate"
+			console.log "Screen [#{@name}] custom activate"
 			@eventBus.on "button.click", @onButtonClick, @
 
 		deactivate:->
 			super			
-			console.log "Screen [" + @name + "] custom deactivate"
+			console.log "Screen [#{@name}] custom deactivate"
 			@eventBus.off "button.click", @onButtonClick, @
 
 		render: ()->
@@ -43,18 +43,9 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			@
 
 		onButtonClick:(button)->
-			console.log "Get event by screen [" + @name + "]"
+			console.log "Get event by screen [#{@name}]"
 			switch button
-				when 'up'
-					@activeIndex--
-					if @activeIndex - @firstVisibleIndex < 0 
-						@firstVisibleIndex--
-					if @activeIndex < 0
-						@activeIndex = @items.length - 1
-						@firstVisibleIndex = if @items.length - @itemsPerScreen < 0 then 0 else @items.length - @itemsPerScreen
-					@render()
-
-				when 'down'
+				when 'left'
 					@activeIndex++
 					if @activeIndex - @firstVisibleIndex >= @itemsPerScreen 
 						@firstVisibleIndex++
@@ -62,7 +53,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 						@activeIndex = @firstVisibleIndex = 0
 					@render()
 
-				when 'left'
+				when 'center'
 					@eventBus.trigger "device.screen.prev"
 					
 				when 'right'		
