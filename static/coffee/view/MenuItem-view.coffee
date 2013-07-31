@@ -3,7 +3,7 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 		tagName: 'li'
 		template: _.template $('#menu-item-template').html()
 
-		initialize: ->
+		initialize:->
 			@title = @options.title
 			@text = @options.text if @options.text
 			@checked = false
@@ -12,13 +12,13 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 				DeviceSettings.bind 'change:' + @options.settingsValue, _.bind(@onValueChange, @)
 				@onValueChange()
 
-		render: ->
+		render:->
 			@$el.html @template
 				t: i18n.t
 				item: @
 			@
 
-		onValueChange: ->
+		onValueChange:->
 			if @options.showValue
 				@text = DeviceSettings.getValueString @options.settingsValue
 			if @options.checkbox

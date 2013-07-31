@@ -1,7 +1,7 @@
 define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 	class MenuScreenView extends ScreenView
 		template: _.template $('#menu-template').html()
-		initialize: ()->
+		initialize:->
 			@activeIndex = 0
 			@firstVisibleIndex = 0
 			@itemsPerScreen = 6
@@ -24,7 +24,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			console.log "Screen [#{@name}] custom deactivate"
 			@eventBus.off "button.click", @onButtonClick, @
 
-		render: ()->
+		render:->
 			@$el.html @template
 				t: i18n.t
 				title: @title

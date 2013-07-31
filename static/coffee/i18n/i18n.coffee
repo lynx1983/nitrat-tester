@@ -1,6 +1,6 @@
 define ["underi18n", "model/DeviceSettings-model", "event/EventBus-event", "./lang/ru"], (underi18n, DeviceSettings, EventBus, ru)->
 	class i18n
-		constructor:()->
+		constructor:->
 			DeviceSettings.bind 'change:language', _.bind(@onLangChange, @)
 			@t = underi18n.MessageFactory({})
 			@eventBus = EventBus

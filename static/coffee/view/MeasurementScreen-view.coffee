@@ -5,13 +5,13 @@ define [
 	"collection/Measurements-collection"
 	], (TemplatedScreenView, DeviceSettings, i18n, Measurements)->
 	class MeasurementResultScreenView extends TemplatedScreenView
-		initialize: ()->
+		initialize:->
 			@template = _.template $(@options.template).html()
 			@result = 
 				e: {}
 				m: {}
 
-		render: ()->
+		render:->
 			@$el.html @template
 				t: i18n.t
 				title: @title
