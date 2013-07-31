@@ -8,8 +8,13 @@ define [
 		initialize:->
 			@template = _.template $(@options.template).html()
 			@result = 
-				e: {}
-				m: {}
+				e: 
+					x: 0
+					y: 0
+				m: 
+					x: 0
+					y: 0
+					z: 0
 
 		render:->
 			@$el.html @template
@@ -25,6 +30,7 @@ define [
 			@eventBus.trigger "soft-button.setText", "center", "menu"
 			@eventBus.trigger "soft-button.setText", "right", "next"
 			Measurements.on "add", @updateView, @
+			@lastBeep = no
 
 		deactivate:->
 			super			
@@ -41,6 +47,15 @@ define [
 			mValue = measure.get "m"
 			eAvgValue = Math.sqrt((Math.pow(eValue.x, 2) + Math.pow(eValue.y, 2)) / 2)
 			mAvgValue = Math.sqrt((Math.pow(mValue.x, 2) + Math.pow(mValue.y, 2) + Math.pow(mValue.z, 2)) / 3)
+			if (eAvgValue > @options.electricLevel > 0) or (mAvgValue > @options.magneticLevel > 0)
+				if not @lastBeep 
+					@eventBus.trigger "device.beep"
+					@lastBeep = yes
+				else
+					@lastBeep = no
+			else
+				@lastBeep = no
+
 			@result =
 				e:
 					x: eValue.x

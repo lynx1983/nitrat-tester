@@ -16,11 +16,12 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@screens = {}
 			@screensStack = []
 			@cap = @$el.find('.cap')
-			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
-			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
-			@eventBus.bind "device.screen.update", _.bind(@render, @)
+			@eventBus.on "device.screen.prev", @setPrevScreen, @
+			@eventBus.on "device.screen.set", @onScreenSet, @
+			@eventBus.on "device.screen.update", @render, @
+			@eventBus.on "device.beep", @beep, @
 			@$el.find('.screen-wrapper').fadeIn()
-			@beepSound =@$el.find('audio').get 0
+			@beepSound = @$el.find('audio').get 0
 			@
 
 		render:->
@@ -86,14 +87,14 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 				@$el.find('.screen-wrapper').removeClass "fullscreen"
 
 		isFullScreen:->
-			@$el.find('.screen-wrapper').is(".fullscreen")
+			@$el.find('.screen-wrapper').is ".fullscreen"
 
 		onScreenSet:(options)->
 			if options.screenName?
-				if options.screenName == '__prevScreen__'
+				if options.screenName is '__prevScreen__'
 					@setPrevScreen()
 				else
-					@setCurrentScreen(options.screenName)
+					@setCurrentScreen options.screenName
 
 
 	new DeviceView

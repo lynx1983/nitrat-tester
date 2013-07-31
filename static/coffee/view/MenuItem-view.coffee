@@ -5,11 +5,11 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 
 		initialize:->
 			@title = @options.title
-			@text = @options.text if @options.text
+			@text = @options.text ? ""
 			@checked = false
 			@on "menu.item.action", @action
 			if @options.settingsValue
-				DeviceSettings.bind 'change:' + @options.settingsValue, _.bind(@onValueChange, @)
+				DeviceSettings.on "change:#{@options.settingsValue}", @onValueChange, @
 				@onValueChange()
 
 		render:->
@@ -22,12 +22,12 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 			if @options.showValue
 				@text = DeviceSettings.getValueString @options.settingsValue
 			if @options.checkbox
-				@checked = DeviceSettings.get(@options.settingsValue) == @options.checkedValue
+				@checked = DeviceSettings.get(@options.settingsValue) is @options.checkedValue
 			@render()
 
 		action: (button)-> 
 			if @options.checkbox and @options.settingsValue 
-				DeviceSettings.set(@options.settingsValue, @options.checkedValue)			
+				DeviceSettings.set @options.settingsValue, @options.checkedValue
 			
 			if @options.screen
 				@eventBus.trigger "device.screen.set",

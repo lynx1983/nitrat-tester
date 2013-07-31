@@ -6,9 +6,9 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			@firstVisibleIndex = 0
 			@itemsPerScreen = 6
 			@items = @options.items
-			@leftButtonText = @options.leftButtonText || "cursor"
-			@centerButtonText = @options.centerButtonText || "measure"
-			@rightButtonText = @options.centerButtonText || "select"
+			@leftButtonText = @options.leftButtonText ? "cursor"
+			@centerButtonText = @options.centerButtonText ? "measure"
+			@rightButtonText = @options.centerButtonText ? "select"
 
 		activate:->
 			super
@@ -31,9 +31,9 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			startIndex = @firstVisibleIndex
 			endIndex = startIndex + @itemsPerScreen
 			_.each @items, (item, i)=>
-				if i >= startIndex and i < endIndex
+				if startIndex <= i < endIndex
 					renderedItem = $(item.render().$el)
-					if i == @activeIndex then renderedItem.addClass 'active' else renderedItem.removeClass 'active'
+					if i is @activeIndex then renderedItem.addClass 'active' else renderedItem.removeClass 'active'
 					@$el.find('.menu').append renderedItem
 			
 			if startIndex > 0 and endIndex < @items.length

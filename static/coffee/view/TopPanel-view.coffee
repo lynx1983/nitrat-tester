@@ -8,8 +8,8 @@ define [
 		initialize: ->
 			@$el.html @template
 			@listIndicator = @$el.find('.list-indicator')
-			@eventBus.bind "list-indicator.set", _.bind(@setListIndicator, @)
-			@eventBus.bind "button.click", _.bind(@showButtonIndicator, @)
+			@eventBus.on "list-indicator.set", @setListIndicator, @
+			@eventBus.on "button.click", @showButtonIndicator, @
 			@$indicator = @$el.find ".indicator"
 			@buttonIndicator = 
 				$el: @$el.find ".last-button-icon"

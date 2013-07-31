@@ -184,11 +184,11 @@ require [
 				events: [
 					name: 'button.click'
 					callback: (button)->
-						@eventBus.trigger "device.screen.prev" if button == 'left'
+						@eventBus.trigger "device.screen.prev" if button is 'left'
 				]
 
 			Device.addScreen new MeasurementScreenView
-				name: "indoor-measurement-screen";
+				name: "indoor-measurement-screen"
 				title: "EMF indoor"
 				template: '#measurement-screen-template'
 				electricLevel: 500
@@ -198,17 +198,17 @@ require [
 				events: [
 					name: 'button.click'
 					callback: (button)->
-						if button == 'center'
+						if button is 'center'
 							@eventBus.trigger "device.screen.set",
 								screenName: "start-menu"
-						if button == 'right'
+						if button is 'right'
 							@eventBus.trigger "device.screen.set", 
 								screenName: "living-area-measurement-screen" 
 				]
 				noTrackScreen: true
 
 			Device.addScreen new MeasurementScreenView
-				name: "living-area-measurement-screen";
+				name: "living-area-measurement-screen"
 				title: "EMF living area"
 				template: '#measurement-screen-template'
 				electricLevel: 1000
@@ -218,17 +218,17 @@ require [
 				events: [
 					name: 'button.click'
 					callback: (button)->
-						if button == 'center'
+						if button is 'center'
 							@eventBus.trigger "device.screen.set",
 								screenName: "start-menu"
-						if button == 'right'
+						if button is 'right'
 							@eventBus.trigger "device.screen.set", 
 								screenName: "pc-measurement-screen"
 				]
 				noTrackScreen: true
 
 			Device.addScreen new MeasurementScreenView
-				name: "pc-measurement-screen";
+				name: "pc-measurement-screen"
 				title: "EMF PC"
 				template: '#measurement-screen-template'
 				electricLevel: 25
@@ -238,17 +238,17 @@ require [
 				events: [
 					name: 'button.click'
 					callback: (button)->
-						if button == 'center'
+						if button is 'center'
 							@eventBus.trigger "device.screen.set",
 								screenName: "start-menu"
-						if button == 'right'
+						if button is 'right'
 							@eventBus.trigger "device.screen.set", 
 								screenName: "view-measurement-screen"  
 				]
 				noTrackScreen: true
 
 			Device.addScreen new MeasurementScreenView
-				name: "view-measurement-screen";
+				name: "view-measurement-screen"
 				title: "View"
 				template: '#measurement-view-screen-template'
 				electricLevel: 0
@@ -258,10 +258,10 @@ require [
 				events: [
 					name: 'button.click'
 					callback: (button)->
-						if button == 'center'
+						if button is 'center'
 							@eventBus.trigger "device.screen.set",
 								screenName: "start-menu"
-						if button == 'right'
+						if button is 'right'
 							@eventBus.trigger "device.screen.set", 
 								screenName: "indoor-measurement-screen"  
 				]
@@ -273,6 +273,6 @@ require [
 				noTrackScreen: true
 			
 			DeviceSettings.set
-				language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2
+				language: (navigator.language ? navigator.userLanguage ? 'en')[0...2]
 
 			Device.setCurrentScreen "splash-screen"
