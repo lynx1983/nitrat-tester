@@ -287,7 +287,8 @@ html, body {
 							display: table-cell;
 							text-align: center;
 							vertical-align: middle;
-							font-size: 10px;
+							font-size: 9px;
+							line-height: 10px;
 
 							&:first-child {
 								border-right: 1px solid #FFFFFF;
@@ -295,6 +296,15 @@ html, body {
 
 							&:last-child {
 								border-left: 1px solid #FFFFFF;
+							}
+
+							&.normal {
+								background-color: #1A7003;
+							}
+
+							&.high {
+								background-color: #CC0303;
+								color: #FFDA00;
 							}
 						}
 					}
@@ -364,6 +374,7 @@ html, body {
 										border: 1px solid #3E75B3;
 										height: 58px;
 										position: relative;
+										overflow: hidden;
 
 										.indicator {
 											position: absolute;
@@ -380,6 +391,49 @@ html, body {
 								}
 							}
 						}
+					}
+
+					&.measurement-view {
+						.title {
+							text-align: center;
+							text-transform: uppercase;
+							letter-spacing: 3px;
+						}
+
+						.graph-pane {
+							border: none;
+							padding: 5px 8px 0;
+							font-size: 15px;
+
+							&.electric {
+								color: #0345FF;
+							}
+
+							&.magnetic {
+								color: #FFE000;
+							}
+
+							.value {
+								color: #FFFFFF;
+							}
+
+							.graph-level {
+								width: 80px;
+								height: 3px;
+								margin: 1px 0;
+								background-color: #AFAFAF;
+								position: relative;
+
+								.indicator {
+									position: absolute;
+									background: #FF0000;
+									height: : 100%;
+									left: 0;
+									top: 0;
+									bottom: 0;
+								}
+							}
+						}	
 					}
 				}
 			}

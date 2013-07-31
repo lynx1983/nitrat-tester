@@ -199,7 +199,8 @@ require [
 					name: 'button.click'
 					callback: (button)->
 						if button == 'center'
-							@eventBus.trigger "device.screen.prev" 
+							@eventBus.trigger "device.screen.set",
+								screenName: "start-menu"
 						if button == 'right'
 							@eventBus.trigger "device.screen.set", 
 								screenName: "living-area-measurement-screen" 
@@ -218,7 +219,8 @@ require [
 					name: 'button.click'
 					callback: (button)->
 						if button == 'center'
-							@eventBus.trigger "device.screen.prev"
+							@eventBus.trigger "device.screen.set",
+								screenName: "start-menu"
 						if button == 'right'
 							@eventBus.trigger "device.screen.set", 
 								screenName: "pc-measurement-screen"
@@ -237,7 +239,28 @@ require [
 					name: 'button.click'
 					callback: (button)->
 						if button == 'center'
-							@eventBus.trigger "device.screen.prev"
+							@eventBus.trigger "device.screen.set",
+								screenName: "start-menu"
+						if button == 'right'
+							@eventBus.trigger "device.screen.set", 
+								screenName: "view-measurement-screen"  
+				]
+				noTrackScreen: true
+
+			Device.addScreen new MeasurementScreenView
+				name: "view-measurement-screen";
+				title: "View"
+				template: '#measurement-view-screen-template'
+				electricLevel: 0
+				electricMax: 3300
+				magneticLevel: 0
+				magneticMax: 500
+				events: [
+					name: 'button.click'
+					callback: (button)->
+						if button == 'center'
+							@eventBus.trigger "device.screen.set",
+								screenName: "start-menu"
 						if button == 'right'
 							@eventBus.trigger "device.screen.set", 
 								screenName: "indoor-measurement-screen"  
@@ -246,7 +269,7 @@ require [
 
 			Device.addScreen new SplashScreenView
 				name: "splash-screen"
-				nextScreen: 'start-menu'
+				nextScreen: 'indoor-measurement-screen'
 				noTrackScreen: true
 			
 			DeviceSettings.set

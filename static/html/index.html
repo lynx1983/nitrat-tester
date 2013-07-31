@@ -77,13 +77,13 @@
  						<div class="graphs clearfix">
 	 						<div class="graph-wrapper">
 	 							<div class="graph-level">
-	 								<span class="indicator"></span> 
+	 								<span class="indicator" style="height:<%=result.e.xNorm%>%;"></span> 
 	 							</div>
 	 							<span class="label">X</span>
 	 						</div>
 	 						<div class="graph-wrapper">
 	 							<div class="graph-level">
-	 								<span class="indicator"></span> 
+	 								<span class="indicator" style="height:<%=result.e.yNorm%>%;"></span> 
 	 							</div>
 	 							<span class="label">Y</span>
 	 						</div>
@@ -99,19 +99,19 @@
  						<div class="graphs clearfix">
 	 						<div class="graph-wrapper">
 	 							<div class="graph-level">
-	 								<span class="indicator"></span> 
+	 								<span class="indicator" style="height:<%=result.m.xNorm%>%;"></span> 
 	 							</div>
 	 							<span class="label">X</span>
 	 						</div>
 	 						<div class="graph-wrapper">
 	 							<div class="graph-level">
-	 								<span class="indicator"></span> 
+	 								<span class="indicator" style="height:<%=result.m.yNorm%>%;"></span> 
 	 							</div>
 	 							<span class="label">Y</span>
 	 						</div>
 	 						<div class="graph-wrapper">
 	 							<div class="graph-level">
-	 								<span class="indicator"></span> 
+	 								<span class="indicator" style="height:<%=result.m.zNorm%>%;"></span> 
 	 							</div>
 	 							<span class="label">Z</span>
 	 						</div>
@@ -125,11 +125,40 @@
  					</div>
  				</div>
  				<div class="msg-pane">
- 					<div class="msg">
+ 					<div class="msg <%=result.e.tag%>">
  						<%=t(result.e.msg)%>
  					</div>
- 					<div class="msg">
+ 					<div class="msg <%=result.m.tag%>">
  						<%=t(result.m.msg)%>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</script>
+ 		<script type="text/template" id="measurement-view-screen-template">
+ 			<div class="view measurement measurement-view">
+ 				<div class="title"><span><%=t(title)%><span></div>
+ 				<div class="graph-pane electric">
+ 					<p>EX=<span class="value"><%=result.e.x.toFixed(2)%></span>V/m</p>
+ 					<div class="graph-level">
+ 						<span class="indicator" style="width:<%=result.e.xNorm%>%;">
+ 					</div>
+ 					<p>EY=<span class="value"><%=result.e.y.toFixed(2)%></span>V/m</p>
+ 					<div class="graph-level">
+ 						<span class="indicator" style="width:<%=result.e.yNorm%>%;">
+ 					</div>
+ 				</div>
+ 				<div class="graph-pane magnetic">
+ 					<p>BX=<span class="value"><%=result.m.x.toFixed(2)%></span>uT</p>
+ 					<div class="graph-level">
+ 						<span class="indicator" style="width:<%=result.m.xNorm%>%;">
+ 					</div>
+ 					<p>EY=<span class="value"><%=result.m.y.toFixed(2)%></span>uT</p>
+ 					<div class="graph-level">
+ 						<span class="indicator" style="width:<%=result.m.yNorm%>%;">
+ 					</div>
+ 					<p>EZ=<span class="value"><%=result.m.z.toFixed(2)%></span>uT</p>
+ 					<div class="graph-level">
+ 						<span class="indicator" style="width:<%=result.m.zNorm%>%;">
  					</div>
  				</div>
  			</div>
