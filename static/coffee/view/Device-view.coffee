@@ -15,7 +15,7 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@bottomPanel = BottomPanel
 			@screens = {}
 			@screensStack = []
-			@cap = @$el.find('.cap')
+			@cap = @$el.find ".cap"
 			@eventBus.on "device.screen.prev", @setPrevScreen, @
 			@eventBus.on "device.screen.set", @onScreenSet, @
 			@eventBus.on "device.screen.update", @render, @
@@ -25,17 +25,18 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@
 
 		render:->
-			@topPanel.render()
-			@getCurrentScreen().render() if @getCurrentScreen()
-			@bottomPanel.render()
+			do @topPanel.render
+			do @getCurrentScreen().render if @getCurrentScreen()
+			do @bottomPanel.render
 			@
 
 		setPrevScreen:->
 			if @screensStack.length > 1
 				@getCurrentScreen()?.deactivate()
-				@screensStack.shift()
+				do @screensStack.shift
 				@getCurrentScreen()?.activate()
-				@render()
+				do @render
+			@
 
 		addScreen:(screen)->
 			@screens[screen.name] = screen if screen.name
@@ -45,36 +46,37 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			if @screens[screenName] 
 				@getCurrentScreen()?.deactivate()
 				if @getCurrentScreen()?.options.noTrackScreen 
-					@screensStack.shift()
+					do @screensStack.shift
 				@screensStack.unshift @screens[screenName]
 				@setFullScreen @getCurrentScreen().isFullScreen
 				@getCurrentScreen().activate()
-				@render()
+				do @render
+			@
 
 		beep:->
-			@beepSound.play()
+			do @beepSound.play
 
 		getCurrentScreen:->
 			@screensStack[0] if @screensStack.length > 0
 
 		leftButtonClick:->
-			@beep()
+			do @beep
 			@eventBus.trigger "button.click", "left"
 		
 		rightButtonClick:->
-			@beep()
+			do @beep
 			@eventBus.trigger "button.click", "right"
 
 		upButtonClick:->
-			@beep()
+			do @beep
 			@eventBus.trigger "button.click", "up"
 		
 		downButtonClick:->
-			@beep()
+			do @beep
 			@eventBus.trigger "button.click", "down"
 
 		centerButtonClick:->
-			@beep()
+			do @beep
 			@eventBus.trigger "button.click", "center"
 		
 		capClick:-> 
@@ -85,16 +87,16 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 				@$el.find('.screen-wrapper').addClass "fullscreen" 
 			else
 				@$el.find('.screen-wrapper').removeClass "fullscreen"
+			@
 
 		isFullScreen:->
 			@$el.find('.screen-wrapper').is ".fullscreen"
 
 		onScreenSet:(options)->
-			if options.screenName?
+			if options?.screenName?
 				if options.screenName is '__prevScreen__'
 					@setPrevScreen()
 				else
 					@setCurrentScreen options.screenName
-
 
 	new DeviceView

@@ -5,9 +5,10 @@ define ["view/Screen-view"], (ScreenView)->
 			super
 			@isFullScreen = true
 			@
+			
 		render:->
-			@.$el.html @.template()
-			@.$el.find('.view')
+			@$el.html @template
+			@$el.find('.view')
 				.css('opacity', 0)
 				.animate
 					opacity: 1

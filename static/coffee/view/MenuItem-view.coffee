@@ -6,11 +6,11 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 		initialize:->
 			@title = @options.title
 			@text = @options.text ? ""
-			@checked = false
-			@on "menu.item.action", @action
+			@checked = no
+			@on "menu.item.action", @action, @
 			if @options.settingsValue
 				DeviceSettings.on "change:#{@options.settingsValue}", @onValueChange, @
-				@onValueChange()
+				do @onValueChange
 
 		render:->
 			@$el.html @template
@@ -23,7 +23,7 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 				@text = DeviceSettings.getValueString @options.settingsValue
 			if @options.checkbox
 				@checked = DeviceSettings.get(@options.settingsValue) is @options.checkedValue
-			@render()
+			do @render
 
 		action: (button)-> 
 			if @options.checkbox and @options.settingsValue 

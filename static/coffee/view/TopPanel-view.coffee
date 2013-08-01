@@ -7,7 +7,7 @@ define [
 		template: _.template $('#top-panel-template').html()
 		initialize: ->
 			@$el.html @template
-			@listIndicator = @$el.find('.list-indicator')
+			@listIndicator = @$el.find ".list-indicator"
 			@eventBus.on "list-indicator.set", @setListIndicator, @
 			@eventBus.on "button.click", @showButtonIndicator, @
 			@$indicator = @$el.find ".indicator"
@@ -22,8 +22,7 @@ define [
 				.removeClass("down")
 				.removeClass("both")
 			
-			if options?.state?
-				@listIndicator.addClass(options.state)
+			@listIndicator.addClass(options.state) if options?.state?
 
 		updateActivityIndicator:->
 			@$indicator.toggleClass "down"

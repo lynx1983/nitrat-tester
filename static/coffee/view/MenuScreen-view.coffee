@@ -30,7 +30,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 				title: @title
 			startIndex = @firstVisibleIndex
 			endIndex = startIndex + @itemsPerScreen
-			_.each @items, (item, i)=>
+			for item, i in @items then do (item, i)=>
 				if startIndex <= i < endIndex
 					renderedItem = $(item.render().$el)
 					if i is @activeIndex then renderedItem.addClass 'active' else renderedItem.removeClass 'active'
@@ -58,7 +58,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 						@firstVisibleIndex++
 					if @activeIndex > @items.length - 1
 						@activeIndex = @firstVisibleIndex = 0
-					@render()
+					do @render
 
 				when 'center'
 					@eventBus.trigger "device.screen.prev"

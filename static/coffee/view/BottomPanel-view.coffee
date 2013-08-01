@@ -4,9 +4,9 @@ define ["view/Panel-view", "model/DeviceSettings-model", "i18n/i18n"], (PanelVie
 		template: _.template $('#bottom-panel-template').html()
 
 		initialize:->
-			@leftButtonText = @options.leftButtonText || ""
-			@centerButtonText = @options.centerButtonText || ""
-			@rightButtonText = @options.rightButtonText || ""
+			@leftButtonText = @options.leftButtonText ? ""
+			@centerButtonText = @options.centerButtonText ? ""
+			@rightButtonText = @options.rightButtonText ? ""
 			@eventBus.on "soft-button.setText", @softButtonSetText, @
 			@eventBus.on "soft-button.show", @softButtonShow, @
 			@eventBus.on "soft-button.hide", @softButtonHide, @
@@ -26,7 +26,7 @@ define ["view/Panel-view", "model/DeviceSettings-model", "i18n/i18n"], (PanelVie
 					@centerButtonText = text
 				when "right"
 					@rightButtonText = text
-			@render()
+			do @render
 
 		softButtonShow: (button)->
 			@$el.find(".#{button}").show()

@@ -1,2 +1,3 @@
 define ["backbone"], (Backbone)->
-	EventBus = _.extend({}, Backbone.Events)
+	EventBus = {}
+	EventBus extends Backbone.Events

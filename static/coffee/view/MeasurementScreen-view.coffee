@@ -39,15 +39,15 @@ define [
 
 		updateView:(measure)->
 			@update measure
-			@render()
+			do @render
 
 		update:(measure)->
 			console.log "Update screen"
 			eValue = measure.get "e"
 			mValue = measure.get "m"
-			eAvgValue = Math.sqrt((Math.pow(eValue.x, 2) + Math.pow(eValue.y, 2)) / 2)
-			mAvgValue = Math.sqrt((Math.pow(mValue.x, 2) + Math.pow(mValue.y, 2) + Math.pow(mValue.z, 2)) / 3)
-			if (eAvgValue > @options.electricLevel > 0) or (mAvgValue > @options.magneticLevel > 0)
+			eAvgValue = Math.sqrt (Math.pow(eValue.x, 2) + Math.pow(eValue.y, 2)) / 2
+			mAvgValue = Math.sqrt (Math.pow(mValue.x, 2) + Math.pow(mValue.y, 2) + Math.pow(mValue.z, 2)) / 3
+			if eAvgValue > @options.electricLevel > 0 or mAvgValue > @options.magneticLevel > 0
 				if not @lastBeep 
 					@eventBus.trigger "device.beep"
 					@lastBeep = yes
@@ -59,21 +59,21 @@ define [
 			@result =
 				e:
 					x: eValue.x
-					xNorm: 100 * (eValue.x / @options.electricMax)
+					xNorm: 100 * eValue.x / @options.electricMax
 					y: eValue.y
-					yNorm: 100 * (eValue.y / @options.electricMax)
+					yNorm: 100 * eValue.y / @options.electricMax
 					level: @options.electricLevel / 1000
-					value: eAvgValue.toFixed(2)
+					value: eAvgValue.toFixed 2
 					msg: if eAvgValue > @options.electricLevel then "Превышение нормы электричес<br/>кого поля" else "Electric field in normal"
 					tag: if eAvgValue > @options.electricLevel then "high" else "normal"
 				m:
 					x: mValue.x
-					xNorm: 100 * (mValue.x / @options.magneticMax)
+					xNorm: 100 * mValue.x / @options.magneticMax
 					y: mValue.y
-					yNorm: 100 * (mValue.y / @options.magneticMax)
+					yNorm: 100 * mValue.y / @options.magneticMax
 					z: mValue.z
-					zNorm: 100 * (mValue.z / @options.magneticMax)
+					zNorm: 100 * mValue.z / @options.magneticMax
 					level: @options.magneticLevel
-					value: mAvgValue.toFixed(2)
+					value: mAvgValue.toFixed 2
 					msg: if mAvgValue > @options.magneticLevel then "Excess norm magnetic field" else "Magnetic field in normal"
 					tag: if mAvgValue > @options.magneticLevel then "high" else "normal"
