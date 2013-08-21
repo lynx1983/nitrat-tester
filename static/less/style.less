@@ -18,11 +18,39 @@ html, body {
 	min-height: 100%;
 }
 
+@keyframes pulsar {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes pulsar {
+    0% {
+        -webkit-transform: scale(0);
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 0;
+    }
+}
+
 #device-wrapper {
 	font-family: Arial;
 	font-size: 14px;
 	position: relative;
-	width: 192px;
+	width: 350px;
 	margin: 0 auto;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -35,7 +63,9 @@ html, body {
 		width: unit(@deviceWidth, px);
 		height: 577px;
 		background: url('../img/device.png') no-repeat;
-		position: relative;
+		position: absolute;
+		top: 0;
+		right: 0;
 		z-index: 5;
 	}
 
@@ -480,6 +510,80 @@ html, body {
 			right: 6px;
 			border-top-left-radius: 60px;
 			border-bottom-right-radius: 85px;
+		}
+	}
+
+	.environment {
+		width: 300px;
+		height: 390px;
+
+		.pulsar {
+			width: 150px;
+		    height: 150px;
+		    position: absolute;
+
+		    .ring {
+			    box-sizing: border-box;
+			    position: absolute;
+			    top: 50%;
+			    left: 50%;
+			    border-radius: 50%;
+			    width: 100%;
+			    height: 100%;
+			    margin-top: -50%;
+			    margin-left: -50%;
+			    -webkit-transform: scale(0);
+			    transform: scale(0);
+				border: 5px solid red;			    
+				box-shadow: inset 0 0 10px 0 red;
+
+			    &:nth-child(1) {
+				    -webkit-animation: pulsar 2s 0s linear infinite;
+				    animation: pulsar 2s 0s linear infinite;
+				}
+
+				&:nth-child(2) {
+				    -webkit-animation: pulsar 2s .5s linear infinite;
+				    animation: pulsar 2s .5s linear infinite;
+				}
+
+				&:nth-child(3) {
+				    -webkit-animation: pulsar 2s 1s linear infinite;
+				    animation: pulsar 2s 1s linear infinite;
+				}
+
+				&:nth-child(4) {
+				    -webkit-animation: pulsar 2s 1.5s linear infinite;
+				    animation: pulsar 2s 1.5s linear infinite;
+				}
+			}
+		}
+
+		&.outdoor {
+			background: url('../img/env-outdoor-bg.png') no-repeat;
+
+			.pulsar {
+				top: 50px;
+				left: 0;
+			}
+		}
+
+		&.indoor {
+			background: url('../img/env-indoor-bg.png') no-repeat;
+
+			.pulsar {
+				top: 170px;
+				left: -50px;
+			}
+		}
+
+		&.pc {
+			background: url('../img/env-pc-bg.png') no-repeat center center;
+
+			.pulsar {
+				top: 150px;
+				left: 0;
+			}
 		}
 	}
 }
