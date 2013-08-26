@@ -54,3 +54,5 @@ define
 	'Normal radiation background': 'Радиационный<br/>фон<br/>в норме'
 	'Dosage reset': 'Сброс дозы'
 	'Сumulative dose': 'Накопленная доза'
+	'Cancel': 'Отмена'
+	'Reset': 'Сброс'

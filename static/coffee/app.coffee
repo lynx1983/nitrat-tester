@@ -54,6 +54,16 @@ require [
 						text: DeviceSettings.get "version"
 				]
 
+			DosageResetScreen = new MenuScreenView
+				name: "dosage-reset-menu"
+				title: "Dosage reset"
+				items: [
+					new MenuItem
+						title: "Cancel"
+					new MenuItem
+						title: "Reset"
+				]
+
 			UnitSettingsMenuScreen = new MenuScreenView
 				name: "unit-setting-menu"
 				title: "Units"
@@ -488,6 +498,7 @@ require [
 			Device.addScreen InformationScreen
 			Device.addScreen MeasurementScreen
 			Device.addScreen SplashScreen
+			Device.addScreen DosageResetScreen
 
 			DeviceSettings.set 
 				language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2
