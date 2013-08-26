@@ -5,6 +5,7 @@ requirejs.config(
 		backbone: 'lib/backbone/backbone'
 		jquery: 'lib/jquery/jquery'
 		underi18n: 'lib/underi18n/underi18n'
+		domReady: 'lib/requirejs-domready/domReady'
 	shim:
 		jquery: 
 			exports: 'jQuery'
@@ -15,4 +16,6 @@ requirejs.config(
 			exports: '_'
 		underi18n:
 			exports: 'underi18n'
+		domReady:
+			exports: 'domReady'
 )
