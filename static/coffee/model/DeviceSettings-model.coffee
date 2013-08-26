@@ -2,7 +2,7 @@ define ["backbone"], (Backbone)->
 	class DeviceSettingsModel extends Backbone.Model
 		defaults: ->
 			id: "7357"
-			version: "1.CL"
+			version: "1.0"
 			autoOffTime: 20
 			haveAccumulator: true
 			preventOff: true

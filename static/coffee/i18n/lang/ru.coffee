@@ -52,3 +52,5 @@ define
 	'High radiation background': 'Повышенный рациационный фон'
 	'Dangerous radiation background': 'Опасный рациационный фон'
 	'Normal radiation background': 'Радиационный<br/>фон<br/>в норме'
+	'Dosage reset': 'Сброс дозы'
+	'Сumulative dose': 'Накопленная доза'

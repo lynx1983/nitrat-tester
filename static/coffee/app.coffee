@@ -25,6 +25,10 @@ require [
 						title: "Main Menu"
 						screen: "main-menu"
 						align: "center"
+					new MenuItem
+						title: "Сumulative dose"
+						screen: "cumulative-dose-screen"
+						align: "center"
 				]
 
 			MainMenuScreen = new MenuScreenView
@@ -32,27 +36,22 @@ require [
 				title: "Main Menu"
 				items: [
 					new MenuItem
-						title: "Units"
-						settingsValue: "unit"
-						showValue: true
-						screen: "unit-setting-menu"
-					new MenuItem
-						title: "Language"
-						settingsValue: "language"
-						showValue: true
-						screen: "language-setting-menu"
-					new MenuItem
 						title: "Settings"
 						screen: "settings-menu"
 					new MenuItem
 						title: "Information"
 						screen: "information-screen"
 					new MenuItem
+						title: "Language"
+						settingsValue: "language"
+						showValue: true
+						screen: "language-setting-menu"
+					new MenuItem
+						title: "Dosage reset"
+						screen: "dosage-reset-menu"
+					new MenuItem
 						title: "Version"
 						text: DeviceSettings.get "version"
-					new MenuItem
-						title: "ID"
-						text: DeviceSettings.get "id"
 				]
 
 			UnitSettingsMenuScreen = new MenuScreenView
@@ -145,8 +144,6 @@ require [
 						title: "Sound on"
 						text: if DeviceSettings.get "soundOn" then 'Yes' else 'No'
 					new MenuItem
-						title: "Tone"
-					new MenuItem
 						title: "Buttons sound"
 						text: if DeviceSettings.get "buttonsSound" then 'Yes' else 'No'
 					new MenuItem
@@ -154,7 +151,9 @@ require [
 						text: if DeviceSettings.get "sensorSound" then 'Yes' else 'No'
 					new MenuItem
 						title: "Level sound"
-						text: if DeviceSettings.get "thresholdSound" then 'Yes' else 'No'					
+						text: if DeviceSettings.get "thresholdSound" then 'Yes' else 'No'
+					new MenuItem
+						title: "Tone"				
 					new MenuItem
 						title: "Volume"
 						text: DeviceSettings.get "volume"
