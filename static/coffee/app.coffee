@@ -85,12 +85,6 @@ require [
 				title: "Settings"
 				items: [
 					new MenuItem
-						title: "Level, mcR/h"
-						settingsValue: "threshold"
-						showSettingsValue: "thresholdR"
-						showValue: true
-						screen: "threshold-roentgen-settings-menu"
-					new MenuItem
 						title: "Level, mcSv/h"
 						settingsValue: "threshold"
 						showSettingsValue: "thresholdSv"
@@ -230,108 +224,6 @@ require [
 						checkbox: true
 						settingsValue: "screenTheme"
 						checkedValue: 'white'
-				]
-
-			ThresholdRSettingsScreen = new MenuScreenView
-				name: "threshold-roentgen-settings-menu"
-				title: "Level, mcR/h"
-				items: [
-					new MenuItem
-						title: "30"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 300
-						align: "center"
-					new MenuItem
-						title: "40"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 400
-						align: "center"
-					new MenuItem
-						title: "50"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 500
-						align: "center"
-					new MenuItem
-						title: "60"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 600
-						align: "center"
-					new MenuItem
-						title: "70"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 700
-						align: "center"
-					new MenuItem
-						title: "80"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 800
-						align: "center"
-					new MenuItem
-						title: "90"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 900
-						align: "center"
-					new MenuItem
-						title: "100"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 1000
-						align: "center"
-					new MenuItem
-						title: "120"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 1200
-						align: "center"
-					new MenuItem
-						title: "150"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 1500
-						align: "center"
-					new MenuItem
-						title: "200"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 2000
-						align: "center"
-					new MenuItem
-						title: "500"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 5000
-						align: "center"
-					new MenuItem
-						title: "1000"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 10000
-						align: "center"
-					new MenuItem
-						title: "2000"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 20000
-						align: "center"
-					new MenuItem
-						title: "5000"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 50000
-						align: "center"
-					new MenuItem
-						title: "10000"
-						checkbox: true
-						settingsValue: "threshold"
-						checkedValue: 100000
-						align: "center"
 				]
 
 			ThresholdSvSettingsScreen = new MenuScreenView
@@ -493,7 +385,6 @@ require [
 			Device.addScreen ScreenBrightnessSettingsScreen
 			Device.addScreen ScreenTimeoutSettingsScreen
 			Device.addScreen ThresholdSvSettingsScreen
-			Device.addScreen ThresholdRSettingsScreen
 			Device.addScreen ThemeSettingsScreen
 			Device.addScreen InformationScreen
 			Device.addScreen MeasurementScreen
