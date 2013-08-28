@@ -11,6 +11,7 @@ require [
 	"view/MeasurementScreen-view"
 	"view/SplashScreen-view"
 	"collection/Measurements-collection"
+	"view/Environment-view"
 	], 
 	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements) ->
 		domReady ->
@@ -189,6 +190,7 @@ require [
 
 			Device.addScreen new MeasurementScreenView
 				name: "indoor-measurement-screen"
+				environmentTag: "indoor"
 				title: "EMF indoor"
 				template: '#measurement-screen-template'
 				electricLevel: 500
@@ -209,6 +211,7 @@ require [
 
 			Device.addScreen new MeasurementScreenView
 				name: "living-area-measurement-screen"
+				environmentTag: "outdoor"
 				title: "EMF living area"
 				template: '#measurement-screen-template'
 				electricLevel: 1000
@@ -229,6 +232,7 @@ require [
 
 			Device.addScreen new MeasurementScreenView
 				name: "pc-measurement-screen"
+				environmentTag: "pc"
 				title: "EMF PC"
 				template: '#measurement-screen-template'
 				electricLevel: 25

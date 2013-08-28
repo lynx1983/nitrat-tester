@@ -30,6 +30,10 @@ define [
 			@eventBus.trigger "soft-button.setText", "center", "menu"
 			@eventBus.trigger "soft-button.setText", "right", "next"
 			Measurements.on "add", @updateView, @
+			if @options.environmentTag 
+				@eventBus.trigger "environment.set", @options.environmentTag
+			else 
+				@eventBus.trigger "environment.set", null
 			@lastBeep = no
 
 		deactivate:->
