@@ -1,4 +1,4 @@
-define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"], (EventDrivenView, TopPanel, BottomPanel)->
+define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", "i18n/i18n"], (EventDrivenView, TopPanel, BottomPanel, i18n)->
 	class DeviceView extends EventDrivenView
 		el: $("#device-wrapper")
 
@@ -8,13 +8,17 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			"click div.button.right": "rightButtonClick"
 		
 		initialize:->
+			@msgTemplate = _.template $("#screen-message-template").html()
 			@topPanel = TopPanel
 			@bottomPanel = BottomPanel
+			@messageShowing = false
+			@$msg = null
 			@screens = {}
 			@screensStack = []
 			@eventBus.bind "device.screen.prev", _.bind(@setPrevScreen, @)
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
 			@eventBus.bind "device.screen.update", _.bind(@render, @)
+			@eventBus.on "device.screen.msg", @showMessage, @
 			@$el.find('.screen-wrapper').fadeIn()
 			@beepSound =@$el.find('audio').get 0
 			@
@@ -61,17 +65,26 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 			@screensStack[0] if @screensStack.length > 0
 
 		leftButtonClick:->
-			@beep()
-			@eventBus.trigger "button.click", "left"
+			do @beep
+			if @messageShowing 
+				do @hideMessage
+			else
+				@eventBus.trigger "button.click", "left"
 		
 		rightButtonClick:->
-			@beep()
-			@eventBus.trigger "button.click", "right"
+			do @beep
+			if @messageShowing 
+				do @hideMessage
+			else
+				@eventBus.trigger "button.click", "right"
 
 		centerButtonClick:->
-			@beep()
-			@eventBus.trigger "button.click", "center"
-			@resetScreens()
+			do @beep
+			if @messageShowing 
+				do @hideMessage
+			else
+				@eventBus.trigger "button.click", "center"
+				do @resetScreens
 		
 		setFullScreen:(flag)->
 			if flag 
@@ -88,6 +101,21 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 					@setPrevScreen()
 				else
 					@setCurrentScreen(options.screenName)
+
+		showMessage:(options)->
+			console.log "Show message"
+			@$msg = @msgTemplate
+				t: i18n.t
+				text: options?.text or ""
+
+			@$el.find(".screen-wrapper").append @$msg
+			@messageShowing = true
+
+		hideMessage:->
+			console.log "Hide message"
+			@$el.find(".message-wrapper").remove()
+			@$msg = null
+			@messageShowing = false
 
 
 	new DeviceView

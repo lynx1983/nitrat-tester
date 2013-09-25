@@ -48,6 +48,23 @@ html, body {
 		top: 70px;
 		background: @screenColor;
 		display: none;
+
+		.message-wrapper {
+			position: absolute;
+			top: 38px;
+			left: 50%;
+			width: 110px;
+			background: red;
+			padding: 2px;
+			margin-left: -57px;
+
+			.content {
+				border: 1px solid #FFFFFF;
+				text-align: center;
+				color: #FFFFFF;
+				padding: 15px 0;
+			}
+		}
 		
 		.top-panel {
 			height: unit(@topPanelHeight, px);
@@ -276,6 +293,7 @@ html, body {
 							display: inline-block;
 							white-space: nowrap;
 							overflow: hidden;
+							letter-spacing: -1px;
 						}
 
 						span.text {
@@ -297,6 +315,53 @@ html, body {
 							}
 						}
 					}	
+				}
+
+				&.cumulativedose {
+
+					background: #000000;
+					color: #FFFFFF;
+
+					.title {
+						letter-spacing: -1px;
+					}
+
+					.data {
+						background-color: #0024ff;
+						text-align: center;
+						padding: 8px 0;
+
+						span.value {
+							font-size: 1.5em;
+							color: #e5d900;
+							margin-right: 2px;
+						}
+
+						span.unit {
+							color: #FFFFFF;
+							font-size: 1.2em;
+							margin-left: 2px;
+						}
+					}
+
+					.time {
+						text-align: center;
+						margin: 2px 0;
+					}
+
+					.level {
+						margin-top: 20px;
+						float: right;
+						padding: 3px;
+						font-size: .9em;
+					}
+
+					.counter {
+						margin-top: 20px;
+						padding: 3px;
+						float: left;
+						font-size: .9em;
+					}
 				}
 
 				&.measurement {

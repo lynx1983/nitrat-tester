@@ -26,7 +26,14 @@
  				<source src="sounds/beep.wav" type="audio/wav"/>
  			</audio>
 		</div>
-		<script type="text/template" id="splash-screen-template">
+		<script type="text/template" id="screen-message-template">
+    	<div class="message-wrapper">
+    		<div class="content">
+    			<%=t(text)%>
+    		</div>
+  	  </div>
+ 		</script>
+ 		<script type="text/template" id="splash-screen-template">
     	<div class="view splash">
     		<img src="img/splash.png"/>
   	  </div>
@@ -85,6 +92,18 @@
  					<p class="level"><%=level%></p>
  				</div>
 				<p class="msg"><%=t(msg)%></p>
+ 			</div>
+ 		</script>
+ 		<script type="text/template" id="cumulativedose-screen-template">
+ 			<div class="view cumulativedose">
+ 				<div class="title"><span><%=t(title)%></span></div>
+ 				<div class="data">
+ 					<span class="value"><%=value%></span>
+ 					<span class="unit">mSv</span>
+ 				</div>
+ 				<p class="time"><%=time%></p>
+ 				<p class="counter">N=1</p>
+				<p class="level"><%=level%></p>
  			</div>
  		</script>
 	</body>

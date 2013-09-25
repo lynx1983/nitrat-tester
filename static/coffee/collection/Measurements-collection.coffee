@@ -35,6 +35,7 @@ define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
 			@_createRanges()
 			@measurementInterval = setInterval _.bind(@doMeasure, @), 600
 			@cumulativeDose = 0;
+			@startTime = new Date().getTime()
 		
 		reinitialize:->
 			@_createRanges

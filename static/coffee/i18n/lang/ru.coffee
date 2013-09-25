@@ -33,6 +33,7 @@ define
 	'RESULT:': 'РЕЗУЛЬТАТ:'
 	'Level, mcR/h': 'Порог, мкР/ч'
 	'Level, mcSv/h': 'Порог, мкЗв/ч'
+	'Dose level': 'Порог дозы'
 	'Green': 'Зеленая'
 	'White': 'Белая'
 	'Blue': 'Синяя'
@@ -56,3 +57,5 @@ define
 	'Сumulative dose': 'Накопленная доза'
 	'Cancel': 'Отмена'
 	'Reset': 'Сброс'
+	'Zeroed': 'Обнулено'
+	'Cumulative dose': 'Накопленная доза'

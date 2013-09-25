@@ -13,6 +13,7 @@ define ["backbone"], (Backbone)->
 			language: ''
 			unit: 'sievert'
 			threshold: 1200
+			doseThreshold: 1000000
 			soundOn: true
 			buttonsSound: true
 			sensorSound: false
@@ -57,6 +58,13 @@ define ["backbone"], (Backbone)->
 					@.get("threshold") / 1000
 				when 'thresholdR'
 					@.get("threshold") / 10 
+				when 'doseThresholdSv'
+					if @.get("doseThreshold") is 0
+						"No" 
+					else if @.get("doseThreshold") < 100000000
+						@.get("doseThreshold") / 1000000
+					else
+						@.get("doseThreshold") / 1000000000
 				else 
 					@.get(valueName)
 

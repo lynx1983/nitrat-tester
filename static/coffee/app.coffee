@@ -9,21 +9,22 @@ require [
 	"view/MenuItem-view"
 	"view/TemplatedScreen-view"
 	"view/MeasurementScreen-view"
+	"view/CumulativeDoseScreen-view"
 	"view/SplashScreen-view"
 	"collection/Measurements-collection"
 	], 
-	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements)->
+	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, CumulativeDoseScreenView, SplashScreenView, Measurements)->
 		domReady ->
 			StartMenuScreen = new MenuScreenView
 				name: "start-menu"
 				items: [
 					new MenuItem
-						title: "Measure"
-						screen: "measurement-screen"
-						align: "center"
-					new MenuItem
 						title: "Main Menu"
 						screen: "main-menu"
+						align: "center"
+					new MenuItem
+						title: "Measure"
+						screen: "measurement-screen"
 						align: "center"
 					new MenuItem
 						title: "Сumulative dose"
@@ -60,8 +61,14 @@ require [
 				items: [
 					new MenuItem
 						title: "Cancel"
+						back: true
 					new MenuItem
 						title: "Reset"
+						action: ->
+							console.log "Reset action"
+							Measurements.cumulativeDose = 0
+							@eventBus.trigger "device.screen.msg",
+								text: "Zeroed"
 				]
 
 			UnitSettingsMenuScreen = new MenuScreenView
@@ -90,6 +97,12 @@ require [
 						showSettingsValue: "thresholdSv"
 						showValue: true
 						screen: "threshold-sievert-settings-menu"
+					new MenuItem
+						title: "Dose level"
+						settingsValue: "doseThreshold"
+						showSettingsValue: "doseThresholdSv"
+						showValue: true
+						screen: "dose-threshold-sievert-settings-menu"
 					new MenuItem
 						title: "Vision"
 						screen: "screen-settings-menu"
@@ -328,6 +341,108 @@ require [
 						align: "center"
 				]
 
+			DoseThresholdSvSettingsScreen = new MenuScreenView
+				name: "dose-threshold-sievert-settings-menu"
+				title: "Dose level"
+				items: [
+					new MenuItem
+						title: "No"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 0
+						align: "center"
+					new MenuItem
+						title: "0,01 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 10000
+						align: "center"
+					new MenuItem
+						title: "0,05 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 50000
+						align: "center"
+					new MenuItem
+						title: "0,1 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 100000
+						align: "center"
+					new MenuItem
+						title: "0,5 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 500000
+						align: "center"
+					new MenuItem
+						title: "1 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 1000000
+						align: "center"
+					new MenuItem
+						title: "5 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 5000000
+						align: "center"
+					new MenuItem
+						title: "10 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 10000000
+						align: "center"
+					new MenuItem
+						title: "50 mSv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 50000000
+						align: "center"
+					new MenuItem
+						title: "0,1 Sv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 100000000
+						align: "center"
+					new MenuItem
+						title: "0,5 Sv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 500000000
+						align: "center"
+					new MenuItem
+						title: "1 Sv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 1000000000
+						align: "center"
+					new MenuItem
+						title: "5 Sv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 5000000000
+						align: "center"
+					new MenuItem
+						title: "10 Sv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 10000000000
+						align: "center"
+					new MenuItem
+						title: "50 Sv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 50000000000
+						align: "center"
+					new MenuItem
+						title: "100 Sv"
+						checkbox: true
+						settingsValue: "doseThreshold"
+						checkedValue: 100000000000
+						align: "center"
+				]
+
 			ScreenTimeoutSettingsScreen = new MenuScreenView
 				name: "screen-timeout-settings-menu"
 				title: "Turned on, min"
@@ -369,6 +484,11 @@ require [
 				title: "Radioactivity"
 				template: '#measurement-screen-template'
 
+			CumulativeDoseScreen = new CumulativeDoseScreenView
+				name: "cumulative-dose-screen";
+				title: "Cumulative dose"
+				template: '#cumulativedose-screen-template'
+
 			SplashScreen = new SplashScreenView
 				name: "splash-screen"
 				nextScreen: 'start-menu'
@@ -385,9 +505,11 @@ require [
 			Device.addScreen ScreenBrightnessSettingsScreen
 			Device.addScreen ScreenTimeoutSettingsScreen
 			Device.addScreen ThresholdSvSettingsScreen
+			Device.addScreen DoseThresholdSvSettingsScreen
 			Device.addScreen ThemeSettingsScreen
 			Device.addScreen InformationScreen
 			Device.addScreen MeasurementScreen
+			Device.addScreen CumulativeDoseScreen
 			Device.addScreen SplashScreen
 			Device.addScreen DosageResetScreen
 

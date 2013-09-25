@@ -27,7 +27,7 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 					@text = DeviceSettings.getValueString @options.settingsValue
 			if @options.checkbox
 				@checked = DeviceSettings.get(@options.settingsValue) == @options.checkedValue
-			@render()
+			do @render
 
 		action: (button)-> 
 			if @options.checkbox and @options.settingsValue 
@@ -36,3 +36,9 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 			if @options.screen
 				@eventBus.trigger "device.screen.set",
 					screenName: @options.screen
+
+			if @options.back 
+				@eventBus.trigger "device.screen.prev"
+
+			if _.isFunction @options.action
+				@options.action.apply @, arguments
