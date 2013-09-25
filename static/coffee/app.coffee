@@ -12,6 +12,7 @@ require [
 	"view/CumulativeDoseScreen-view"
 	"view/SplashScreen-view"
 	"collection/Measurements-collection"
+	"view/Environment-view"
 	], 
 	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, CumulativeDoseScreenView, SplashScreenView, Measurements)->
 		domReady ->

@@ -19,6 +19,7 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", 
 			@eventBus.bind "device.screen.set", _.bind(@onScreenSet, @)
 			@eventBus.bind "device.screen.update", _.bind(@render, @)
 			@eventBus.on "device.screen.msg", @showMessage, @
+			@eventBus.bind "device.beep", _.bind(@beep, @)
 			@$el.find('.screen-wrapper').fadeIn()
 			@beepSound =@$el.find('audio').get 0
 			@

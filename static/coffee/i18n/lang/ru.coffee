@@ -59,3 +59,7 @@ define
 	'Reset': 'Сброс'
 	'Zeroed': 'Обнулено'
 	'Cumulative dose': 'Накопленная доза'
+	'Fruits': 'Фрукты'
+	'Building materials': 'Строительные материалы'
+	'Toys': 'Детские игрушки'
+	'Select the measured product': 'Выберите измеряемый продукт'

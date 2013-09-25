@@ -1,4 +1,4 @@
-define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
+define ["backbone", "model/Measurement-model", "event/EventBus-event"], (Backbone, MeasurementModel, EventBus)->
 	class MeasurementsCollection extends Backbone.Collection
 		model: MeasurementModel
 		defaults:
@@ -20,6 +20,7 @@ define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
 				maximum: 1300
 			]
 		initialize:->
+			@eventBus = EventBus
 			@levels = @defaults.levels
 			@tags = [
 				level: 400
@@ -73,6 +74,17 @@ define ["backbone", "model/Measurement-model"], (Backbone, MeasurementModel)->
 				lastMeasure.set "readiness", lastMeasure.get("readiness") + 20
 			else
 				@newMeasure()
+
+			lastMeasure = @last()
+			lastReadiness = @last().get "readiness"
+
+			switch @getTag lastMeasure.get "value"
+				when 'warning'
+					@eventBus.trigger "device.beep" if _.random(0, 100) > 70 
+				when 'danger'
+					@eventBus.trigger "device.beep" if _.random(0, 100) > 20 
+				else
+					@eventBus.trigger "device.beep" if (lastReadiness is 20 or lastReadiness is 60) and _.random(0, 100) > 90
 		
 		getTag:(value)->
 			level = _.find @tags, (item)->
