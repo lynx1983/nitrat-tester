@@ -2,12 +2,12 @@
 <html>	
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
- 		<title>Impulse</title>
- 		<link rel="stylesheet" type="text/css" href="css/reset.css">
- 		<link rel="stylesheet" type="text/css" href="css/style.css">
- 		<script type="text/javascript" src="js/lib/requirejs/require.js"></script>
- 		<script type="text/javascript" src="js/config.js"></script>
- 		<script type="text/javascript" src="js/app.js"></script>
+		<title>Impulse</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript" src="js/lib/requirejs/require.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
 	</head>
 	<body>
 		<div id="device-wrapper">
@@ -30,146 +30,146 @@
 				<div class="button center"></div>
 			</div>
 			<audio>
- 				<source src="sounds/beep.ogg" type="audio/ogg; codecs=vobis"/>
- 				<source src="sounds/beep.wav" type="audio/wav"/>
- 			</audio>
+				<source src="sounds/beep.ogg" type="audio/ogg; codecs=vobis"/>
+				<source src="sounds/beep.wav" type="audio/wav"/>
+			</audio>
 		</div>
 		<script type="text/template" id="splash-screen-template">
-    	<div class="view splash">
-    		<img src="img/splash.png"/>
-  	  </div>
- 		</script>
+			<div class="view splash">
+				<img src="img/splash.png"/>
+			</div>
+		</script>
 		<script type="text/template" id="menu-template">
- 			<div class="view">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<ul class="menu"></ul>
- 			</div>
- 		</script>
- 		<script type="text/template" id="menu-item-template">
+			<div class="view">
+				<div class="title"><span><%=t(title)%><span></div>
+				<ul class="menu"></ul>
+			</div>
+		</script>
+		<script type="text/template" id="menu-item-template">
 			<span><%=t(item.title)%></span>
 			<% if(item.text) { %>
 				<span class="text"><%=t(item.text)%></span>
 			<% } else if(item.options.checkbox) { %>
 				<span class="checkbox<%=(item.checked ? ' checked' : '')%>"></span>
 			<% } %>
- 		</script>
- 		<script type="text/template" id="top-panel-template">
- 			<div class="list-indicator"></div>
- 			<div class="battery full"></div>
- 			<div class="activity-indicator">
- 				<div class="indicator"></div>
- 				<div class="last-button-icon"></div>
- 			</div>
- 		</script>
- 		<script type="text/template" id="bottom-panel-template">
- 			<div class="soft-button left"><%=t(leftText)%></div>
- 			<div class="soft-button right"><%=t(rightText)%></div>
- 			<div class="soft-button center"><%=t(centerText)%></div>
- 		</script>
- 		<script type="text/template" id="info-screen-template">
- 			<div class="view information">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<p style="background: #000; color: #13ff00; text-align: center;"><%=t('Ecological devices')%></p>
- 				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;">S O E K S</p>
- 				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;"><%=t('Information')%></p>
- 				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;"><%=t('on the site')%></p>
- 				<p style="color: #f00803; text-align: center;">www.soeks.ru</p>
- 				<p style="color: #d8d800; text-align: center;">+7(495)223 27 27</p>
- 			</div>
- 		</script>
- 		<script type="text/template" id="measurement-screen-template">
- 			<div class="view measurement">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<div class="graph-pane clearfix">
- 					<div class="graph">
- 						<div class="graphs clearfix">
-	 						<div class="graph-wrapper">
-	 							<div class="graph-level">
-	 								<span class="indicator" style="height:<%=result.e.xNorm%>%;"></span> 
-	 							</div>
-	 							<span class="label">X</span>
-	 						</div>
-	 						<div class="graph-wrapper">
-	 							<div class="graph-level">
-	 								<span class="indicator" style="height:<%=result.e.yNorm%>%;"></span> 
-	 							</div>
-	 							<span class="label">Y</span>
-	 						</div>
-	 					</div>
-	 					<div class="data">
-	 						<span class="type">E</span>
-	 						<span class="value"><%=result.e.value%></span>
-	 						<span class="unit">kV/m</span>
-	 						<span class="level"><%=result.e.level%></span>
-	 					</div>
- 					</div>
- 					<div class="graph">
- 						<div class="graphs clearfix">
-	 						<div class="graph-wrapper">
-	 							<div class="graph-level">
-	 								<span class="indicator" style="height:<%=result.m.xNorm%>%;"></span> 
-	 							</div>
-	 							<span class="label">X</span>
-	 						</div>
-	 						<div class="graph-wrapper">
-	 							<div class="graph-level">
-	 								<span class="indicator" style="height:<%=result.m.yNorm%>%;"></span> 
-	 							</div>
-	 							<span class="label">Y</span>
-	 						</div>
-	 						<div class="graph-wrapper">
-	 							<div class="graph-level">
-	 								<span class="indicator" style="height:<%=result.m.zNorm%>%;"></span> 
-	 							</div>
-	 							<span class="label">Z</span>
-	 						</div>
-	 					</div>
-	 					<div class="data">
-	 						<span class="type">B</span>
-	 						<span class="value"><%=result.m.value%></span>
-	 						<span class="unit">uT</span>
-	 						<span class="level"><%=result.m.level%></span>
-	 					</div>
- 					</div>
- 				</div>
- 				<div class="msg-pane">
- 					<div class="msg <%=result.e.tag%>">
- 						<%=t(result.e.msg)%>
- 					</div>
- 					<div class="msg <%=result.m.tag%>">
- 						<%=t(result.m.msg)%>
- 					</div>
- 				</div>
- 			</div>
- 		</script>
- 		<script type="text/template" id="measurement-view-screen-template">
- 			<div class="view measurement measurement-view">
- 				<div class="title"><span><%=t(title)%><span></div>
- 				<div class="graph-pane electric">
- 					<p>EX=<span class="value"><%=result.e.x.toFixed(2)%></span>V/m</p>
- 					<div class="graph-level">
- 						<span class="indicator" style="width:<%=result.e.xNorm%>%;">
- 					</div>
- 					<p>EY=<span class="value"><%=result.e.y.toFixed(2)%></span>V/m</p>
- 					<div class="graph-level">
- 						<span class="indicator" style="width:<%=result.e.yNorm%>%;">
- 					</div>
- 				</div>
- 				<div class="graph-pane magnetic">
- 					<p>BX=<span class="value"><%=result.m.x.toFixed(2)%></span>uT</p>
- 					<div class="graph-level">
- 						<span class="indicator" style="width:<%=result.m.xNorm%>%;">
- 					</div>
- 					<p>EY=<span class="value"><%=result.m.y.toFixed(2)%></span>uT</p>
- 					<div class="graph-level">
- 						<span class="indicator" style="width:<%=result.m.yNorm%>%;">
- 					</div>
- 					<p>EZ=<span class="value"><%=result.m.z.toFixed(2)%></span>uT</p>
- 					<div class="graph-level">
- 						<span class="indicator" style="width:<%=result.m.zNorm%>%;">
- 					</div>
- 				</div>
- 			</div>
- 		</script>
+		</script>
+		<script type="text/template" id="top-panel-template">
+			<div class="list-indicator"></div>
+			<div class="battery full"></div>
+			<div class="activity-indicator">
+				<div class="indicator"></div>
+				<div class="last-button-icon"></div>
+			</div>
+		</script>
+		<script type="text/template" id="bottom-panel-template">
+			<div class="soft-button left"><%=t(leftText)%></div>
+			<div class="soft-button right"><%=t(rightText)%></div>
+			<div class="soft-button center"><%=t(centerText)%></div>
+		</script>
+		<script type="text/template" id="info-screen-template">
+			<div class="view information">
+				<div class="title"><span><%=t(title)%><span></div>
+				<p style="background: #000; color: #13ff00; text-align: center;"><%=t('Ecological devices')%></p>
+				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;">S O E K S</p>
+				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;"><%=t('Information')%></p>
+				<p style="background: #052ae5; color: #FFF; text-align: center; border-top: 1px solid #000;"><%=t('on the site')%></p>
+				<p style="color: #f00803; text-align: center;">www.soeks.ru</p>
+				<p style="color: #d8d800; text-align: center;">+7(495)223 27 27</p>
+			</div>
+		</script>
+		<script type="text/template" id="measurement-screen-template">
+			<div class="view measurement">
+				<div class="title"><span><%=t(title)%><span></div>
+				<div class="graph-pane clearfix">
+					<div class="graph">
+						<div class="graphs clearfix">
+							<div class="graph-wrapper">
+								<div class="graph-level">
+									<span class="indicator" style="height:<%=result.e.xNorm%>%;"></span> 
+								</div>
+								<span class="label">X</span>
+							</div>
+							<div class="graph-wrapper">
+								<div class="graph-level">
+									<span class="indicator" style="height:<%=result.e.yNorm%>%;"></span> 
+								</div>
+								<span class="label">Y</span>
+							</div>
+						</div>
+						<div class="data">
+							<span class="type">E</span>
+							<span class="value"><%=result.e.value%></span>
+							<span class="unit">kV/m</span>
+							<span class="level"><%=result.e.level%></span>
+						</div>
+					</div>
+					<div class="graph">
+						<div class="graphs clearfix">
+							<div class="graph-wrapper">
+								<div class="graph-level">
+									<span class="indicator" style="height:<%=result.m.xNorm%>%;"></span> 
+								</div>
+								<span class="label">X</span>
+							</div>
+							<div class="graph-wrapper">
+								<div class="graph-level">
+									<span class="indicator" style="height:<%=result.m.yNorm%>%;"></span> 
+								</div>
+								<span class="label">Y</span>
+							</div>
+							<div class="graph-wrapper">
+								<div class="graph-level">
+									<span class="indicator" style="height:<%=result.m.zNorm%>%;"></span> 
+								</div>
+								<span class="label">Z</span>
+							</div>
+						</div>
+						<div class="data">
+							<span class="type">B</span>
+							<span class="value"><%=result.m.value%></span>
+							<span class="unit">uT</span>
+							<span class="level"><%=result.m.level%></span>
+						</div>
+					</div>
+				</div>
+				<div class="msg-pane">
+					<div class="msg <%=result.e.tag%>">
+						<%=t(result.e.msg)%>
+					</div>
+					<div class="msg <%=result.m.tag%>">
+						<%=t(result.m.msg)%>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script type="text/template" id="measurement-view-screen-template">
+			<div class="view measurement measurement-view">
+				<div class="title"><span><%=t(title)%><span></div>
+				<div class="graph-pane electric">
+					<p>EX=<span class="value"><%=result.e.x.toFixed(2)%></span>V/m</p>
+					<div class="graph-level">
+						<span class="indicator" style="width:<%=result.e.xNorm%>%;">
+					</div>
+					<p>EY=<span class="value"><%=result.e.y.toFixed(2)%></span>V/m</p>
+					<div class="graph-level">
+						<span class="indicator" style="width:<%=result.e.yNorm%>%;">
+					</div>
+				</div>
+				<div class="graph-pane magnetic">
+					<p>BX=<span class="value"><%=result.m.x.toFixed(2)%></span>uT</p>
+					<div class="graph-level">
+						<span class="indicator" style="width:<%=result.m.xNorm%>%;">
+					</div>
+					<p>EY=<span class="value"><%=result.m.y.toFixed(2)%></span>uT</p>
+					<div class="graph-level">
+						<span class="indicator" style="width:<%=result.m.yNorm%>%;">
+					</div>
+					<p>EZ=<span class="value"><%=result.m.z.toFixed(2)%></span>uT</p>
+					<div class="graph-level">
+						<span class="indicator" style="width:<%=result.m.zNorm%>%;">
+					</div>
+				</div>
+			</div>
+		</script>
 	</body>
 </html>
