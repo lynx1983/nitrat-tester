@@ -17,7 +17,7 @@ define ["backbone"], (Backbone)->
 		getValueString: (valueName)->
 			switch valueName
 				when 'language'
-					if @get(valueName) is 'ru' then 'Русский' else 'English'
+					@i18n.getLanguageName @get valueName
 				else 
 					@get valueName
 

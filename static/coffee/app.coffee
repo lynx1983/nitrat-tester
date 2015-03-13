@@ -16,6 +16,7 @@ require [
 	], 
 	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements) ->
 		domReady ->
+			DeviceSettings.i18n = i18n
 			Device.addScreen new MenuScreenView
 				name: "start-menu"
 				items: [
