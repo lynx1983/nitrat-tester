@@ -12,6 +12,7 @@ require [
 	"view/SplashScreen-view"
 	"collection/Measurements-collection"
 	"view/Environment-view"
+	"view/DeviceControl-view"
 	], 
 	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements) ->
 		domReady ->
@@ -272,11 +273,11 @@ require [
 				noTrackScreen: true
 
 			Device.addScreen new SplashScreenView
-				name: "splash-screen"
+				name: "start-screen"
 				nextScreen: 'indoor-measurement-screen'
 				noTrackScreen: true
 			
 			DeviceSettings.set
 				language: (navigator.language ? navigator.userLanguage ? 'en')[0...2]
 
-			Device.setCurrentScreen "splash-screen"
+			do Device.start

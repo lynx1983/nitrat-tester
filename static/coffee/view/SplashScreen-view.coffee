@@ -1,6 +1,6 @@
 define ["view/Screen-view"], (ScreenView)->
 	class SplashScreen extends ScreenView
-		template: _.template $('#splash-screen-template').html()
+		template: _.template $('#start-screen-template').html()
 		constructor: (options)->
 			super
 			@isFullScreen = true

@@ -1,4 +1,9 @@
-define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"], (EventDrivenView, TopPanel, BottomPanel)->
+define [
+	"view/EventDriven-view"
+	"view/TopPanel-view"
+	"view/BottomPanel-view"
+	"model/DeviceSettings-model"
+	], (EventDrivenView, TopPanel, BottomPanel, DeviceSettings)->
 	class DeviceView extends EventDrivenView
 		el: $("#device-wrapper")
 
@@ -53,8 +58,11 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view"],
 				do @render
 			@
 
+		start:->
+			@setCurrentScreen "start-screen"
+
 		beep:->
-			do @beepSound.play
+			do @beepSound.play if DeviceSettings.get "soundOn"
 
 		getCurrentScreen:->
 			@screensStack[0] if @screensStack.length > 0

@@ -11,6 +11,12 @@
 	</head>
 	<body>
 		<div id="device-wrapper">
+			<div class="device-control">
+				<button class="demo"></button>
+				<button class="lang"></button>
+				<button class="sound"></button>
+				<button class="share"></button>
+			</div>
 			<div class="environment">
 				<div class="pulsar">
 					<div class="ring"></div>
@@ -18,12 +24,6 @@
 					<div class="ring"></div>
 					<div class="ring"></div>
 				</div>
-			</div>
-			<div class="device-control">
-				<button class="demo">Demo</button>
-				<button class="lang">Lang</button>
-				<button class="sound">Sound</button>
-				<button class="share">Share</button>
 			</div>
 			<div class="device">
 				<div class="screen-wrapper">
@@ -40,7 +40,7 @@
 				<source src="sounds/beep.wav" type="audio/wav"/>
 			</audio>
 		</div>
-		<script type="text/template" id="splash-screen-template">
+		<script type="text/template" id="start-screen-template">
 			<div class="view splash">
 				<img src="img/splash.png"/>
 			</div>

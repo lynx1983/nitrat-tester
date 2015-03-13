@@ -1,6 +1,6 @@
 define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 	class TemplatedScreenView extends ScreenView
-		initialize: ()->
+		initialize:->
 			@template = _.template $(@options.template).html()
 
 		render:->
