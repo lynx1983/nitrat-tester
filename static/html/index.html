@@ -17,14 +17,6 @@
 				<button class="sound"></button>
 				<button class="share"></button>
 			</div>
-			<div class="environment">
-				<div class="pulsar">
-					<div class="ring"></div>
-					<div class="ring"></div>
-					<div class="ring"></div>
-					<div class="ring"></div>
-				</div>
-			</div>
 			<div class="device">
 				<div class="screen-wrapper">
 					<div class="top-panel"></div>
@@ -53,10 +45,12 @@
 		</script>
 		<script type="text/template" id="menu-item-template">
 			<span><%=t(item.title)%></span>
-			<% if(item.text) { %>
-				<span class="text"><%=t(item.text)%></span>
+			<% if(item.options.toggle) { %>
+				<span class="text"><%=t(item.value ? 'Yes' : 'No')%></span>
 			<% } else if(item.options.checkbox) { %>
-				<span class="checkbox<%=(item.checked ? ' checked' : '')%>"></span>
+				<span class="text"><%=t(item.checked ? 'yes' : 'no')%></span>
+			<% } else if(item.text) { %>
+				<span class="text"><%=t(item.text)%></span>
 			<% } %>
 		</script>
 		<script type="text/template" id="top-panel-template">

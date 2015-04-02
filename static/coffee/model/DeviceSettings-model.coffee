@@ -7,7 +7,7 @@ define ["backbone"], (Backbone)->
 			screenBrightness: 'middle'
 			screenTimeout: 3
 			screenAlwaysOn: yes
-			soundOn: yes
+			soundOn: no
 			buttonsSound: yes
 			normSound: yes
 			tone: 3

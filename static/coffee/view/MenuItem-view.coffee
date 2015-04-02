@@ -23,11 +23,16 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 				@text = DeviceSettings.getValueString @options.settingsValue
 			if @options.checkbox
 				@checked = DeviceSettings.get(@options.settingsValue) is @options.checkedValue
+			if @options.toggle
+				@value = DeviceSettings.get(@options.settingsValue)
 			do @render
 
 		action: (button)-> 
 			if @options.checkbox and @options.settingsValue 
 				DeviceSettings.set @options.settingsValue, @options.checkedValue
+
+			if @options.toggle and @options.settingsValue 
+				DeviceSettings.set @options.settingsValue, not DeviceSettings.get @options.settingsValue
 			
 			if @options.screen
 				@eventBus.trigger "device.screen.set",

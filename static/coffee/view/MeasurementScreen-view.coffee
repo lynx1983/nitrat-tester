@@ -68,7 +68,7 @@ define [
 					yNorm: 100 * eValue.y / @options.electricMax
 					level: @options.electricLevel / 1000
 					value: eAvgValue.toFixed 2
-					msg: if eAvgValue > @options.electricLevel then "Превышение нормы электричес<br/>кого поля" else "Electric field in normal"
+					msg: if eAvgValue > @options.electricLevel then "Excess norm electric field" else "Electric field in normal"
 					tag: if eAvgValue > @options.electricLevel then "high" else "normal"
 				m:
 					x: mValue.x

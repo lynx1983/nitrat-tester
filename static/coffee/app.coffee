@@ -114,6 +114,8 @@ require [
 					new MenuItem
 						title: "On"
 						text: if DeviceSettings.get "soundOn" then 'Yes' else 'No'
+						settingsValue: "soundOn"
+						toggle: yes
 					new MenuItem
 						title: "Buttons"
 						text: if DeviceSettings.get "buttonsSound" then 'Yes' else 'No'
