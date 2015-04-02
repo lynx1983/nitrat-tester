@@ -493,8 +493,15 @@ html, body {
 
 		&.center {
 			border-radius: unit(@buttonSize / 2, px);
-			left: 79px;
-			top: 247px;
+			left: 78px;
+			top: 246px;
+			width: 42px;
+			height: 42px;
+			background-image: url('../img/center-button.png');
+
+			&.down {
+				top: 247px;
+			}
 		}
 
 		&.left,
@@ -502,18 +509,24 @@ html, body {
 			width: 85px;
 			height: 85px;
 			top: 268px;
+
+			&.down {
+				top: 269px;
+			}
 		}
 
 		&.left {
 			left: 12px;
 			border-top-right-radius: 60px;
 			border-bottom-left-radius: 85px;
+			background-image: url('../img/left-button.png');
 		}
 
 		&.right {
 			right: 6px;
 			border-top-left-radius: 60px;
 			border-bottom-right-radius: 85px;
+			background-image: url('../img/right-button.png');
 		}
 	}
 

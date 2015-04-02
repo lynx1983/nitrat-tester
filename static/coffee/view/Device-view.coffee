@@ -14,6 +14,9 @@ define [
 			"click div.button.up": "upButtonClick"
 			"click div.button.down": "downButtonClick"
 			"click div.cap": "capClick"
+			"mousedown div.button": "buttonDown"
+			"mouseup div.button": "buttonUp"
+			"mouseout div.button": "buttonUp"
 		
 		initialize:->
 			@topPanel = TopPanel
@@ -34,6 +37,12 @@ define [
 			do @getCurrentScreen().render if @getCurrentScreen()
 			do @bottomPanel.render
 			@
+
+		buttonDown:(e)->
+			$(e.currentTarget).addClass "down"
+
+		buttonUp:(e)->
+			$(e.currentTarget).removeClass "down"
 
 		setPrevScreen:->
 			if @screensStack.length > 1

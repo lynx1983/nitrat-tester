@@ -21,7 +21,7 @@ define [
 				else
 					@$(".sound").text i18n.t "Unmute"
 
-				@$(".lang").text i18n.getLanguageName DeviceSettings.get "language"
+				#@$(".lang").text i18n.getLanguageName DeviceSettings.get "language"
 
 				@$(".demo").text i18n.t "Demo"
 				@$(".share").text i18n.t "Share"
@@ -30,7 +30,8 @@ define [
 				DeviceSettings.set "soundOn", !DeviceSettings.get "soundOn"
 				do @render
 
-			langToggle:->
-				DeviceSettings.set "language", "en"
+			langToggle:(e)->
+				lang = $(e.currentTarget).data "lang"
+				DeviceSettings.set "language", lang if lang
 
 		new DeviceControlView
