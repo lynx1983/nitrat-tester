@@ -62,6 +62,52 @@ html, body {
 	.device-control {
 		text-align: center;
 		padding: 5px 0;
+
+		.sound {
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			background: red;
+
+			&.on {
+				background: blue;
+			}
+		}
+
+		.lang {
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			position: relative;
+			z-index: 1;
+
+			ul {
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+			}
+
+			&.lang:hover {
+				ul {
+					display: block;
+				}
+			}
+		}
+
+		.demo {
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			background: blue;
+		}
+
+		.share {
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			background: green;
+		}
 	}
 
 	.device {
@@ -69,8 +115,8 @@ html, body {
 		height: 577px;
 		background: url('../img/device.png') no-repeat;
 		position: relative;
-		z-index: 5;
 		margin: 0 auto;
+		z-index: 0;
 	}
 
 	.screen-wrapper {

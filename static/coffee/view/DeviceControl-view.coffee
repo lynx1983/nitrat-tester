@@ -9,29 +9,33 @@ define [
 			initialize:->
 				super
 				DeviceSettings.on "change", @render, @
+				do @loadLangs
 				do @render
 
 			events:
 				"click .sound": "soundToggle"
-				"click .lang": "langToggle"
+				"click .langs li a": "langToggle"
+
+			loadLangs:->
+				for code, lang of i18n.languages
+					@$(".langs").append $("<li><a href=\"#\" data-lang=\"#{lang.code}\">#{lang.name}</a></li>")
 
 			render:->
 				if DeviceSettings.get "soundOn"
-					@$(".sound").text i18n.t "Mute"
+					@$(".sound").addClass "on"
 				else
-					@$(".sound").text i18n.t "Unmute"
+					@$(".sound").removeClass "on"
 
-				#@$(".lang").text i18n.getLanguageName DeviceSettings.get "language"
-
-				@$(".demo").text i18n.t "Demo"
-				@$(".share").text i18n.t "Share"
+				@$(".lang").attr("class", "lang").addClass DeviceSettings.get "language"
 
 			soundToggle:->
 				DeviceSettings.set "soundOn", !DeviceSettings.get "soundOn"
 				do @render
 
 			langToggle:(e)->
+				do e.preventDefault
 				lang = $(e.currentTarget).data "lang"
 				DeviceSettings.set "language", lang if lang
+				false
 
 		new DeviceControlView
