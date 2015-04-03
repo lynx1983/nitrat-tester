@@ -13,6 +13,7 @@ define ["backbone"], (Backbone)->
 			tone: 3
 			volume: 'middle'
 			language: ''
+			demoMode: no
 
 		getValueString: (valueName)->
 			switch valueName
@@ -20,5 +21,8 @@ define ["backbone"], (Backbone)->
 					@i18n.getLanguageName @get valueName
 				else 
 					@get valueName
+
+		isDemoMode:->
+			@get "demoMode"
 
 	new DeviceSettingsModel

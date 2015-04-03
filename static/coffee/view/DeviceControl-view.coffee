@@ -15,6 +15,7 @@ define [
 			events:
 				"click .sound": "soundToggle"
 				"click .langs li a": "langToggle"
+				"click .demo": "demoToggle"
 
 			loadLangs:->
 				for code, lang of i18n.languages
@@ -25,6 +26,11 @@ define [
 					@$(".sound").addClass "on"
 				else
 					@$(".sound").removeClass "on"
+
+				if DeviceSettings.get "demoMode"
+					@$(".demo").addClass "on"
+				else
+					@$(".demo").removeClass "on"
 
 				@$(".lang").attr("class", "lang").addClass DeviceSettings.get "language"
 
@@ -37,5 +43,8 @@ define [
 				lang = $(e.currentTarget).data "lang"
 				DeviceSettings.set "language", lang if lang
 				false
+
+			demoToggle:(e)->
+				DeviceSettings.set "demoMode", not DeviceSettings.get "demoMode"
 
 		new DeviceControlView

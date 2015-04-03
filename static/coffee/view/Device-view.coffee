@@ -39,7 +39,8 @@ define [
 			@
 
 		buttonDown:(e)->
-			$(e.currentTarget).addClass "down"
+			unless DeviceSettings.isDemoMode()
+				$(e.currentTarget).addClass "down"
 
 		buttonUp:(e)->
 			$(e.currentTarget).removeClass "down"
@@ -77,27 +78,33 @@ define [
 			@screensStack[0] if @screensStack.length > 0
 
 		leftButtonClick:->
-			do @beep
-			@eventBus.trigger "button.click", "left"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				@eventBus.trigger "button.click", "left"
 		
 		rightButtonClick:->
-			do @beep
-			@eventBus.trigger "button.click", "right"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				@eventBus.trigger "button.click", "right"
 
 		upButtonClick:->
-			do @beep
-			@eventBus.trigger "button.click", "up"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				@eventBus.trigger "button.click", "up"
 		
 		downButtonClick:->
-			do @beep
-			@eventBus.trigger "button.click", "down"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				@eventBus.trigger "button.click", "down"
 
 		centerButtonClick:->
-			do @beep
-			@eventBus.trigger "button.click", "center"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				@eventBus.trigger "button.click", "center"
 		
-		capClick:-> 
-			@cap.toggleClass 'opened'
+		capClick:->
+			unless DeviceSettings.isDemoMode()
+				@cap.toggleClass 'opened'
 
 		setFullScreen:(flag)->
 			if flag 

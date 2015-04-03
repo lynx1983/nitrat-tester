@@ -3,6 +3,7 @@ require [
 	"backbone"
 	"domReady"
 	"i18n/i18n"
+	"global"
 	"model/DeviceSettings-model"
 	"view/Device-view"
 	"view/MenuScreen-view"
@@ -13,10 +14,14 @@ require [
 	"collection/Measurements-collection"
 	"view/Environment-view"
 	"view/DeviceControl-view"
+	"view/DemoControl-view"
 	], 
-	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements) ->
+	(_, Backbone, domReady, i18n, global, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SplashScreenView, Measurements) ->
 		domReady ->
 			DeviceSettings.i18n = i18n
+
+			global.device = Device
+
 			Device.addScreen new MenuScreenView
 				name: "start-menu"
 				items: [
