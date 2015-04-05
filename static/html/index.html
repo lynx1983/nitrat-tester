@@ -12,13 +12,16 @@
 	<body>
 		<div id="device-wrapper">
 			<div class="device-control">
-				<div class="demo"></div>
+				<div class="share">
+					<div class="content"><input type="text"/></div>
+				</div>
+				<div class="sound"></div>
 				<div class="lang">
+					<span class="current"></span>
 					<ul class="langs">
 					</ul>
 				</div>
-				<div class="sound"></div>
-				<div class="share"></div>
+				<div class="demo"></div>
 			</div>
 			<div class="device">
 				<div class="screen-wrapper">
@@ -31,12 +34,6 @@
 				<div class="button center"></div>
 			</div>
 			<div class="demo-layout">
-				<div class="step" data-step="1" data-timeout="5000">
-					First Screen
-				</div>
-				<div class="step" data-step="2" data-timeout="5000">
-					Second Screen
-				</div>
 			</div>
 			<audio>
 				<source src="sounds/beep.ogg" type="audio/ogg; codecs=vobis"/>
@@ -180,6 +177,32 @@
 						<span class="indicator" style="width:<%=result.m.zNorm%>%;">
 					</div>
 				</div>
+			</div>
+		</script>
+		<script type="text/template" data-step="1" data-timeout="4000"></script>
+		<script type="text/template" data-step="2" data-timeout="5000">
+			<div class="step">
+				<p><%=t('STEP1')%></p>
+			</div>
+		</script>
+		<script type="text/template" data-step="3" data-timeout="5000">
+			<div class="step">
+				<p><%=t('STEP2')%></p>
+			</div>
+		</script>
+		<script type="text/template" data-step="4" data-timeout="5000">
+			<div class="step">
+				<p><%=t('STEP3')%></p>
+			</div>
+		</script>
+		<script type="text/template" data-step="5" data-timeout="5000">
+			<div class="step">
+				<p><%=t('STEP4')%></p>
+			</div>
+		</script>
+		<script type="text/template" data-step="6" data-timeout="5000">
+			<div class="step">
+				<p><%=t('STEP5')%></p>
 			</div>
 		</script>
 	</body>

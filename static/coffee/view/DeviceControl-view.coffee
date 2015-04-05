@@ -9,20 +9,23 @@ define [
 			initialize:->
 				super
 				DeviceSettings.on "change", @render, @
+				@$(".content input").val "<iframe src=\"#{location.href}\"></iframe>"
 				do @loadLangs
 				do @render
 
 			events:
 				"click .sound": "soundToggle"
+				"click .lang": "toggleLang"
 				"click .langs li a": "langToggle"
 				"click .demo": "demoToggle"
+				"click .share": "shareToggle"
 
 			loadLangs:->
 				for code, lang of i18n.languages
 					@$(".langs").append $("<li><a href=\"#\" data-lang=\"#{lang.code}\">#{lang.name}</a></li>")
 
 			render:->
-				if DeviceSettings.get "soundOn"
+				if not DeviceSettings.get "soundOn"
 					@$(".sound").addClass "on"
 				else
 					@$(".sound").removeClass "on"
@@ -33,6 +36,13 @@ define [
 					@$(".demo").removeClass "on"
 
 				@$(".lang").attr("class", "lang").addClass DeviceSettings.get "language"
+				@$(".lang .current").text DeviceSettings.get "language"
+
+			shareToggle:->
+				@$(".share").toggleClass "on"
+
+			toggleLang:->
+				@$(".lang").toggleClass "on"
 
 			soundToggle:->
 				DeviceSettings.set "soundOn", !DeviceSettings.get "soundOn"
@@ -42,6 +52,7 @@ define [
 				do e.preventDefault
 				lang = $(e.currentTarget).data "lang"
 				DeviceSettings.set "language", lang if lang
+				@$(".lang").removeClass "on"
 				false
 
 			demoToggle:(e)->

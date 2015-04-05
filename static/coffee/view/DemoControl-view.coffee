@@ -25,18 +25,19 @@ define [
 
 			nextStep:=>
 				@step++
-				$stepScreen = @$("[data-step='#{@step}']")
-				if $stepScreen.length is 1
-					timeout = $stepScreen.data "timeout"
-					do @$(".step").hide
-					do $stepScreen.show
+				$stepTemplate = $("[data-step='#{@step}']")
+				if $stepTemplate.length is 1
+					timeout = $stepTemplate.data "timeout"
+					do @$el.empty
+					stepScreen = _.template $stepTemplate.html()
+					@$el.html stepScreen t: i18n.t
 					setTimeout @nextStep, timeout
 				else 
 					DeviceSettings.set "demoMode", false
 
 			stop:->
 				clearTimeout @stepTimeout
-				do @$(".step").hide
+				do @$el.empty
 				@step = 0
 
 		new DemoControlView

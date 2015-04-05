@@ -50,7 +50,7 @@ html, body {
 	font-family: Arial;
 	font-size: 14px;
 	position: relative;
-	width: 350px;
+	width: 192px;
 	margin: 0 auto;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -63,42 +63,73 @@ html, body {
 		position: absolute;
 		top: 0;
 		left: 0;
+		z-index: 2;
 
 		.step {
-			display: none;
+			background: #FFF;
+			color: #b71900;
+			border: 2px solid #b71900;
+			box-sizing: border-box;
+			padding: 5px;
 		}
 	}
 
 	.device-control {
 		text-align: center;
 		padding: 5px 0;
+		position: relative;
+		z-index: 1;
+
+		& div {
+			vertical-align: top;
+		}
 
 		.sound {
+			cursor: pointer;
 			display: inline-block;
 			height: 42px;
 			width: 42px;
-			background: red;
+			background: url('../img/sound-btn.png') no-repeat;
 
 			&.on {
-				background: blue;
+				background-position: -42px 0;
 			}
 		}
 
 		.lang {
+			cursor: pointer;
 			display: inline-block;
 			height: 42px;
 			width: 42px;
-			position: relative;
-			z-index: 1;
+			background: url('../img/btn.png') no-repeat;
+
+			& .current {
+				font-size: 18px;
+				line-height: 42px;
+				text-transform: uppercase;
+			}
 
 			ul {
 				display: none;
 				position: absolute;
 				top: 100%;
 				left: 0;
+				border: 1px #666 solid;
+				border-radius: 5px;
+				background: #FFF;
+				padding: 5px;
+				box-sizing: border-box;
+				width: 100%;
+
+				li {
+					float: left;
+					padding: 0 5px 5px 0;
+				}
 			}
 
-			&.lang:hover {
+			&.on {
+				background-position: -42px 0;
+
 				ul {
 					display: block;
 				}
@@ -106,21 +137,44 @@ html, body {
 		}
 
 		.demo {
+			cursor: pointer;
 			display: inline-block;
 			height: 42px;
 			width: 42px;
-			background: red;
+			background: url('../img/demo-btn.png') no-repeat;
 
 			&.on {
-				background: green;
+				background-position: -42px 0;
 			}
 		}
 
 		.share {
+			cursor: pointer;
 			display: inline-block;
 			height: 42px;
 			width: 42px;
-			background: green;
+			background: url('../img/share-btn.png') no-repeat;
+
+			.content {
+				display: none;
+			}
+
+			&.on {
+				background-position: -42px 0;
+
+				.content {
+					display: block;
+					position: absolute;
+					top: 100%;
+					left: 0;
+					border: 1px #666 solid;
+					border-radius: 5px;
+					background: #FFF;
+					padding: 5px;
+					box-sizing: border-box;
+					width: 100%;
+				}
+			}
 		}
 	}
 

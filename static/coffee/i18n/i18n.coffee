@@ -1,4 +1,4 @@
-define ["underi18n", "model/DeviceSettings-model", "event/EventBus-event", "./lang/ru"], (underi18n, DeviceSettings, EventBus, ru)->
+define ["underi18n", "model/DeviceSettings-model", "event/EventBus-event", "./lang/en", "./lang/ru"], (underi18n, DeviceSettings, EventBus, en, ru)->
 	class i18n
 		constructor:->
 			DeviceSettings.on 'change:language', @onLanguageChange, @
@@ -8,7 +8,7 @@ define ["underi18n", "model/DeviceSettings-model", "event/EventBus-event", "./la
 				en:
 					code: 'en'
 					name: 'English'
-					dictionary: {}
+					dictionary: en
 				ru:
 					code: 'ru'
 					name: 'Русский'
