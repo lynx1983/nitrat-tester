@@ -22,7 +22,7 @@ define [
 
 			loadLangs:->
 				for code, lang of i18n.languages
-					@$(".langs").append $("<li><a href=\"#\" data-lang=\"#{lang.code}\">#{lang.name}</a></li>")
+					@$(".langs").append $("<li><a href=\"#\" class=\"flag #{lang.code}\" data-lang=\"#{lang.code}\"></a></li>")
 
 			render:->
 				if not DeviceSettings.get "soundOn"
@@ -34,6 +34,8 @@ define [
 					@$(".demo").addClass "on"
 				else
 					@$(".demo").removeClass "on"
+
+				@$(".content .copyright").text i18n.t "COPYRIGHT"
 
 				@$(".lang").attr("class", "lang").addClass DeviceSettings.get "language"
 				@$(".lang .current").text DeviceSettings.get "language"

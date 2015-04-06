@@ -32,7 +32,7 @@ define [
 					stepScreen = _.template $stepTemplate.html()
 					@$el.html stepScreen t: i18n.t
 					@["step#{@step}"]?()
-					setTimeout @nextStep, timeout
+					@stepTimeout = setTimeout @nextStep, timeout
 				else 
 					DeviceSettings.set "demoMode", false
 

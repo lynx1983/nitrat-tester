@@ -1,4 +1,4 @@
-@deviceWidth: 192;
+@deviceWidth: 200;
 @buttonSize: 40;
 @screenColor: #000000;
 @viewTitleBgColor: #9FA6B3;
@@ -50,7 +50,7 @@ html, body {
 	font-family: Arial;
 	font-size: 14px;
 	position: relative;
-	width: 192px;
+	width: 200px;
 	margin: 0 auto;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -62,7 +62,8 @@ html, body {
 	.demo-layout {
 		position: absolute;
 		top: 0;
-		left: 0;
+		right: 100%;
+		width: 200px;
 		z-index: 2;
 
 		.step {
@@ -125,7 +126,20 @@ html, body {
 
 				li {
 					float: left;
-					padding: 0 5px 5px 0;
+					padding: 0 10px 5px 0;
+
+					a.flag {
+						background: no-repeat;
+						width: 24px;
+						height: 24px;
+
+						&.ru {
+							background-image: url('../img/flags/ru.png');
+						}
+						&.en {
+							background-image: url('../img/flags/en.png');
+						}
+					}
 				}
 			}
 
@@ -159,6 +173,10 @@ html, body {
 
 			.content {
 				display: none;
+			}
+
+			.copyright {
+				font-size: 12px;
 			}
 
 			&.on {
@@ -639,7 +657,7 @@ html, body {
 		}
 
 		&.right {
-			right: 6px;
+			right: 15px;
 			border-top-left-radius: 60px;
 			border-bottom-right-radius: 85px;
 			background-image: url('../img/right-button.png');
