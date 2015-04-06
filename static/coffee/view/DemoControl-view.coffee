@@ -31,6 +31,7 @@ define [
 					do @$el.empty
 					stepScreen = _.template $stepTemplate.html()
 					@$el.html stepScreen t: i18n.t
+					@["step#{@step}"]?()
 					setTimeout @nextStep, timeout
 				else 
 					DeviceSettings.set "demoMode", false
@@ -39,5 +40,15 @@ define [
 				clearTimeout @stepTimeout
 				do @$el.empty
 				@step = 0
+				do global.device.start
+
+			step3:->
+				@eventBus.trigger "button.click", "right"
+
+			step5:->
+				@eventBus.trigger "button.click", "right"
+
+			step7:->
+				@eventBus.trigger "button.click", "right"
 
 		new DemoControlView
