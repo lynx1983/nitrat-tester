@@ -2,7 +2,8 @@ define [
 	"view/EventDriven-view"
 	"model/DeviceSettings-model"
 	"i18n/i18n"
-	], (EventDrivenView, DeviceSettings, i18n)->
+	"zeroClipboard"
+	], (EventDrivenView, DeviceSettings, i18n, ZeroClipboard)->
 		class DeviceControlView extends EventDrivenView
 			el: $('.device-control')
 		
@@ -12,7 +13,8 @@ define [
 				@$(".content input").val "<iframe src=\"#{location.href}\"></iframe>"
 				do @loadLangs
 				do @render
-
+				@clipboard = new ZeroClipboard @$("button.copy").get(0)
+				
 			events:
 				"click .sound": "soundToggle"
 				"click .lang": "toggleLang"
@@ -36,6 +38,7 @@ define [
 					@$(".demo").removeClass "on"
 
 				@$(".content .copyright").text i18n.t "COPYRIGHT"
+				@$(".content .copy").text i18n.t "COPY"
 
 				@$(".lang").attr("class", "lang").addClass DeviceSettings.get "language"
 				@$(".lang .current").text DeviceSettings.get "language"

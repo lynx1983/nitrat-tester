@@ -11,9 +11,21 @@
 	</head>
 	<body>
 		<div id="device-wrapper">
+            <div class="environment">
+                <div class="pulsar">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                </div>
+            </div>
 			<div class="device-control">
 				<div class="share">
-					<div class="content"><input type="text"/></div>
+					<div class="content">
+						<p class="copyright"></p>
+						<input id="sharecode" type="text"/>
+						<button class="copy" data-clipboard-target="sharecode">Copy</button>
+					</div>
 				</div>
 				<div class="sound"></div>
 				<div class="lang">

@@ -156,6 +156,20 @@ module.exports = (grunt) ->
 				cwd: "<%= components %>/requirejs-domready/"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/requirejs-domready/"
 			]
+			zeroclipboard:files:[
+				flattern: true
+				expand: true
+				src: "ZeroClipboard.js"
+				cwd: "<%= components %>/zeroclipboard/dist/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/zeroclipboard/"
+			]
+			zeroclipboardSwf:files:[
+				flattern: true
+				expand: true
+				src: "ZeroClipboard.swf"
+				cwd: "<%= components %>/zeroclipboard/dist/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/zeroclipboard/"
+			]
 
 		compress: 
 			main:
