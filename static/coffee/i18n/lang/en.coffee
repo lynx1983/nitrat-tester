@@ -5,3 +5,4 @@ define
 	'STEP4': 'Here is electric field values for two axis: X and Y'
 	'STEP5': 'Here is magnetic field values for three axis: X, Y, Z'
 	'COPY':	'Copy to clipboard'
+	'LICENSE': 'License agreement'

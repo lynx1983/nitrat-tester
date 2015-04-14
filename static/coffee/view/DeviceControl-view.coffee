@@ -10,7 +10,7 @@ define [
 			initialize:->
 				super
 				DeviceSettings.on "change", @render, @
-				@$(".content input").val "<iframe src=\"#{location.href}\"></iframe>"
+				@$(".content textarea").val "<iframe src=\"#{location.href}\"></iframe>"
 				do @loadLangs
 				do @render
 				@clipboard = new ZeroClipboard @$("button.copy").get(0)
@@ -39,14 +39,18 @@ define [
 
 				@$(".content .copyright").text i18n.t "COPYRIGHT"
 				@$(".content .copy").text i18n.t "COPY"
+				@$(".content a.license").text i18n.t "LICENSE"
 
 				@$(".lang").attr("class", "lang").addClass DeviceSettings.get "language"
 				@$(".lang .current").text DeviceSettings.get "language"
 
 			shareToggle:->
+				do @demoOff
+				do @langHide
 				@$(".share").toggleClass "on"
 
 			toggleLang:->
+				do @shareHide
 				@$(".lang").toggleClass "on"
 
 			soundToggle:->
@@ -59,6 +63,15 @@ define [
 				DeviceSettings.set "language", lang if lang
 				@$(".lang").removeClass "on"
 				false
+
+			demoOff:->
+				DeviceSettings.set "demoMode", false if DeviceSettings.get "demoMode"
+
+			langHide:->
+				@$(".lang").removeClass "on"
+
+			shareHide:->
+				@$(".share").removeClass "on"
 
 			demoToggle:(e)->
 				DeviceSettings.set "demoMode", not DeviceSettings.get "demoMode"
