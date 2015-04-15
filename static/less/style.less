@@ -75,6 +75,26 @@ html, body {
 			padding: 5px;
 			border-radius: 5px;
 			box-shadow: 0px 0px 5px 2px rgba(0,0,0,.5);
+
+			.step1,
+			.step2,
+			.step3 {
+				position: absolute;
+				left: 100%;
+				top: 50px;
+			}
+
+			.step4 {
+				position: absolute;
+				left: 100%;
+				top: 40px;
+			}
+
+			.step5 {
+				position: absolute;
+				left: 100%;
+				top: 40px;
+			}
 		}
 	}
 
@@ -131,10 +151,14 @@ html, body {
 					padding: 0 10px 5px 0;
 
 					a.flag {
-						background: no-repeat;
+						background-repeat: no-repeat;
 						width: 48px;
-						height: 48px;
 						display: block;
+						padding-top: 53px;
+						text-decoration: none;
+						color: black;
+						text-transform: capitalize;
+						padding-bottom: 5px;
 
 						&.ru {
 							background-image: url('../img/flags/ru.png');
@@ -199,6 +223,7 @@ html, body {
 
 			.copyright {
 				font-size: 12px;
+				text-align: left;
 			}
 
 			&.on {

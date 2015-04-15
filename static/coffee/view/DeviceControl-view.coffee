@@ -24,7 +24,7 @@ define [
 
 			loadLangs:->
 				for code, lang of i18n.languages
-					@$(".langs").append $("<li><a href=\"#\" class=\"flag #{lang.code}\" data-lang=\"#{lang.code}\"></a></li>")
+					@$(".langs").append $("<li><a href=\"#\" class=\"flag #{lang.code}\" data-lang=\"#{lang.code}\">#{lang.code}</a></li>")
 
 			render:->
 				if not DeviceSettings.get "soundOn"
@@ -74,6 +74,8 @@ define [
 				@$(".share").removeClass "on"
 
 			demoToggle:(e)->
+				do @shareHide
+				do @langHide
 				DeviceSettings.set "demoMode", not DeviceSettings.get "demoMode"
 
 		new DeviceControlView
