@@ -1,9 +1,9 @@
 define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (EventDrivenView, DeviceSettings, i18n)->
 	class MenuItem extends EventDrivenView
 		tagName: 'li'
-		template: _.template $('#menu-item-template').html()
 
 		initialize:->
+			@template = _.template $('#menu-item-template').html()
 			@title = @options.title
 			@text = @options.text ? ""
 			@checked = no

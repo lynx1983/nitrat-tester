@@ -1,7 +1,8 @@
 define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 	class MenuScreenView extends ScreenView
-		template: _.template $('#menu-template').html()
+		
 		initialize:->
+			@template = _.template $('#menu-template').html()
 			@activeIndex = 0
 			@firstVisibleIndex = 0
 			@itemsPerScreen = 6

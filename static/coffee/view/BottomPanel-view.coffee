@@ -1,9 +1,9 @@
 define ["view/Panel-view", "model/DeviceSettings-model", "i18n/i18n"], (PanelView, DeviceSettings, i18n)->	
 	class BottomPanelView extends PanelView
 		el: '#device-wrapper .bottom-panel'
-		template: _.template $('#bottom-panel-template').html()
-
+		
 		initialize:->
+			@template = _.template $('#bottom-panel-template').html()
 			@leftButtonText = @options.leftButtonText ? ""
 			@centerButtonText = @options.centerButtonText ? ""
 			@rightButtonText = @options.rightButtonText ? ""
@@ -34,4 +34,4 @@ define ["view/Panel-view", "model/DeviceSettings-model", "i18n/i18n"], (PanelVie
 		softButtonHide: (button)->
 			@$el.find(".#{button}").hide()
 
-	new BottomPanelView;
+	BottomPanelView

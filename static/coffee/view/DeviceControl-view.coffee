@@ -11,8 +11,8 @@ define [
 				super
 				DeviceSettings.on "change", @render, @
 				@$(".content textarea").val "<iframe src=\"#{location.href}\"></iframe>"
-				do @loadLangs
 				do @render
+				do @loadLangs
 				@clipboard = new ZeroClipboard @$("button.copy").get(0)
 				
 			events:
