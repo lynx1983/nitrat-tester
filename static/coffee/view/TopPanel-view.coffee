@@ -1,11 +1,11 @@
 define [
 	"view/Panel-view", 
 	"model/DeviceSettings-model"
-	], (PanelView, DeviceSettings)->	
+	], (PanelView, DeviceSettings)->
 	class TopPanelView extends PanelView
 		el: '#device-wrapper .top-panel'
-		template: _.template $('#top-panel-template').html()
 		initialize: ->
+			@template = _.template $('#top-panel-template').html()
 			@$el.html @template
 			@listIndicator = @$el.find ".list-indicator"
 			@eventBus.on "list-indicator.set", @setListIndicator, @
@@ -38,4 +38,4 @@ define [
 			@$indicator.css "visibility", "visible"
 
 
-	new TopPanelView;
+	TopPanelView

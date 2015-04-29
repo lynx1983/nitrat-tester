@@ -1,9 +1,7 @@
 define [
 	"view/EventDriven-view"
-	"view/TopPanel-view"
-	"view/BottomPanel-view"
 	"model/DeviceSettings-model"
-	], (EventDrivenView, TopPanel, BottomPanel, DeviceSettings)->
+	], (EventDrivenView, DeviceSettings)->
 	class DeviceView extends EventDrivenView
 		el: $("#device-wrapper")
 
@@ -19,8 +17,6 @@ define [
 			"mouseout div.button": "buttonUp"
 		
 		initialize:->
-			@topPanel = TopPanel
-			@bottomPanel = BottomPanel
 			@screens = {}
 			@screensStack = []
 			@cap = @$el.find ".cap"
