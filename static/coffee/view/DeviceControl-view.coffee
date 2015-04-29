@@ -14,6 +14,7 @@ define [
 				do @loadLangs
 				do @render
 				@clipboard = new ZeroClipboard @$("button.copy").get(0)
+				@clipboard.on "aftercopy", _.bind @afterCopy, @
 				
 			events:
 				"click .sound": "soundToggle"
@@ -39,15 +40,25 @@ define [
 
 				@$(".content .copyright").text i18n.t "COPYRIGHT"
 				@$(".content .copy").text i18n.t "COPY"
+				@$(".content .copied").text i18n.t "COPIED"
 				@$(".content a.license").text i18n.t "LICENSE"
 
 				@$(".lang").attr("class", "lang").addClass DeviceSettings.get "language"
 				@$(".lang .current").text DeviceSettings.get "language"
 
-			shareToggle:->
-				do @demoOff
-				do @langHide
-				@$(".share").toggleClass "on"
+			afterCopy:->
+				do @$(".copied").fadeIn
+				self = @
+				_.delay ->
+					do self.$(".copied").hide
+					self.$(".share").removeClass "on"
+				, 2000
+
+			shareToggle:(e)->
+				if $(e.target).hasClass "share"
+					do @demoOff
+					do @langHide
+					@$(".share").toggleClass "on"
 
 			toggleLang:->
 				do @shareHide

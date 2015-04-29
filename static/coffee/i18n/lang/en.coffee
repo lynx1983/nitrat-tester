@@ -6,3 +6,4 @@ define
 	'STEP5': 'Here is magnetic field values for three axis: X, Y, Z.'
 	'COPY':	'Copy to clipboard'
 	'LICENSE': 'License agreement'
+	'COPIED': 'Copied'
