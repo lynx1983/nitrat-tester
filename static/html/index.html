@@ -53,18 +53,14 @@
 			<% } %>
  		</script>
  		<script type="text/template" id="top-panel-template">
- 			<div class="list-indicator"></div>
+ 			<div class="icons"></div>
  			<ul class="activity-graph"></ul>
  			<div class="battery full"></div>
- 			<div class="activity-indicator">
- 				<div class="indicator"></div>
- 				<div class="last-button-icon"></div>
- 			</div>
  		</script>
  		<script type="text/template" id="bottom-panel-template">
- 			<div class="soft-button left"><%=t('cursor')%></div>
- 			<div class="soft-button right"><%=t('select')%></div> 			
- 			<div class="soft-button center"><%=t('menu')%></div>
+ 			<div class="soft-button left <%=leftState%>"></div>
+ 			<div class="soft-button right <%=rightState%>"></div> 			
+ 			<div class="soft-button center <%=centerState%>"><%=t(centerState)%></div>
  		</script>
  		<script type="text/template" id="info-screen-template">
  			<div class="view information">
@@ -83,15 +79,20 @@
  				<div class="data">
  					<p class="unit"><%=t('Backgr.,')%><span><%=t(unit)%></span></p>
  					<div class="graph readiness">
- 						<div class="indicator" style="height: <%=readiness%>%"></div>
+ 						<div class="holder">
+ 							<div class="indicator" style="height: <%=readiness%>%"></div>
+ 						</div>
  					</div>
  					<div class="graph accuracy">
- 						<div class="indicator" style="height: <%=accuracy%>%"></div>
+ 						<div class="holder">
+ 							<div class="indicator" style="height: <%=accuracy%>%"></div>
+ 						</div>
  					</div>
  					<p class="value"><%=value%></p>
  					<p class="level"><%=level%></p>
  				</div>
-				<p class="msg"><%=t(msg)%></p>
+ 				<p class="line"></p>
+				<p class="msg"><span><%=t(msg)%></span></p>
  			</div>
  		</script>
  		<script type="text/template" id="cumulativedose-screen-template">
@@ -101,8 +102,12 @@
  					<span class="value"><%=value%></span>
  					<span class="unit">mSv</span>
  				</div>
- 				<p class="time"><%=time%></p>
- 				<p class="counter">N=1</p>
+ 				<div class="line"></div>
+ 				<div class="time">
+ 					<p class="label"><%=t("total time")%></p>
+ 					<p><%=time%></p>
+ 				</div>
+ 				<p class="counter">-1</p>
 				<p class="level"><%=level%></p>
  			</div>
  		</script>

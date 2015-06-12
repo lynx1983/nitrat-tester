@@ -36,10 +36,6 @@ define [
 
 			time = time / 1000
 
-			days = Math.floor time / (60 * 60 * 24)
-
-			time -= days * 60 * 60 * 24
-
 			hours = Math.floor time / (60 * 60 )
 
 			time -= hours * 60 * 60
@@ -53,15 +49,28 @@ define [
 				title: @title
 				value: formattedValue
 				level: "#{level} Sv/h"
-				time: "T#{@strPad(days, 3)}:#{@strPad(hours, 2)}:#{@strPad(minutes, 2)}:#{@strPad(seconds, 2)}"
+				time: "#{@strPad(hours, 3)}:#{@strPad(minutes, 2)}:#{@strPad(seconds, 2)}"
 			@
 
 		activate:->
 			super
 			console.log "Screen [#{@name}] custom activate"
 			Measurements.on "add change", @render, @
+			@eventBus.on "button.click", @onButtonClick, @
+			@eventBus.trigger "device.button.setState", "left", "disabled"
+			@eventBus.trigger "device.button.setState", "right", "disabled"
+			@eventBus.trigger "device.button.setState", "center", "Menu"
 
 		deactivate:->
 			super			
 			console.log "Screen [#{@name}] custom deactivate"
 			Measurements.off "add change", @render, @
+			@eventBus.off "button.click", @onButtonClick, @
+			@eventBus.trigger "device.button.removeState", "left", "disabled"
+			@eventBus.trigger "device.button.removeState", "right", "disabled"
+
+		onButtonClick:(button)->
+			console.log "Get event by screen [#{@name}]"
+			switch button
+				when 'center'	
+					@eventBus.trigger "device.screen.prev"

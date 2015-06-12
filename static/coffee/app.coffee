@@ -17,42 +17,38 @@ require [
 		domReady ->
 			StartMenuScreen = new MenuScreenView
 				name: "start-menu"
+				title: "Menu"
 				items: [
-					new MenuItem
-						title: "Main Menu"
-						screen: "main-menu"
-						align: "center"
 					new MenuItem
 						title: "Measure"
 						screen: "measurement-screen"
-						align: "center"
+					new MenuItem
+						title: "Search"
 					new MenuItem
 						title: "Сumulative dose"
 						screen: "cumulative-dose-screen"
-						align: "center"
+					new MenuItem
+						title: "Settings"
+						screen: "settings"
 				]
 
 			MainMenuScreen = new MenuScreenView
-				name: "main-menu"
-				title: "Main Menu"
+				name: "settings"
+				title: "Settings"
 				items: [
 					new MenuItem
-						title: "Settings"
+						title: "Config"
 						screen: "settings-menu"
 					new MenuItem
-						title: "Information"
-						screen: "information-screen"
-					new MenuItem
 						title: "Language"
-						settingsValue: "language"
-						showValue: true
 						screen: "language-setting-menu"
 					new MenuItem
 						title: "Dosage reset"
 						screen: "dosage-reset-menu"
 					new MenuItem
-						title: "Version"
-						text: DeviceSettings.get "version"
+						title: "Exit"
+						class: "exit"
+						screen: "__prevScreen__"
 				]
 
 			DosageResetScreen = new MenuScreenView
@@ -104,14 +100,9 @@ require [
 						showValue: true
 						screen: "dose-threshold-sievert-settings-menu"
 					new MenuItem
-						title: "Vision"
-						screen: "screen-settings-menu"
-					new MenuItem
-						title: "Sound"
-						screen: "sound-settings-menu"
-					new MenuItem
-						title: "Power"
-						screen: "power-settings-menu"
+						title: "Exit"
+						class: "exit"
+						screen: "__prevScreen__"
 				]
 
 			ScreenSettingsMenuScreen = new MenuScreenView
@@ -190,6 +181,10 @@ require [
 						checkbox: true
 						settingsValue: "language"
 						checkedValue: 'en'
+					new MenuItem
+						title: "Exit"
+						class: "exit"
+						screen: "__prevScreen__"
 				]
 
 			ScreenBrightnessSettingsScreen = new MenuScreenView
@@ -339,6 +334,10 @@ require [
 						settingsValue: "threshold"
 						checkedValue: 100000
 						align: "center"
+					new MenuItem
+						title: "Exit"
+						class: "exit"
+						screen: "__prevScreen__"
 				]
 
 			DoseThresholdSvSettingsScreen = new MenuScreenView
@@ -441,6 +440,10 @@ require [
 						settingsValue: "doseThreshold"
 						checkedValue: 100000000000
 						align: "center"
+					new MenuItem
+						title: "Exit"
+						class: "exit"
+						screen: "__prevScreen__"
 				]
 
 			ScreenTimeoutSettingsScreen = new MenuScreenView

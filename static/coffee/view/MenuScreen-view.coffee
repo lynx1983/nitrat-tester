@@ -12,6 +12,7 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 			console.log "Screen [#{@name}] custom activate"
 			@activeIndex = 0 unless @options.notResetIndex
 			@eventBus.on "button.click", @onButtonClick, @
+			@eventBus.trigger "device.button.setState", "center", "OK"
 
 		deactivate:->
 			super			
@@ -30,23 +31,10 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 					if i == @activeIndex then renderedItem.addClass 'active' else renderedItem.removeClass 'active'
 					@$el.find('.menu').append renderedItem
 			
-			if startIndex > 0 and endIndex < @items.length
-				@eventBus.trigger "list-indicator.set",
-					state: 'both'
-			else if startIndex > 0 
-				@eventBus.trigger "list-indicator.set",
-					state: 'up'
-			else if endIndex < @items.length
-				@eventBus.trigger "list-indicator.set",
-					state: 'down'
-			else
-				@eventBus.trigger "list-indicator.set"
-			@
-
 		onButtonClick:(button)->
 			console.log "Get event by screen [#{@name}]"
 			switch button
-				when 'left'
+				when 'right'
 					@activeIndex++
 					if @activeIndex - @firstVisibleIndex >= @itemsPerScreen 
 						@firstVisibleIndex++
@@ -54,5 +42,16 @@ define ["view/Screen-view", "i18n/i18n"], (ScreenView, i18n)->
 						@activeIndex = @firstVisibleIndex = 0
 					@render()
 
-				when 'right'		
+				when 'center'		
 					@items[@activeIndex].trigger "menu.item.action", button
+
+				when 'left'
+					@activeIndex--
+					if @activeIndex < @firstVisibleIndex
+						@firstVisibleIndex--
+					if @activeIndex < 0
+						@activeIndex = @items.length - 1
+						if @items.length > @itemsPerScreen
+							@firstVisibleIndex = @items.length - @itemsPerScreen
+							@firstVisibleIndex = 0 if @firstVisibleIndex < 0
+					@render()

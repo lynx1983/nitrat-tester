@@ -17,6 +17,7 @@ define ["view/EventDriven-view", "model/DeviceSettings-model", "i18n/i18n"], (Ev
 				t: i18n.t
 				item: @
 			@$el.addClass @options.align if @options.align?
+			@$el.addClass @options.class if @options.class?
 			@
 
 		onValueChange: ->

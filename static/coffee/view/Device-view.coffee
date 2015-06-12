@@ -6,6 +6,8 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", 
 			"click div.button.left": "leftButtonClick"
 			"click div.button.center": "centerButtonClick"
 			"click div.button.right": "rightButtonClick"
+			"mousedown div.button": "buttonMouseDown"
+			"mouseup div.button": "buttonMouseUp"
 		
 		initialize:->
 			@msgTemplate = _.template $("#screen-message-template").html()
@@ -84,7 +86,6 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", 
 				do @hideMessage
 			else
 				@eventBus.trigger "button.click", "center"
-				do @resetScreens
 		
 		setFullScreen:(flag)->
 			if flag 
@@ -117,5 +118,10 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", 
 			@$msg = null
 			@messageShowing = false
 
+		buttonMouseDown:(e)->
+			$(e.target).addClass "down"
+
+		buttonMouseUp:(e)->
+			$(e.target).removeClass "down"
 
 	new DeviceView

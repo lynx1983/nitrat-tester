@@ -63,8 +63,21 @@ define [
 			console.log "Screen [#{@name}] custom activate"
 			@accuracy = 0
 			Measurements.on "add change", @render, @
+			@eventBus.on "button.click", @onButtonClick, @
+			@eventBus.trigger "device.button.setState", "left", "disabled"
+			@eventBus.trigger "device.button.setState", "right", "disabled"
+			@eventBus.trigger "device.button.setState", "center", "Menu"
 
 		deactivate:->
 			super			
 			console.log "Screen [#{@name}] custom deactivate"
 			Measurements.off "add change", @render, @
+			@eventBus.off "button.click", @onButtonClick, @
+			@eventBus.trigger "device.button.removeState", "left", "disabled"
+			@eventBus.trigger "device.button.removeState", "right", "disabled"
+
+		onButtonClick:(button)->
+			console.log "Get event by screen [#{@name}]"
+			switch button
+				when 'center'	
+					@eventBus.trigger "device.screen.prev"
