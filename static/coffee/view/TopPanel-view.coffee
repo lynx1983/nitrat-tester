@@ -41,5 +41,3 @@ define [
 									.css("height", "#{value}px")
 							)
 					)
-
-	new TopPanelView;

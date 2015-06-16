@@ -11,6 +11,24 @@
 	</head>
 	<body>
 		<div id="device-wrapper">
+			<div class="device-control">
+				<div class="share">
+					<div class="content">
+						<p class="copyright"></p>
+						<textarea id="sharecode"></textarea>
+						<p class="copied"></p>
+						<button class="copy" data-clipboard-target="sharecode">Copy</button>
+						<a class="license" href="#"></a>
+					</div>
+				</div>
+				<div class="sound"></div>
+				<div class="lang">
+					<span class="current"></span>
+					<ul class="langs">
+					</ul>
+				</div>
+				<div class="demo"></div>
+			</div>
 			<div class="device">
 				<div class="screen-wrapper">
 					<div class="top-panel"></div>
@@ -20,6 +38,8 @@
 				<div class="button left"></div>
 				<div class="button right"></div>
 				<div class="button center"></div>
+			</div>
+			<div class="demo-layout">
 			</div>
 			<audio>
  				<source src="sounds/beep.ogg" type="audio/ogg; codecs=vobis"/>
@@ -109,6 +129,43 @@
  				</div>
  				<p class="counter">-1</p>
 				<p class="level"><%=level%></p>
+			</div>
+		</script>
+		<script type="text/template" data-step="1" data-timeout="4000"></script>
+		<script type="text/template" data-step="2" data-timeout="7000">
+			<div class="step">
+				<!--<p><%=t('STEP1')%></p>-->
+			</div>
+		</script>
+		<script type="text/template" data-step="3" data-timeout="1000">
+			<div class="step">
+				<!--<p><%=t('STEP1')%></p>-->
+			</div>
+		</script>
+		<script type="text/template" data-step="4" data-timeout="7000">
+			<div class="step">
+				<!--<p><%=t('STEP2')%></p>-->
+			</div>
+		</script>
+		<script type="text/template" data-step="5" data-timeout="1000">
+			<div class="step">
+				<!--<p><%=t('STEP2')%></p>-->
+			</div>
+		</script>
+		<script type="text/template" data-step="6" data-timeout="7000">
+			<div class="step">
+				<!--<p><%=t('STEP3')%></p>-->
+			</div>
+		</script>
+		<script type="text/template" data-step="7" data-timeout="1000"></script>		
+		<script type="text/template" data-step="8" data-timeout="7000">
+			<div class="step">
+				<!--<p><%=t('STEP4')%></p>-->
+			</div>
+		</script>
+		<script type="text/template" data-step="9" data-timeout="7000">
+			<div class="step">
+				<!--<p><%=t('STEP5')%></p>-->
  			</div>
  		</script>
 	</body>

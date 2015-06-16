@@ -1,19 +1,28 @@
-define ["underi18n", "model/DeviceSettings-model", "event/EventBus-event", "./lang/ru"], (underi18n, DeviceSettings, EventBus, ru)->
+define ["underi18n", "model/DeviceSettings-model", "event/EventBus-event", "./lang/en", "./lang/ru"], (underi18n, DeviceSettings, EventBus, en, ru)->
 	class i18n
-		constructor:()->
-			DeviceSettings.bind 'change:language', _.bind(@onLangChange, @)
-			@t = underi18n.MessageFactory({})
+		constructor:->
+			DeviceSettings.on 'change:language', @onLanguageChange, @
+			@t = underi18n.MessageFactory {}
 			@eventBus = EventBus
 			@languages =
-				'en': {}
-				'ru': ru
+				en:
+					code: 'en'
+					name: 'English'
+					dictionary: en
+				ru:
+					code: 'ru'
+					name: 'Русский'
+					dictionary: ru
 
-		onLangChange:(model, lang)->
+		getLanguageName:(lang)->
+			@languages[lang].name if @languages[lang]
+
+		onLanguageChange:(model, lang)->
 			console.log "Language changed to '#{lang}'"
 			if @languages[lang]
-				@t = underi18n.MessageFactory @languages[lang]
+				@t = underi18n.MessageFactory @languages[lang].dictionary
 				@eventBus.trigger "device.screen.update"
 
-		t:()->
+		t:->
 
 	new i18n

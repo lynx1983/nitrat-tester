@@ -3,8 +3,11 @@ require [
 	"backbone"
 	"domReady"
 	"i18n/i18n"
+	"global"
 	"model/DeviceSettings-model"
 	"view/Device-view"
+	"view/TopPanel-view"
+	"view/BottomPanel-view"
 	"view/MenuScreen-view"
 	"view/MenuItem-view"
 	"view/TemplatedScreen-view"
@@ -12,9 +15,18 @@ require [
 	"view/CumulativeDoseScreen-view"
 	"view/SplashScreen-view"
 	"collection/Measurements-collection"
+	"view/DeviceControl-view"
+	"view/DemoControl-view"
 	], 
-	(_, Backbone, domReady, i18n, DeviceSettings, Device, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, CumulativeDoseScreenView, SplashScreenView, Measurements)->
+	(_, Backbone, domReady, i18n, global, DeviceSettings, Device, TopPanel, BottomPanel, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, CumulativeDoseScreenView, SplashScreenView, Measurements)->
 		domReady ->
+                        DeviceSettings.i18n = i18n
+
+			global.device = Device
+
+			Device.topPanel = new TopPanel
+			Device.bottomPanel = new BottomPanel
+
 			StartMenuScreen = new MenuScreenView
 				name: "start-menu"
 				title: "Menu"
@@ -493,7 +505,7 @@ require [
 				template: '#cumulativedose-screen-template'
 
 			SplashScreen = new SplashScreenView
-				name: "splash-screen"
+				name: "start-screen"
 				nextScreen: 'start-menu'
 				noTrackScreen: true
 			
@@ -517,6 +529,6 @@ require [
 			Device.addScreen DosageResetScreen
 
 			DeviceSettings.set 
-				language: (navigator.language || navigator.userLanguage || 'en').substring 0, 2
+				language: (navigator.language ? navigator.userLanguage ? 'en')[0...2]
 
-			Device.setCurrentScreen "splash-screen"
+			do Device.start

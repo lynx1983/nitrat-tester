@@ -156,7 +156,27 @@ module.exports = (grunt) ->
 				cwd: "<%= components %>/requirejs-domready/"
 				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/requirejs-domready/"
 			]
-
+			zeroclipboard:files:[
+				flattern: true
+				expand: true
+				src: "ZeroClipboard.js"
+				cwd: "<%= components %>/zeroclipboard/dist/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/zeroclipboard/"
+			]
+			zeroclipboardSwf:files:[
+				flattern: true
+				expand: true
+				src: "ZeroClipboard.swf"
+				cwd: "<%= components %>/zeroclipboard/dist/"
+				dest: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/zeroclipboard/"
+			]
+			zeroclipboardSwfRelease:files:[
+				flattern: true
+				expand: true
+				src: "ZeroClipboard.swf"
+				cwd: "<%= resource.root %>/<%= gruntconfig.debug %>/<%= resource.lib %>/zeroclipboard/"
+				dest: "<%= resource.root %>/<%= gruntconfig.release %>/<%= resource.js %>"
+			]
 
 		compress: 
 			main:
@@ -219,7 +239,7 @@ module.exports = (grunt) ->
 	grunt.registerTask('debug', ['clean', 'copy', 'build-dev'])
 	grunt.registerTask('debug-run', ['debug', 'connect:dev', 'watch'])
 	
-	grunt.registerTask('release', ['clean', 'copy', 'build', 'lineremover'])
+	grunt.registerTask('release', ['clean', 'copy', 'build', 'copy:zeroclipboardSwfRelease', 'lineremover'])
 	grunt.registerTask('release-run', ['release', 'connect:release'])
 	grunt.registerTask('release-package', ['release', 'compress'])
 

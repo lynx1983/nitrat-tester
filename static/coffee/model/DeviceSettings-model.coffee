@@ -19,6 +19,10 @@ define ["backbone"], (Backbone)->
 			sensorSound: false
 			thresholdSound: true
 			volume: 'middle'
+			demoMode: no
+
+		isDemoMode:->
+			@get "demoMode"
 
 		getValueString: (valueName)->
 			switch valueName

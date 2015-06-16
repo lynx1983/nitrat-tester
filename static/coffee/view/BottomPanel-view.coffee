@@ -24,5 +24,3 @@ define ["view/Panel-view", "model/DeviceSettings-model", "i18n/i18n"], (PanelVie
 		removeButtonState:(button, state)->
 			@["#{button}State"] = ""
 			@$el.find(".soft-button.#{button}").removeClass state
-
-	new BottomPanelView;

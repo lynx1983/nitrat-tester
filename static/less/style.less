@@ -30,12 +30,165 @@ html, body {
 	-ms-user-select: none;
 	user-select: none;
 
+	.device-control {
+		text-align: center;
+		padding: 5px 0;
+		position: relative;
+		z-index: 1;
+
+		& div {
+			vertical-align: top;
+		}
+
+		.sound {
+			cursor: pointer;
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			background: url('../img/sound-btn.png') no-repeat;
+
+			&.on {
+				background-position: -42px 0;
+			}
+		}
+
+		.lang {
+			cursor: pointer;
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			background: url('../img/btn.png') no-repeat;
+
+			& .current {
+				font-size: 18px;
+				line-height: 42px;
+				text-transform: uppercase;
+			}
+
+			ul {
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				border: 1px #666 solid;
+				border-radius: 5px;
+				background: #FFF;
+				padding: 5px;
+				box-sizing: border-box;
+				width: 100%;
+				padding-bottom: 0;
+
+				li {
+					float: left;
+					padding: 0 10px 5px 0;
+
+					a.flag {
+						background-repeat: no-repeat;
+						width: 48px;
+						display: block;
+						padding-top: 53px;
+						text-decoration: none;
+						color: black;
+						text-transform: capitalize;
+						padding-bottom: 5px;
+
+						&.ru {
+							background-image: url('../img/flags/ru.png');
+						}
+						&.en {
+							background-image: url('../img/flags/en.png');
+						}
+					}
+				}
+			}
+
+			&.on {
+				background-position: -42px 0;
+
+				ul {
+					display: block;
+				}
+			}
+		}
+
+		.demo {
+			cursor: pointer;
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			background: url('../img/demo-btn.png') no-repeat;
+
+			&.on {
+				background-position: -42px 0;
+			}
+		}
+
+		.share {
+			cursor: pointer;
+			display: inline-block;
+			height: 42px;
+			width: 42px;
+			background: url('../img/share-btn.png') no-repeat;
+
+			.content {
+				display: none;
+
+				textarea {
+					box-sizing: border-box;
+					resize: none;
+					width: 100%;
+					height: 5em;
+					margin-bottom: 10px;
+					margin-top: 10px;
+				}
+
+				button {
+					margin-bottom: 10px;
+				}
+
+				a.license {
+					font-size: .8em;
+					padding: 3px;
+					display: block;
+				}
+
+				.copied {
+					display: none;
+					margin-bottom: 10px;
+					font-weight: bold;
+				}
+			}
+
+			.copyright {
+				font-size: 12px;
+				text-align: left;
+			}
+
+			&.on {
+				background-position: -42px 0;
+
+				.content {
+					display: block;
+					position: absolute;
+					top: 100%;
+					left: 0;
+					border: 1px #666 solid;
+					border-radius: 5px;
+					background: #FFF;
+					padding: 5px;
+					box-sizing: border-box;
+					width: 100%;
+				}
+			}
+		}
+	}
+
 	.device {
 		width: unit(@deviceWidth, px);
 		height: 443px;
 		background: url('../img/device.png') no-repeat;
 		position: relative;
-		z-index: 5;
+		z-index: 0;
 	}
 
 	.screen-wrapper {

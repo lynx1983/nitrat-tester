@@ -6,6 +6,7 @@ requirejs.config(
 		jquery: 'lib/jquery/jquery'
 		underi18n: 'lib/underi18n/underi18n'
 		domReady: 'lib/requirejs-domready/domReady'
+		zeroClipboard: 'lib/zeroclipboard/ZeroClipboard'
 	shim:
 		jquery: 
 			exports: 'jQuery'

@@ -1,4 +1,4 @@
-define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", "i18n/i18n"], (EventDrivenView, TopPanel, BottomPanel, i18n)->
+define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", "i18n/i18n", "model/DeviceSettings-model"], (EventDrivenView, TopPanel, BottomPanel, i18n, DeviceSettings)->
 	class DeviceView extends EventDrivenView
 		el: $("#device-wrapper")
 
@@ -61,31 +61,34 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", 
 				@render()
 
 		beep:->
-			@beepSound.play()
+			do @beepSound.play if DeviceSettings.get "soundOn"
 
 		getCurrentScreen:->
 			@screensStack[0] if @screensStack.length > 0
 
 		leftButtonClick:->
-			do @beep
-			if @messageShowing 
-				do @hideMessage
-			else
-				@eventBus.trigger "button.click", "left"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				if @messageShowing 
+					do @hideMessage
+				else
+					@eventBus.trigger "button.click", "left"
 		
 		rightButtonClick:->
-			do @beep
-			if @messageShowing 
-				do @hideMessage
-			else
-				@eventBus.trigger "button.click", "right"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				if @messageShowing 
+					do @hideMessage
+				else
+					@eventBus.trigger "button.click", "right"
 
 		centerButtonClick:->
-			do @beep
-			if @messageShowing 
-				do @hideMessage
-			else
-				@eventBus.trigger "button.click", "center"
+			unless DeviceSettings.isDemoMode()
+				do @beep
+				if @messageShowing 
+					do @hideMessage
+				else
+					@eventBus.trigger "button.click", "center"
 		
 		setFullScreen:(flag)->
 			if flag 
@@ -123,5 +126,8 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", 
 
 		buttonMouseUp:(e)->
 			$(e.target).removeClass "down"
+
+		start:->
+			@setCurrentScreen "start-screen"
 
 	new DeviceView
