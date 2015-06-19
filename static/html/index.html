@@ -115,6 +115,29 @@
 				<p class="msg"><span><%=t(msg)%></span></p>
  			</div>
  		</script>
+ 		<script type="text/template" id="search-screen-template">
+ 			<div class="view measurement search <%=tag%>">
+ 				<div class="title"><span><%=t(title)%></span></div>
+ 				<div class="data">
+ 					<p class="unit"><span><%=t(unit)%></span></p>
+ 					<div class="graph readiness">
+ 						<div class="holder">
+ 							<div class="indicator" style="height: <%=readiness%>%"></div>
+ 						</div>
+ 					</div>
+ 					<div class="graph accuracy">
+ 						<div class="holder">
+ 							<div class="indicator" style="height: <%=accuracy%>%"></div>
+ 						</div>
+ 					</div>
+ 					<p class="value"><%=value%></p>
+ 					<p class="level"><%=level%></p>
+ 				</div>
+ 				<ul class="history-graph">
+ 				</ul>
+ 				<p class="scale"><%=t("SCALE")%><span>1uSv/h</span></p>
+ 			</div>
+ 		</script>
  		<script type="text/template" id="cumulativedose-screen-template">
  			<div class="view cumulativedose">
  				<div class="title"><span><%=t(title)%></span></div>

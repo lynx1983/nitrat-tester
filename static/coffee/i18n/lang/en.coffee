@@ -7,3 +7,4 @@ define
 	'COPY':	'Copy to clipboard'
 	'LICENSE': 'License agreement'
 	'COPIED': 'Copied'
+	'SCALE': 'Scale'

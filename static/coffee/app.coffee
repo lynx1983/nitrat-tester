@@ -12,13 +12,14 @@ require [
 	"view/MenuItem-view"
 	"view/TemplatedScreen-view"
 	"view/MeasurementScreen-view"
+	"view/SearchScreen-view"
 	"view/CumulativeDoseScreen-view"
 	"view/SplashScreen-view"
 	"collection/Measurements-collection"
 	"view/DeviceControl-view"
 	"view/DemoControl-view"
 	], 
-	(_, Backbone, domReady, i18n, global, DeviceSettings, Device, TopPanel, BottomPanel, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, CumulativeDoseScreenView, SplashScreenView, Measurements)->
+	(_, Backbone, domReady, i18n, global, DeviceSettings, Device, TopPanel, BottomPanel, MenuScreenView, MenuItem, TemplatedScreenView, MeasurementScreenView, SearchScreenView, CumulativeDoseScreenView, SplashScreenView, Measurements)->
 		domReady ->
                         DeviceSettings.i18n = i18n
 
@@ -36,6 +37,7 @@ require [
 						screen: "measurement-screen"
 					new MenuItem
 						title: "Search"
+						screen: "search-screen"
 					new MenuItem
 						title: "Сumulative dose"
 						screen: "cumulative-dose-screen"
@@ -499,6 +501,11 @@ require [
 				title: "Radioactivity"
 				template: '#measurement-screen-template'
 
+			SearchScreen = new SearchScreenView
+				name: "search-screen";
+				title: "Search"
+				template: '#search-screen-template'
+
 			CumulativeDoseScreen = new CumulativeDoseScreenView
 				name: "cumulative-dose-screen";
 				title: "Cumulative dose"
@@ -524,6 +531,7 @@ require [
 			Device.addScreen ThemeSettingsScreen
 			Device.addScreen InformationScreen
 			Device.addScreen MeasurementScreen
+			Device.addScreen SearchScreen
 			Device.addScreen CumulativeDoseScreen
 			Device.addScreen SplashScreen
 			Device.addScreen DosageResetScreen
