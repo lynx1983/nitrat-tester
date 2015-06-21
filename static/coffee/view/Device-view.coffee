@@ -128,6 +128,6 @@ define ["view/EventDriven-view", "view/TopPanel-view", "view/BottomPanel-view", 
 			$(e.target).removeClass "down"
 
 		start:->
-			@setCurrentScreen "search-screen"
+			@setCurrentScreen "start-screen"
 
 	new DeviceView

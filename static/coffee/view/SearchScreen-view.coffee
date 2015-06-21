@@ -11,8 +11,7 @@ define [
 			@lastValue = ''
 			@accuracy = 0
 			@maxAccuracy = 12
-			@$activityGraph = @$el.find ".history-graph"
-			@ticksCount = 38
+			@ticksCount = 122
 
 		render:->
 			lastValue = Measurements.last()
@@ -58,6 +57,9 @@ define [
 				accuracy: 100 / @maxAccuracy * @accuracy
 				tag: tag
 				msg: msg
+
+			do @updateGraph
+
 			@
 
 		activate:->
@@ -85,25 +87,22 @@ define [
 					@eventBus.trigger "device.screen.prev"
 
 		updateGraph:->
+			$activityGraph = @$el.find ".history-graph"
 			ticks = Measurements.last(@ticksCount + 1)
 			ticks.shift()
 			ticks.reverse()
-			@$activityGraph.empty()
+			$activityGraph.empty()
 			_.each ticks, (tick)=>
 				value = tick.get "value"
 				tag = tick.get "tag"
 				max = Measurements.getTagMaxValue tag
-				switch tag 
-					when 'warning'
-						value = 4 + (3 / max * value)
-					when 'danger'
-						value = 7 + (4 / max * value)
-					else
-						value = (4 / max * value)
-
-				@$activityGraph
+				maxTick = _.max ticks, (tick)->tick.get "value"
+				unless _.isEmpty maxTick
+					max = maxTick.get "value"
+				value = value / max * 100
+				$activityGraph
 					.append(
 						$('<li>')
 							.addClass(tick.get "tag")
-							.css("height", "#{value}px")
+							.append($('<span>').css("height", "#{value}%"))
 					)

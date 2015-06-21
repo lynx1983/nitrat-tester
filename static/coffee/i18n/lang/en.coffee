@@ -8,3 +8,4 @@ define
 	'LICENSE': 'License agreement'
 	'COPIED': 'Copied'
 	'SCALE': 'Scale'
+	'COPYRIGHT': 'To copy a model on your website, please paste the code. By copying a model, you accept the user agreement.'

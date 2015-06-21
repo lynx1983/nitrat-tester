@@ -633,21 +633,45 @@ html, body {
 
 				&.measurement.search {
 
+					.title {
+
+						span.unit {
+							float: right;
+							padding: 0;
+							text-transform: none;
+						}
+					}
+
+					.data {
+
+						p.value {
+							padding-top: 28px;
+						}
+					}
+
 					ul.history-graph {
 						display: block;
 						border: 1px solid #FFFFFF;
 						height: 30px;
 						margin: 2px;
 						box-sizing: border-box;
+						margin-bottom: 0;
 
 						li {
 							width: 1px;
-							height: 15px;
+							height: 100%;
 							display: block;
-							position: absolute;
 							float: right;
-							background: red;
-							bottom: 0;
+							position: relative;
+
+							span {
+								background: red;
+								position: absolute;
+								bottom: 0;
+								display: block;
+								left: 0;
+								width: 1px;
+							}
 						}
 					}
 
@@ -657,7 +681,7 @@ html, body {
 						padding: 1px 2px;
 
 						span {
-							padding: 0 25px;
+							float: right;
 						}
 					}
 				}
