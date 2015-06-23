@@ -30,6 +30,34 @@ html, body {
 	-ms-user-select: none;
 	user-select: none;
 
+	.demo-layout {
+		position: absolute;
+		top: 40px;
+		left: -100%;
+		width: 200px;
+		z-index: 2;
+		opacity: .8;
+		margin-left: 20px;
+
+		.step {
+			background: #FFF;
+			color: #b71900;
+			border: 2px solid #b71900;
+			box-sizing: border-box;
+			padding: 5px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px 2px rgba(0,0,0,.5);
+
+			.step1,
+			.step2,
+			.step3 {
+				position: absolute;
+				left: 100%;
+				top: 50px;
+			}
+		}
+	}
+
 	.device-control {
 		text-align: center;
 		padding: 5px 0;

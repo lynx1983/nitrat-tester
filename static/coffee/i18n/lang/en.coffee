@@ -9,3 +9,7 @@ define
 	'COPIED': 'Copied'
 	'SCALE': 'Scale'
 	'COPYRIGHT': 'To copy a model on your website, please paste the code. By copying a model, you accept the user agreement.'
+	'STEP1': 'Before us is the main menu of the device. From here you can go to any mode available, as well as additional settings'
+	'STEP2': 'In this mode, the instrument measures the current background radiation surrounding area'
+	'STEP3': 'The "Search" mode used for quick search of sources of radiation hazard'
+	'STEP4': 'In this mode, the instrument shows the accumulated dose of radiation during the measurement'

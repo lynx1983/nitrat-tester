@@ -47,8 +47,26 @@ define [
 
 			step5:->
 				@eventBus.trigger "button.click", "center"
+
+			step6:->
 				@eventBus.trigger "button.click", "right"
+
+			step7:->
+				@eventBus.trigger "button.click", "center"
+
+			step8:->
+				@eventBus.trigger "button.click", "center"
+
+			step9:->
 				@eventBus.trigger "button.click", "right"
+
+			step10:->
+				@eventBus.trigger "button.click", "right"
+
+			step11:->
+				@eventBus.trigger "button.click", "center"
+
+			step12:->
 				@eventBus.trigger "button.click", "center"
 
 		new DemoControlView
